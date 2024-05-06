@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
             return view('pages.user.edit');
         })->name('editprofile');
         Route::resource('users', UserController::class)->only('update');
+        Route::get('/users/profile', [UserController::class, 'showProfile'])->name('users.profile');
     });
 
     Route::middleware([AdminAuth::class])->group(function () {

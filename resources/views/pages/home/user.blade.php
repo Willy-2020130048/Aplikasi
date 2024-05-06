@@ -5,7 +5,7 @@
 @section('main')
     <main class="w-full">
         <!-- Announcement Banner -->
-        <div class="w-full bg-gradient-to-r from-red-500 via-purple-400 to-blue-500">
+        <div class="w-full dark:bg-gray-700">
             <div class="max-w-[85rem] px-4 py-4 sm:px-6 lg:px-8 mx-auto">
                 <!-- Grid -->
                 <div class="grid justify-center md:grid-cols-2 md:justify-between md:items-center gap-2">
@@ -20,7 +20,7 @@
                     <!-- End Col -->
 
                     <div class="mt-3 text-center md:text-start md:flex md:justify-end md:items-center">
-                        <a class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
+                        <a class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
                             href="#">
                             Sign up free
                         </a>
@@ -37,7 +37,7 @@
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Card -->
                 <div
-                    class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+                    class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
                     <div class="h-52 flex flex-col justify-center items-center bg-blue-600 rounded-t-xl">
                         <svg class="size-28" width="56" height="56" viewBox="0 0 56 56" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -58,17 +58,17 @@
                         </svg>
                     </div>
                     <div class="p-4 md:p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-300 dark:hover:text-white">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-200 dark:hover:text-white">
                             Identitas Pengguna
                         </h3>
-                        <p class="mt-3 text-gray-500 dark:text-neutral-500">
+                        <p class="mt-3 text-gray-500 dark:text-neutral-300">
                             Data diri pengguna
                         </p>
                     </div>
                     <div
                         class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
-                        <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
-                            href="#">
+                        <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
+                            href="{{route('users.profile')}}">
                             Lihat Profile
                         </a>
                     </div>
@@ -77,7 +77,7 @@
 
                 <!-- Card -->
                 <div
-                    class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+                    class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
                     <div class="h-52 flex flex-col justify-center items-center bg-rose-500 rounded-t-xl">
                         <svg class="size-28" width="56" height="56" viewBox="0 0 56 56" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -103,16 +103,16 @@
                         </svg>
                     </div>
                     <div class="p-4 md:p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-300 dark:hover:text-white">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-200 dark:hover:text-white">
                             Acara
                         </h3>
-                        <p class="mt-3 text-gray-500 dark:text-neutral-500">
+                        <p class="mt-3 text-gray-500 dark:text-neutral-300">
                             List acara yang sedang berlangsung
                         </p>
                     </div>
                     <div
                         class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
-                        <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
+                        <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
                             href="{{ route('user.index', '') }}">
                             Lihat Acara
                         </a>
@@ -122,7 +122,7 @@
 
                 <!-- Card -->
                 <div
-                    class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+                    class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
                     <div class="h-52 flex flex-col justify-center items-center bg-amber-500 rounded-t-xl">
                         <svg class="size-28" width="56" height="56" viewBox="0 0 56 56" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -142,16 +142,16 @@
                         </svg>
                     </div>
                     <div class="p-4 md:p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-300 dark:hover:text-white">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-200 dark:hover:text-white">
                             Pelatihan
                         </h3>
-                        <p class="mt-3 text-gray-500 dark:text-neutral-500">
+                        <p class="mt-3 text-gray-500 dark:text-neutral-300">
                             List pelatihan yang telah diikuti
                         </p>
                     </div>
                     <div
                         class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
-                        <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
+                        <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
                             href="#">
                             Lihat Pelatihan
                         </a>

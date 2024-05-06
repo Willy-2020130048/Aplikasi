@@ -71,6 +71,12 @@ class UserController extends Controller
         $user->save();
         return redirect('/admin/user')->with('success', 'Pengguna batal diverifikasi.');
     }
+
+    public function showProfile(AuthUser $user)
+    {
+        return view('pages.user.profile');
+    }
+
     public function update(Request $request, AuthUser $user)
     {
         if ($user->email != $request->email) {
@@ -101,7 +107,9 @@ class UserController extends Controller
         $user->nama_lengkap = $request->nama_lengkap;
         $user->jenis_kelamin = $request->jenis_kelamin;
         $user->tempat_lahir = $request->tempat_lahir;
-        $user->tanggal_lahir = $request->tanggal_lahir;
+        if($request->tanggal_lahir){
+            $user->tanggal_lahir = $request->tanggal_lahir;
+        }
         $user->agama = $request->agama;
         $user->alamat = $request->alamat;
         $user->kode_pos = $request->kode_pos;
