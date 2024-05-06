@@ -12,7 +12,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body>
+<body class="dark:bg-gray-800 dark:border-gray-700">
     {{-- Header --}}
     @if (auth()->user() == null)
         @include('components.guest-header')

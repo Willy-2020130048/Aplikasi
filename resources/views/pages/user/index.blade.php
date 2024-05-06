@@ -4,7 +4,7 @@
 
 @section('main')
     <main class = "w-full p-4 flex flex-col items-center">
-        <div class="w-full max-w-[85rem] px-4 sm:px-6 lg:px-8 bg-red-600 border-2 shadow-lg shadow-red">
+        <div class="w-full max-w-[85rem] px-4 sm:px-6 lg:px-8 bg-red-600 border-2 shadow-lg shadow-red dark:bg-red-900 dark:border-gray-700 rounded-xl">
             <div class="flex flex-row p-4">
                 <p class="text-xl text-white tracking-wider font-bold inline-flex items-center">
                     Pengguna
@@ -27,7 +27,7 @@
                 <div class="-m-1.5 overflow-x-auto">
                     <div class="p-1.5 min-w-full inline-block align-middle">
                         <div
-                            class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-neutral-900 dark:border-neutral-700">
+                            class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-gray-900 dark:border-neutral-700">
                             <!-- Header -->
                             <div
                                 class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-neutral-700">
@@ -148,7 +148,7 @@
                                         <div class="hs-dropdown [--placement:bottom-right] relative inline-block"
                                             data-hs-dropdown-auto-close="inside">
                                             <button id="hs-as-table-table-filter-dropdown" type="button"
-                                                class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+                                                class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
                                                 <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg"
                                                     width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -168,21 +168,21 @@
                                                 <div class="divide-y divide-gray-200 dark:divide-neutral-700">
                                                     <label for="hs-as-filters-dropdown-all" class="flex py-2.5 px-3">
                                                         <input type="checkbox"
-                                                            class="shrink-0 mt-0.5 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                                            class="shrink-0 mt-0.5 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                                             id="hs-as-filters-dropdown-all" checked>
                                                         <span
                                                             class="ms-3 text-sm text-gray-800 dark:text-neutral-200">All</span>
                                                     </label>
                                                     <label for="hs-as-filters-dropdown-published" class="flex py-2.5 px-3">
                                                         <input type="checkbox"
-                                                            class="shrink-0 mt-0.5 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                                            class="shrink-0 mt-0.5 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                                             id="hs-as-filters-dropdown-published">
                                                         <span
                                                             class="ms-3 text-sm text-gray-800 dark:text-neutral-200">Published</span>
                                                     </label>
                                                     <label for="hs-as-filters-dropdown-pending" class="flex py-2.5 px-3">
                                                         <input type="checkbox"
-                                                            class="shrink-0 mt-0.5 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                                            class="shrink-0 mt-0.5 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                                             id="hs-as-filters-dropdown-pending">
                                                         <span
                                                             class="ms-3 text-sm text-gray-800 dark:text-neutral-200">Pending</span>
@@ -198,7 +198,7 @@
                             <!-- Table -->
                             <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
                                 <thead class="bg-gray-50 dark:bg-neutral-800">
-                                    <tr class="bg-white hover:bg-gray-50 dark:bg-neutral-900 dark:hover:bg-neutral-800">
+                                    <tr class="bg-white hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-neutral-800">
                                         <th scope="col" class="px-4 py-3 text-start">
                                             <div class="flex items-center gap-x-2">
                                                 <span
@@ -339,7 +339,7 @@
                                 <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
                                     @foreach ($users as $user)
                                         <tr
-                                            class="bg-white hover:bg-gray-50 dark:bg-neutral-900 dark:hover:bg-neutral-800">
+                                            class="bg-white hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-neutral-800">
                                             <td class="h-px w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
@@ -485,7 +485,7 @@
                                 class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200 dark:border-neutral-700">
                                 <div class="max-w-sm space-y-3">
                                     <select
-                                        class="py-2 px-3 pe-9 block border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
+                                        class="py-2 px-3 pe-9 block border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-900 dark:border-neutral-700 dark:text-neutral-400">
                                         <option selected>5</option>
                                         <option>10</option>
                                         <option>20</option>
@@ -495,7 +495,7 @@
                                 <div>
                                     <div class="inline-flex gap-x-2">
                                         <button type="button"
-                                            class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+                                            class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
                                             <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
                                                 width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -506,7 +506,7 @@
                                         </button>
 
                                         <button type="button"
-                                            class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+                                            class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
                                             Next
                                             <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
                                                 width="24" height="24" viewBox="0 0 24 24" fill="none"

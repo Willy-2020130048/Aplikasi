@@ -6,7 +6,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body>
+<body class="dark:bg-gray-800 dark:border-gray-700">
     {{-- Header --}}
     @include('components.guest-header')
 

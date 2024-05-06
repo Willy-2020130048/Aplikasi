@@ -10,7 +10,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body>
+<body class="dark:bg-gray-800 dark:border-gray-700">
     {{-- Content --}}
     <div class="items-center justify-center flex flex-row">
         @yield('main')
