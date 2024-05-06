@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('capd')->default('');
             $table->string('foto')->default('');
             $table->string('role')->default('user');
+            $table->string('status')->default('menunggu');
             $table->rememberToken();
             $table->timestamps();
         });

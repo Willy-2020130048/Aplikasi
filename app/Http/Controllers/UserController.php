@@ -55,6 +55,22 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
+    public function verify($id)
+    {
+        $user = User::find($id);
+        $user->status = 'terverifikasi';
+        $user->save();
+        return redirect('/admin/user')->with('success', 'Pengguna berhasil diverifikasi.');
+    }
+
+    public function unverify($id)
+    {
+        $user = User::find($id);
+        $user->status = 'menunggu';
+        $user->save();
+        return redirect('/admin/user')->with('success', 'Pengguna batal diverifikasi.');
+    }
     public function update(Request $request, AuthUser $user)
     {
         if ($user->email != $request->email) {

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\InstansiController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminAuth;
 use App\Http\Middleware\UserAuth;
@@ -61,6 +62,8 @@ Route::middleware(['auth'])->group(function () {
             })->name('admin');
 
             Route::resource('user', UserController::class);
+            Route::get('/user/verify/{id}', [UserController::class, 'verify'])->name('user.verify');
+            Route::get('/user/unverify/{id}', [UserController::class, 'unverify'])->name('user.unverify');
         });
     });
 });
