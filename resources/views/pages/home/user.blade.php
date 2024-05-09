@@ -5,7 +5,7 @@
 @section('main')
     <main class="w-full">
         <!-- Announcement Banner -->
-        <div class="w-full dark:bg-gray-700">
+        <div class="w-full bg-red-700 dark:bg-gray-700">
             <div class="max-w-[85rem] px-4 py-4 sm:px-6 lg:px-8 mx-auto">
                 <!-- Grid -->
                 <div class="grid justify-center md:grid-cols-2 md:justify-between md:items-center gap-2">
@@ -68,7 +68,7 @@
                     <div
                         class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
                         <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
-                            href="{{route('users.profile')}}">
+                            href="{{ route('users.profile') }}">
                             Lihat Profile
                         </a>
                     </div>

@@ -4,6 +4,12 @@
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
 @section('main')
 
+    <div>
+        <form id="getInstansi" class="mt-8" hidden>
+            <input id="currentProv" name="currentProv">
+        </form>
+    </div>
+
     <div
         class="lg:w-1/3 md:w-3/5 w-9/10 mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-900 dark:border-gray-700">
         <div class="p-4 sm:p-7">
@@ -105,18 +111,42 @@
                     </div>
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Provinsi</span>
-                        <input placeholder="" type="text" name="provinsi" value="{{ auth()->user()->provinsi }}"
-                            class="text-md block px-3 py-2 rounded-lg w-full
-        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
-        dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
+                        <select
+                            class="text-md block px-2 py-2 rounded-lg w-full
+                        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
+                            name="provinsi" id="provinsi" onchange="formSubmit()">
+                            @foreach ($dataProv as $prov)
+                                <option value="{{ $prov->id }}"
+                                    {{ $prov->id == auth()->user()->provinsi ? 'selected' : '' }}>
+                                    {{ $prov->name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
+                    @error('provinsi')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Instansi</span>
-                        <input placeholder="" type="text" name="instansi" value="{{ auth()->user()->instansi }}"
+                        <select
                             class="text-md block px-3 py-2 rounded-lg w-full
-        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
-        dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
+                        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
+                            name="instansi" id ="instansi">
+                            @foreach ($dataInstansi as $instansi)
+                                <option value="{{ $instansi->id }}"
+                                    {{ $instansi->id == auth()->user()->instansi ? 'selected' : '' }}>
+                                    {{ $instansi->nama_unit }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
+                    @error('instansi')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Mulai Kerja di HD</span>
                         <input placeholder="" type="text" name="hd" value="{{ auth()->user()->hd }}"
@@ -171,4 +201,40 @@
     </div>
     </div>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#getInstansi').on('submit', function(event) {
+                event.preventDefault();
+                jQuery('#currentProv')[0].value = document.getElementById('provinsi').value;
+
+                jQuery.ajax({
+                    url: '/dataInstansi',
+                    data: jQuery('#getInstansi').serialize(),
+                    type: "GET",
+                    success: function(result) {
+                        var select = jQuery('#instansi');
+                        console.log(jQuery('#instansi'));
+                        select.empty();
+                        result.forEach(function(item) {
+                            var option = jQuery('<option>', {
+                                value: item.id,
+                                text: item.nama_unit
+                            });
+                            select.append(option);
+                        });
+                    },
+
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                        // Handle error
+                    }
+                });
+
+            })
+        });
+
+        function formSubmit() {
+            $('#getInstansi').submit();
+        }
+    </script>
 @endsection

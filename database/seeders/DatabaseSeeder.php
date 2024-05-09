@@ -33,8 +33,30 @@ class DatabaseSeeder extends Seeder
             'capd' => '2022',
             'foto' => '',
             'username' => 'ItsCleavers',
-            'role' => 'admin',
+            'role' => 'user',
             'password' => Hash::make('password'),
+        ]);
+
+        \App\Models\User::factory()->create([
+            'no_str' => '001',
+            'nama_lengkap' => 'Willy',
+            'jenis_kelamin' => 'pria',
+            'tempat_lahir' => 'Bandung',
+            'tanggal_lahir' => '22-07-2002',
+            'agama' => 'Buddha',
+            'alamat' => 'Jln Pagarsih No 7',
+            'kode_pos' => '5402',
+            'email' => 'admin@gmail.com',
+            'no_hp' => '085968114617',
+            'pendidikan' => 'SMA',
+            'instansi' => 'Instansi',
+            'hd' => '2022',
+            'dialisis' => '2022',
+            'capd' => '2022',
+            'foto' => '',
+            'username' => 'Admin',
+            'role' => 'admin',
+            'password' => Hash::make('admin213'),
         ]);
     }
 }
