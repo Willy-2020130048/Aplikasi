@@ -103,25 +103,25 @@ class UserController extends Controller
             $user->foto = $user->username . '.' . $photo->getClientOriginalExtension();
         }
 
-        $user->no_str = $request->no_str;
-        $user->nama_lengkap = $request->nama_lengkap;
-        $user->jenis_kelamin = $request->jenis_kelamin;
-        $user->tempat_lahir = $request->tempat_lahir;
-        if($request->tanggal_lahir){
-            $user->tanggal_lahir = $request->tanggal_lahir;
+        $user->no_str = $request->no_str == null ? '' : $request->no_str;
+        $user->nama_lengkap = $request->nama_lengkap == null ? '' : $request->nama_lengkap;
+        $user->jenis_kelamin = $request->jenis_kelamin == null ? '' : $request->jenis_kelamin;
+        $user->tempat_lahir = $request->tempat_lahir == null ? '' : $request->tempat_lahir;;
+        if ($request->tanggal_lahir) {
+            $user->tanggal_lahir = $request->tanggal_lahir == null ? '' : $request->tanggal_lahir;
         }
-        $user->agama = $request->agama;
-        $user->alamat = $request->alamat;
-        $user->kode_pos = $request->kode_pos;
-        $user->email = $request->email;
-        $user->no_hp = $request->no_hp;
-        $user->pendidikan = $request->pendidikan;
-        $user->provinsi = $request->provinsi;
-        $user->instansi = $request->instansi;
-        $user->hd = $request->hd;
-        $user->dialisis = $request->dialisis;
-        $user->capd = $request->capd;
-        $user->provinsi = $request->provinsi;
+        $user->agama = $request->agama == null ? '' : $request->agama;
+        $user->alamat = $request->alamat == null ? '' : $request->alamat;
+        $user->kode_pos = $request->kode_pos == null ? '' : $request->kode_pos;
+        $user->email = $request->email == null ? '' : $request->email;
+        $user->no_hp = $request->no_hp == null ? '' : $request->no_hp;
+        $user->pendidikan = $request->pendidikan == null ? '' : $request->pendidikan;
+        $user->provinsi = $request->provinsi == null ? '' : $request->provinsi;
+        $user->instansi = $request->instansi == null ? '' : $request->instansi;
+        $user->hd = $request->hd == null ? '' : $request->hd;
+        $user->dialisis = $request->dialisis == null ? '' : $request->dialisis;
+        $user->capd = $request->capd == null ? '' : $request->capd;
+        $user->provinsi = $request->provinsi == null ? '' : $request->provinsi;
         $user->save();
 
         return redirect('/')->with('success', 'User updated succesfully.');

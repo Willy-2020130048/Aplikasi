@@ -30,6 +30,11 @@
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                     </div>
+                    @error('no_str')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Username</span>
                         <input placeholder="" type="text" name="username" value="{{ auth()->user()->username }}"
@@ -37,6 +42,11 @@
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                     </div>
+                    @error('username')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Nama Lengkap</span>
                         <input placeholder="" type="text" name="nama_lengkap" value="{{ auth()->user()->nama_lengkap }}"
@@ -44,6 +54,11 @@
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                     </div>
+                    @error('nama_lengkap')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Jenis kelamin</span>
                         <input placeholder="" type="text" name="jenis_kelamin"
@@ -52,6 +67,11 @@
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                     </div>
+                    @error('jenis_kelamin')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Tempat Lahir</span>
                         <input placeholder="" type="text" name="tempat_lahir" value="{{ auth()->user()->tempat_lahir }}"
@@ -59,6 +79,11 @@
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                     </div>
+                    @error('tempat_lahir')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Tanggal Lahir</span>
                         <input placeholder="" type="date" name="tanggal_lahir"
@@ -67,6 +92,11 @@
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                     </div>
+                    @error('tanggal_lahir')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Agama</span>
                         <input placeholder="" type="text" name="agama" value="{{ auth()->user()->agama }}"
@@ -74,6 +104,11 @@
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                     </div>
+                    @error('agama')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Alamat</span>
                         <input placeholder="" type="text" name="alamat" value="{{ auth()->user()->alamat }}"
@@ -81,6 +116,11 @@
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                     </div>
+                    @error('alamat')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Kode Pos</span>
                         <input placeholder="" type="text" name="kode_pos" value="{{ auth()->user()->kode_pos }}"
@@ -88,6 +128,11 @@
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                     </div>
+                    @error('kode_pos')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Email</span>
                         <input placeholder="" type="email" name="email" value="{{ auth()->user()->email }}"
@@ -95,6 +140,11 @@
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                     </div>
+                    @error('email')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Nomor Handphone</span>
                         <input placeholder="" type="text" name="no_hp" value="{{ auth()->user()->no_hp }}"
@@ -102,6 +152,11 @@
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                     </div>
+                    @error('no_hp')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Pendidikan</span>
                         <input placeholder="" type="text" name="pendidikan" value="{{ auth()->user()->pendidikan }}"
@@ -109,6 +164,11 @@
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                     </div>
+                    @error('pendidikan')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Provinsi</span>
                         <select
@@ -154,6 +214,11 @@
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                     </div>
+                    @error('hd')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Pelatihan Dialisis</span>
                         <input placeholder="" type="text" name="dialisis" value="{{ auth()->user()->dialisis }}"
@@ -161,6 +226,11 @@
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                     </div>
+                    @error('dialisis')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Pelatihan CAPD</span>
                         <input placeholder="" type="text" name="capd" value="{{ auth()->user()->capd }}"
@@ -168,23 +238,17 @@
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                     </div>
+                    @error('capd')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600">Foto</span>
                         <input type="file" name="foto" id="foto" value="{{ auth()->user()->foto }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
-                    </div>
-                    <div>
-                        @if ($errors->any())
-                            <div class="alert alert-danger text-red-600">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                     </div>
                     <button type="submit"
                         class="mt-3 text-lg font-semibold bg-green-800 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
