@@ -58,5 +58,17 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
             'password' => Hash::make('admin213'),
         ]);
+
+        \App\Models\Acara::factory()->create([
+            'nama_acara' => 'Acara Pertama',
+            'jenis_acara' => 'Umum',
+            'deskripsi_acara' => 'Contoh Deskripsi Acara Pertama yang dibuat',
+            'tgl_mulai' => fake()->date(),
+            'tgl_selesai' => date('Y-m-d'),
+            'id_detail' => '',
+            'harga_acara' => 100000,
+            'jumlah_partisipan' => 100,
+            'pengelola' => 'Pengelola Acara Pertama',
+        ]);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AcaraController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\InstansiController;
@@ -21,21 +22,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-// Route::get('/', function (Request $request) {
-//     $users = DB::table('users')->select('name', 'username')->when($request->input('name'), function ($query, $name) {
-//         return $query->where('username', 'like', '%' . $name . '%');
-//     })->paginate(5);
-
-//     return view('pages.home', compact('questions', 'users'));
-// })->name('home');
-
-// Route::get('/profile/{username}', function ($username) {
-//     $users = DB::table('users')->where('username', $username)->paginate(1);
-//     $links = DB::table('links')->where('username', $username)->orderBy('id', 'desc')->paginate(10);
-//     $questions = DB::table('questions')->where([['penjawab', '=', $username], ['jawaban', '<>', '']])->orderBy('id', 'desc')->paginate(10);
-//     return view('pages.profile.index', compact('links', 'questions', 'users'));
-// })->name('profile');
 
 Route::get('/dataInstansi', function (Request $request) {
     $dataInstansi = DB::table('ipdi_unit')->select('id', 'nama_unit')->when($request->input('currentProv') == null ? 11 : $request->input('currentProv'), function ($query, $provinsi) {
@@ -70,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
             })->name('admin');
 
             Route::resource('user', UserController::class);
+            Route::resource('acara', AcaraController::class);
             Route::get('/user/verify/{id}', [UserController::class, 'verify'])->name('user.verify');
             Route::get('/user/unverify/{id}', [UserController::class, 'unverify'])->name('user.unverify');
         });

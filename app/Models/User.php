@@ -33,6 +33,7 @@ class User extends Authenticatable
         'no_hp',
         'pendidikan',
         'instansi',
+        'provinsi',
         'hd',
         'dialisis',
         'capd',

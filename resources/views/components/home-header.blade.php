@@ -3,7 +3,7 @@
     class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white border-b text-sm py-2.5 sm:py-4 dark:bg-slate-900 dark:border-gray-700">
     <nav class="max-w-7xl flex basis-full items-center w-full mx-auto px-4 sm:px-6 lg:px-8" aria-label="Global">
         <div class="me-5 md:me-8">
-            <a class="flex-none text-4xl text-red-500 font-semibold dark:text-white" href="/"
+            <a class="flex-none text-4xl text-red-500 font-semibold" href="/"
                 aria-label="Brand">IPDI</a>
         </div>
 

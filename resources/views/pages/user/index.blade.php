@@ -4,7 +4,7 @@
 
 @section('main')
     <main class = "w-full p-4 flex flex-col items-center">
-        <div class="w-full px-4 sm:px-6 lg:px-8 bg-red-600 border-2 shadow-lg shadow-red dark:bg-red-900 dark:border-gray-700 rounded-xl">
+        <div class="w-full px-4 sm:px-6 lg:px-8 bg-red-600 shadow-lg shadow-red dark:bg-red-900 rounded-xl">
             <div class="flex flex-row p-4">
                 <p class="text-xl text-white tracking-wider font-bold inline-flex items-center">
                     Pengguna
@@ -196,8 +196,8 @@
                             <!-- End Header -->
 
                             <!-- Table -->
-                            <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
-                                <thead class="bg-gray-50 dark:bg-neutral-800">
+                            <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700 text-gray-800 dark:text-gray-300">
+                                <thead>
                                     <tr class="bg-white hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-neutral-800">
                                         <th scope="col" class="px-4 py-3 text-start">
                                             <div class="flex items-center gap-x-2">
@@ -298,6 +298,14 @@
                                             <div class="flex items-center gap-x-2">
                                                 <span
                                                     class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
+                                                    Provinsi
+                                                </span>
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
                                                     Instansi
                                                 </span>
                                             </div>
@@ -337,14 +345,20 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+                                @php
+                                    $row = 0;
+                                @endphp
                                     @foreach ($users as $user)
+                                        @php
+                                            $row += 1;
+                                        @endphp
                                         <tr
-                                            class="bg-white hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-neutral-800">
+                                            class="hover:bg-gray-200 dark:hover:bg-neutral-800 {{$row % 2 == 0 ? "bg-white dark:bg-slate-800": "bg-gray-100 dark:bg-gray-900"}}">
                                             <td class="h-px w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        Nomor Nira
+                                                        {{ $user->nira }}
                                                     </span>
                                                 </div>
                                             </td>
@@ -425,6 +439,14 @@
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $user->pendidikan }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-40 min-w-40 align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{ $user->provinsi }}
                                                     </span>
                                                 </div>
                                             </td>

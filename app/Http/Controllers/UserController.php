@@ -60,6 +60,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->status = 'terverifikasi';
+        $user->nira = $user->provinsi.".".$user->instansi.".". ($user->jenis_kelamin == 'Perempuan' ? '2': '1' ) .".".str_pad($user->id, 6, "0", STR_PAD_LEFT);;
         $user->save();
         return redirect('/admin/user')->with('success', 'Pengguna berhasil diverifikasi.');
     }
@@ -68,6 +69,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->status = 'menunggu';
+        $user->nira = 'Belum Terverifikasi';
         $user->save();
         return redirect('/admin/user')->with('success', 'Pengguna batal diverifikasi.');
     }
