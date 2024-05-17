@@ -34,7 +34,31 @@ class AcaraController extends Controller
      */
     public function store(StoreacaraRequest $request)
     {
-        //
+        $request->validate(
+            [
+                'nama_acara' => 'required',
+                'tgl_mulai' => 'required',
+                'tgl_selesai' => 'required',
+                'jenis_acara' => 'required',
+                'deskripsi_acara' => 'required',
+                'harga_acara' => 'required|integer',
+                'status' => 'required',
+                'tempat' => 'required',
+                'pengelola' => 'required',
+            ]
+        );
+        $acara = new Acara();
+        $acara->nama_acara = $request->nama_acara;
+        $acara->tgl_mulai = $request->tgl_mulai;
+        $acara->tgl_selesai = $request->tgl_selesai;
+        $acara->jenis_acara = $request->jenis_acara;
+        $acara->deskripsi_acara = $request->deskripsi_acara;
+        $acara->harga_acara = $request->harga_acara;
+        $acara->status = $request->status;
+        $acara->tempat = $request->tempat;
+        $acara->pengelola = $request->pengelola;
+        $acara->save();
+        return redirect()->route('acara.index')->with('success', 'Acara berhasil dibuat.');
     }
 
     /**

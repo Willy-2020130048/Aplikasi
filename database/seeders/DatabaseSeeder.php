@@ -60,15 +60,27 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Acara::factory()->create([
-            'nama_acara' => 'Acara Pertama',
+            'nama_acara' => 'Bakti Sosial',
             'jenis_acara' => 'Umum',
-            'deskripsi_acara' => 'Contoh Deskripsi Acara Pertama yang dibuat',
-            'tgl_mulai' => fake()->date(),
-            'tgl_selesai' => date('Y-m-d'),
+            'deskripsi_acara' => 'Pelaksanaan bakti sosial di daerah bandung, untuk mengurangi polusi udara yang ada. Diwajibkan kepada seluruh anggota untuk berpartisipasi pada acara ini.',
+            'tgl_mulai' => date('Y-m-d', strtotime('2024/4/4')),
+            'tgl_selesai' => date('Y-m-d', strtotime('2024/4/5')),
             'id_detail' => '',
             'harga_acara' => 100000,
             'jumlah_partisipan' => 100,
-            'pengelola' => 'Pengelola Acara Pertama',
+            'pengelola' => 'Pengelola Acara',
+        ]);
+
+        \App\Models\Acara::factory()->create([
+            'nama_acara' => 'Bakti Sosial',
+            'jenis_acara' => 'Umum',
+            'deskripsi_acara' => 'Pelaksanaan bakti sosial di daerah bandung, untuk mengurangi polusi udara yang ada. Diwajibkan kepada seluruh anggota untuk berpartisipasi pada acara ini.',
+            'tgl_mulai' => date('Y-m-d', strtotime('2024/4/4')),
+            'tgl_selesai' => date('Y-m-d', strtotime('2024/4/4')),
+            'id_detail' => '',
+            'harga_acara' => 100000,
+            'jumlah_partisipan' => 100,
+            'pengelola' => 'Pengelola Acara',
         ]);
     }
 }

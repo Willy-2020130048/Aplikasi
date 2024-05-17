@@ -27,7 +27,7 @@ class AcaraFactory extends Factory
             'harga_acara' => fake()->numberBetween(50000, 100000),
             'jumlah_partisipan' => fake()->numberBetween(10, 100),
             'pengelola' => fake()->name(),
-            'status' => 'online',
+            'status' => 'Online',
             'tempat' => fake()->address(),
         ];
     }

@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('users', UserController::class)->only('update');
         Route::get('/users/profile', [UserController::class, 'showProfile'])->name('users.profile');
+        Route::get('/acara', [\App\Http\Controllers\PosterController::class, 'index'])->name('poster.index');
     });
 
     Route::middleware([AdminAuth::class])->group(function () {

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('deskripsi_acara');
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
-            $table->string('id_detail');
+            $table->string('id_detail')->nullable();
             $table->integer('harga_acara');
             $table->integer('jumlah_partisipan')->default(0);
             $table->string('pengelola');

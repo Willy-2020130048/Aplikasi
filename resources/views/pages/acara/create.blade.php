@@ -10,15 +10,9 @@
             <div class="text-center">
                 <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Daftar Acara</h1>
             </div>
-
-            <div>
-                <form id="getInstansi" class="mt-8" hidden>
-                    <input id="currentProv" name="currentProv">
-                </form>
-            </div>
             <div class="mt-5">
                 <!-- Form -->
-                <form id="goRegister" method="POST" action="{{ route('acara.store') }}" class="mt-8" x-data="{ password: '', password_confirm: '' }">
+                <form method="POST" action="{{ route('acara.store') }}" class="mt-8">
                     @csrf
                     <div class="mx-auto max-w-lg ">
                         <div class="py-1">
@@ -33,6 +27,33 @@
                             {{ $message }}
                         </div>
                         @enderror
+
+                        <div class="py-1">
+                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Tanggal Mulai
+                            </span>
+                            <input placeholder="" type="date" name="tgl_mulai"
+                                   class="text-md block px-3 py-2 rounded-lg w-full
+            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+                        </div>
+                        @error('tgl_mulai')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                        @enderror
+
+                        <div class="py-1">
+                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Tanggal Selesai
+                            </span>
+                            <input placeholder="" type="date" name="tgl_selesai"
+                                   class="text-md block px-3 py-2 rounded-lg w-full
+            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+                        </div>
+                        @error('tgl_selesai')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                        @enderror
+
                         <div class="py-1">
                             <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Jenis Acara
                             </span>
@@ -53,7 +74,7 @@
                                    class="text-md block px-3 py-2 rounded-lg w-full
             bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
                         </div>
-                        @error('deskripsi')
+                        @error('deskripsi_acara')
                         <div class="text-red-600">
                             {{ $message }}
                         </div>
@@ -66,7 +87,7 @@
                                    class="text-md block px-3 py-2 rounded-lg w-full
             bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
                         </div>
-                        @error('harga')
+                        @error('harga_acara')
                         <div class="text-red-600">
                             {{ $message }}
                         </div>
