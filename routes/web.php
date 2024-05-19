@@ -1,13 +1,10 @@
 <?php
 
 use App\Http\Controllers\AcaraController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\InstansiController;
+use App\Http\Controllers\PosterController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminAuth;
 use App\Http\Middleware\UserAuth;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +45,12 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('users', UserController::class)->only('update');
         Route::get('/users/profile', [UserController::class, 'showProfile'])->name('users.profile');
         Route::get('/acara', [\App\Http\Controllers\PosterController::class, 'index'])->name('poster.index');
+        Route::get('/password', function () {
+            return view('pages.user.password');
+        })->name('changepassword');
+        Route::put('/updatepassword', [UserController::class, 'changepassword'])->name('users.changepassword');
+        Route::get('/acara/{id}', [PosterController::class, 'detail'])->name('poster.detail');
+        Route::post('/acara/{id}', [PosterController::class, 'store'])->name('poster.store');
     });
 
     Route::middleware([AdminAuth::class])->group(function () {
@@ -55,11 +58,14 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', function () {
                 return view('pages.admin.index');
             })->name('admin');
-
             Route::resource('user', UserController::class);
             Route::resource('acara', AcaraController::class);
+            Route::get('/password', function () {
+                return view('pages.user.password');
+            })->name('changepassword');
             Route::get('/user/verify/{id}', [UserController::class, 'verify'])->name('user.verify');
             Route::get('/user/unverify/{id}', [UserController::class, 'unverify'])->name('user.unverify');
+            Route::get('/user/changepassword/{id}', [UserController::class, 'resetpassword'])->name('user.changepassword');
         });
     });
 });

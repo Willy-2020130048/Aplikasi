@@ -196,7 +196,8 @@
                             <!-- End Header -->
 
                             <!-- Table -->
-                            <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700 text-gray-800 dark:text-gray-300">
+                            <table
+                                class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700 text-gray-800 dark:text-gray-300">
                                 <thead>
                                     <tr class="bg-white hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-neutral-800">
                                         <th scope="col" class="px-4 py-3 text-start">
@@ -342,19 +343,27 @@
                                                 </span>
                                             </div>
                                         </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
+                                                    Reset Password
+                                                </span>
+                                            </div>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
-                                @php
-                                    $row = 0;
-                                @endphp
+                                    @php
+                                        $row = 0;
+                                    @endphp
                                     @foreach ($users as $user)
                                         @php
                                             $row += 1;
                                         @endphp
                                         <tr
-                                            class="hover:bg-gray-200 dark:hover:bg-neutral-800 {{$row % 2 == 0 ? "bg-white dark:bg-slate-800": "bg-gray-100 dark:bg-gray-900"}}">
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            class="hover:bg-gray-200 dark:hover:bg-neutral-800 {{ $row % 2 == 0 ? 'bg-white dark:bg-slate-800' : 'bg-gray-100 dark:bg-gray-900' }}">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -362,7 +371,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -370,7 +379,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -378,7 +387,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -386,7 +395,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -394,7 +403,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -402,7 +411,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -410,7 +419,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -418,7 +427,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -426,7 +435,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -434,7 +443,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -442,7 +451,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -450,7 +459,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -458,7 +467,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -466,7 +475,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -474,7 +483,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
+                                            <td class="w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -483,29 +492,43 @@
                                                 </div>
                                             </td>
                                             <td class="size-px whitespace-nowrap align-top">
-                                                @if($user->status == 'terverifikasi')
-                                                <a class="block p-6" href="{{route('user.unverify',$user->id)}}">
+                                                @if ($user->status == 'terverifikasi')
+                                                    <a class="block p-6" href="{{ route('user.unverify', $user->id) }}">
                                                         <span
                                                             class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
-                                                        <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg"
-                                                             width="16" height="16" fill="currentColor"
-                                                             viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                                                        </svg>
-                                                        {{$user->status}}
-                                                    </span>
-                                                </a>
-                                                @else
-                                                    <a class="block p-6" href="{{route('user.verify',$user->id)}}">
-                                                            <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-red-100 text-red-800 rounded-full dark:bg-red-500/10 dark:text-red-500">
-                                                            <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                                            <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg"
+                                                                width="16" height="16" fill="currentColor"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                                                             </svg>
-                                                            {{$user->status}}
-                                                            </span>
+                                                            {{ $user->status }}
+                                                        </span>
+                                                    </a>
+                                                @else
+                                                    <a class="block p-6" href="{{ route('user.verify', $user->id) }}">
+                                                        <span
+                                                            class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-red-100 text-red-800 rounded-full dark:bg-red-500/10 dark:text-red-500">
+                                                            <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg"
+                                                                width="16" height="16" fill="currentColor"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                                            </svg>
+                                                            {{ $user->status }}
+                                                        </span>
                                                     </a>
                                                 @endif
+                                            </td>
+                                            <td class="align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <a href="{{ route('user.changepassword', $user->id) }}">
+                                                        <button
+                                                            class="text-sm font-semibold bg-red-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
+                                                            Reset Password
+                                                        </button>
+                                                    </a>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -561,3 +584,39 @@
         <!-- End Table Section -->
     </main>
 @endsection
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#getInstansi').on('submit', function(event) {
+            event.preventDefault();
+            jQuery('#currentProv')[0].value = document.getElementById('provinsi').value;
+
+            jQuery.ajax({
+                url: '/dataInstansi',
+                data: jQuery('#getInstansi').serialize(),
+                type: "GET",
+                success: function(result) {
+                    var select = jQuery('#instansi');
+                    console.log(jQuery('#instansi'));
+                    select.empty();
+                    result.forEach(function(item) {
+                        var option = jQuery('<option>', {
+                            value: item.id,
+                            text: item.nama_unit
+                        });
+                        select.append(option);
+                    });
+                },
+
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                    // Handle error
+                }
+            });
+
+        })
+    });
+
+    function formSubmit() {
+        $('#getInstansi').submit();
+    }
+</script>

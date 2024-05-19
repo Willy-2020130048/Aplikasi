@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,7 +15,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = DB::table('users')->when($request->input('name'), function ($query, $name) {
+        $users = DB::table('users')->where('role', '=', 'user')->when($request->input('name'), function ($query, $name) {
             return $query->where('nama_lengkap', 'like', '%' . $name . '%');
         })->orderBy('id', 'desc')->paginate(10);
         return view('pages.user.index', compact('users'));
@@ -56,11 +57,28 @@ class UserController extends Controller
      * Update the specified resource in storage.
      */
 
+    public function changepassword(Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+        $user->password = $request->password;
+        $user->save();
+        return redirect('/')->with('success', "berhasil mengganti password");
+    }
+
+    public function resetpassword($id)
+    {
+        $user = User::find($id);
+        $text = fake()->text(8);
+        $user->password = Hash::make('password');
+        $user->save();
+        return redirect('/admin/user')->with('success', "Password diganti menjadi: " . $text);
+    }
+
     public function verify($id)
     {
         $user = User::find($id);
         $user->status = 'terverifikasi';
-        $user->nira = $user->provinsi.".".$user->instansi.".". ($user->jenis_kelamin == 'Perempuan' ? '2': '1' ) .".".str_pad($user->id, 6, "0", STR_PAD_LEFT);;
+        $user->nira = $user->provinsi . "." . $user->instansi . "." . ($user->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($user->id, 6, "0", STR_PAD_LEFT);;
         $user->save();
         return redirect('/admin/user')->with('success', 'Pengguna berhasil diverifikasi.');
     }
