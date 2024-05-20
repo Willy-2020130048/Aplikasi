@@ -61,9 +61,6 @@
                                 <option value="Laki-Laki" selected>Laki-laki</option>
                                 <option value="Perempuan">Perempuan</option>
                             </select>
-                            <input placeholder="" type="text" name="jenis_kelamin"
-                                class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
                         </div>
                         @error('jenis_kelamin')
                             <div class="text-red-600">

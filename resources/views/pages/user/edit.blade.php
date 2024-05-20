@@ -60,15 +60,20 @@
                         </div>
                     @enderror
                     <div class="py-1">
-                        <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Jenis kelamin</span>
-                        <label class="text-md block px-3 py-2 rounded-lg w-full
-                        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
-                        dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">{{ auth()->user()->jenis_kelamin }}</label>
+                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Jenis kelamin
+                            </span>
+                        <select
+                            class="text-md block px-2 py-2 rounded-lg w-full
+                            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
+                            name="jenis_kelamin" id="jenis_kelamin">
+                            <option value="Laki-Laki" {{auth()->user()->jenis_kelamin == 'Laki-Laki' ? 'selected' : ''}}>Laki-laki</option>
+                            <option value="Perempuan" {{auth()->user()->jenis_kelamin == 'Perempuan' ? 'selected' : ''}}>Perempuan</option>
+                        </select>
                     </div>
                     @error('jenis_kelamin')
-                        <div class="text-red-600">
-                            {{ $message }}
-                        </div>
+                    <div class="text-red-600">
+                        {{ $message }}
+                    </div>
                     @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Tempat Lahir</span>
