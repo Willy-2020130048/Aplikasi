@@ -14,5 +14,8 @@ class DetailAcara extends Model
         'id_peserta',
         'nama_akun',
         'bukti_pembayaran',
+        'status',
+        'verifikasi',
+        'unverifikasi',
     ];
 }

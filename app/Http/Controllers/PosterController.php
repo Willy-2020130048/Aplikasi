@@ -11,7 +11,8 @@ class PosterController
 {
     public function index(Request $request)
     {
-        $acaras = DB::select("SELECT * FROM acaras WHERE id NOT IN (SELECT id_acara FROM detail_acaras WHERE id_peserta = ?)", [auth()->user()->id]);
+
+        $acaras = DB::select("SELECT * FROM acaras WHERE id NOT IN (SELECT CAST(id_acara as BIGINT) FROM detail_acaras WHERE id_peserta = ?)", [auth()->user()->id]);
         return view('pages.poster.index', compact('acaras'));
     }
 
@@ -36,7 +37,7 @@ class PosterController
         if ($request->hasfile('bukti_pembayaran')) {
             $photo = $request->file('bukti_pembayaran');
             $photo->storeAs('public/bukti_pembayaran', $detail->id_peserta . '.' . $detail->id_acara . '.' . $photo->getClientOriginalExtension());
-            $detail->bukti_pembayaran = $detail->id_peserta . '.' . $detail->id_acara . $photo->getClientOriginalExtension();
+            $detail->bukti_pembayaran = $detail->id_peserta . '.' . $detail->id_acara . '.' . $photo->getClientOriginalExtension();
         }
         $detail->save();
         return redirect()->route('poster.index')->with('success', 'Registrasi acara berhasil.');

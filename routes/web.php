@@ -3,6 +3,7 @@
 use App\Http\Controllers\AcaraController;
 use App\Http\Controllers\PosterController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DetailAcaraController;
 use App\Http\Middleware\AdminAuth;
 use App\Http\Middleware\UserAuth;
 use Illuminate\Http\Request;
@@ -66,6 +67,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/user/verify/{id}', [UserController::class, 'verify'])->name('user.verify');
             Route::get('/user/unverify/{id}', [UserController::class, 'unverify'])->name('user.unverify');
             Route::get('/user/changepassword/{id}', [UserController::class, 'resetpassword'])->name('user.changepassword');
+            Route::resource('pembayaran', DetailAcaraController::class);
+            Route::get('/pembayaran/verify/{id}', [DetailAcaraController::class, 'verify'])->name('pembayaran.verify');
+            Route::get('/pembayaran/unverify/{id}', [DetailAcaraController::class, 'unverify'])->name('pembayaran.unverify');
         });
     });
 });

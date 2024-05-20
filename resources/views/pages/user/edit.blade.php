@@ -61,11 +61,10 @@
                     @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Jenis kelamin</span>
-                        <input placeholder="" type="text" name="jenis_kelamin"
-                            value="{{ auth()->user()->jenis_kelamin }}"
-                            class="text-md block px-3 py-2 rounded-lg w-full
-        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
-        dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
+                        <label class="text-md block px-3 py-2 rounded-lg w-full
+                        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
+                        dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">></label>
+                        {{ auth()->user()->jenis_kelamin }}
                     </div>
                     @error('jenis_kelamin')
                         <div class="text-red-600">

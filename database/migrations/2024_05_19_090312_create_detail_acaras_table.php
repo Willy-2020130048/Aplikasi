@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('id_peserta');
             $table->string('nama_akun');
             $table->string('bukti_pembayaran');
+            $table->string('status')->default('Belum Dikonfirmasi');
+            $table->string('verifikasi')->default('-')->nullable();
+            $table->string('unverifikasi')->default('-')->nullable();
             $table->timestamps();
         });
     }

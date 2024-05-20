@@ -14,12 +14,6 @@
                     <img src='../storage/foto/download.png' class="object-cover h-48 w-96">
                 @endif
             </div>
-
-            <!-- Form -->
-            <form method="POST" action="{{ route('users.update', auth()->user()) }}" class="mt-2"
-                enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
                 <div class="mx-auto max-w-lg ">
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-300">Nomor STR</span>
@@ -143,10 +137,7 @@
         dark:bg-gray-800 dark:text-white dark:border-gray-800">
                     </div>
                 </div>
-            </form>
-            <!-- End Form -->
         </div>
-    </div>
     </div>
 
 @endsection
