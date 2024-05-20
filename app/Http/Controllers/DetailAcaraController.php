@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DetailAcara;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-class dDetailAcaraController extends Controller
+class DetailAcaraController extends Controller
 {
     /**
      * Display a listing of the resource.
