@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreacaraRequest;
-use App\Http\Requests\UpdateacaraRequest;
 use App\Models\Acara;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,7 +30,7 @@ class AcaraController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreacaraRequest $request)
+    public function store(Request $request)
     {
         $request->validate(
             [
@@ -81,9 +79,34 @@ class AcaraController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateacaraRequest $request, acara $acara)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate(
+            [
+                'nama_acara' => 'required',
+                'tgl_mulai' => 'required',
+                'tgl_selesai' => 'required',
+                'jenis_acara' => 'required',
+                'deskripsi' => 'required',
+                'harga' => 'required|integer',
+                'status' => 'required',
+                'tempat' => 'required',
+                'pengelola' => 'required',
+            ]
+        );
+
+        $acara = Acara::find($id);
+        $acara->nama_acara = $request->nama_acara;
+        $acara->tgl_mulai = $request->tgl_mulai;
+        $acara->tgl_selesai = $request->tgl_selesai;
+        $acara->jenis_acara = $request->jenis_acara;
+        $acara->deskripsi_acara = $request->deskripsi;
+        $acara->harga_acara = $request->harga;
+        $acara->status = $request->status;
+        $acara->tempat = $request->tempat;
+        $acara->pengelola = $request->pengelola;
+        $acara->save();
+        return redirect()->route('acara.index')->with('success', 'Acara berhasil dibuat.');
     }
 
     /**

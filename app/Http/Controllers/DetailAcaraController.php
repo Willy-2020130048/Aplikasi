@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DetailAcara;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 class DetailAcaraController extends Controller
 {
     /**
@@ -13,11 +14,11 @@ class DetailAcaraController extends Controller
     public function index(Request $request)
     {
         $pembayarans = DB::table('detail_acaras')->select('detail_acaras.*', 'users.nama_lengkap', 'acaras.nama_acara')
-        ->join('users', 'users.id', "=", DB::raw('CAST(detail_acaras.id_peserta as BIGINT)'))
-        ->join('acaras', 'acaras.id', "=", DB::raw('CAST(detail_acaras.id_acara as BIGINT)'))
-        ->when($request->input('nama_akun'), function ($query, $name) {
-            return $query->where('nama_akun', 'like', '%' . $name . '%');
-        })->orderBy('id', 'desc')->paginate(10);
+            ->join('users', 'users.id', "=", "detail_acaras.id_peserta")
+            ->join('acaras', 'acaras.id', "=", "detail_acaras.id_acara")
+            ->when($request->input('nama_akun'), function ($query, $name) {
+                return $query->where('nama_akun', 'like', '%' . $name . '%');
+            })->orderBy('id', 'desc')->paginate(10);
         return view('pages.pembayaran.index', compact('pembayarans'));
     }
 

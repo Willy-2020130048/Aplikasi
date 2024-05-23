@@ -54,6 +54,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/acara/{id}', [PosterController::class, 'store'])->name('poster.store');
     });
 
+    //Admin
     Route::middleware([AdminAuth::class])->group(function () {
         Route::prefix('admin')->group(function () {
             Route::get('/', function () {
