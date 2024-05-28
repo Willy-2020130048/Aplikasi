@@ -48,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/acara', [\App\Http\Controllers\PosterController::class, 'index'])->name('poster.index');
         Route::get('/password', function () {
             return view('pages.user.password');
-        })->name('changepassword');
+        })->name('changepassword_user');
         Route::put('/updatepassword', [UserController::class, 'changepassword'])->name('users.changepassword');
         Route::get('/acara/{id}', [PosterController::class, 'detail'])->name('poster.detail');
         Route::post('/acara/{id}', [PosterController::class, 'store'])->name('poster.store');
@@ -64,10 +64,11 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('acara', AcaraController::class);
             Route::get('/password', function () {
                 return view('pages.user.password');
-            })->name('changepassword');
+            })->name('changepassword_admin');
             Route::get('/user/verify/{id}', [UserController::class, 'verify'])->name('user.verify');
             Route::get('/user/unverify/{id}', [UserController::class, 'unverify'])->name('user.unverify');
             Route::get('/user/changepassword/{id}', [UserController::class, 'resetpassword'])->name('user.changepassword');
+            Route::put('/updatepassword', [UserController::class, 'changepassword'])->name('admin.changepassword');
             Route::resource('pembayaran', DetailAcaraController::class);
             Route::get('/pembayaran/verify/{id}', [DetailAcaraController::class, 'verify'])->name('pembayaran.verify');
             Route::get('/pembayaran/unverify/{id}', [DetailAcaraController::class, 'unverify'])->name('pembayaran.unverify');

@@ -59,10 +59,14 @@ class UserController extends Controller
 
     public function changepassword(Request $request)
     {
+        $request->validate([
+            'password' => 'required',
+        ]);
+
         $user = User::find(auth()->user()->id);
-        $user->password = $request->password;
-        $user->save();
-        return redirect('/')->with('success', "berhasil mengganti password");
+            $user->password = $request->password;
+            $user->save();
+            return redirect(auth()->user()->role == 'user' ? '/' : '/admin')->with('success', "berhasil mengganti password");
     }
 
     public function resetpassword($id)
@@ -71,7 +75,7 @@ class UserController extends Controller
         $text = fake()->text(8);
         $user->password = Hash::make('password');
         $user->save();
-        return redirect('/admin/user')->with('success', "Password diganti menjadi: " . $text);
+        return redirect('/admin/user')->with('success', "Password berhasil direset menjadi (password)");
     }
 
     public function verify($id)
