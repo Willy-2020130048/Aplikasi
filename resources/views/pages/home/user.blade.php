@@ -159,7 +159,7 @@
                 </div>
                 <!-- End Card -->
                 <!-- Card -->
-                <div
+                {{-- <div
                     class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
                     <div class="h-52 flex flex-col justify-center items-center bg-blue-600 rounded-t-xl">
                         <svg class="size-28" width="56" height="56" viewBox="0 0 56 56" fill="none"
@@ -195,7 +195,7 @@
                             Lakukan Pembayaran
                         </a>
                     </div>
-                </div>
+                </div> --}}
                 <!-- End Card -->
             </div>
             <!-- End Grid -->
