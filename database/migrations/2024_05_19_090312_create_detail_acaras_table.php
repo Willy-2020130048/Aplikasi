@@ -17,6 +17,13 @@ return new class extends Migration
             $table->string('id_peserta');
             $table->string('nama_akun');
             $table->string('bukti_pembayaran');
+            $table->string('no_ktp');
+            $table->string('tipe_pegawai')->default('Non ASN');
+            $table->string('nip');
+            $table->string('gelar');
+            $table->string('golongan');
+            $table->string('jenis_nakes');
+            $table->string('jabatan');
             $table->string('status')->default('Belum Dikonfirmasi');
             $table->string('verifikasi')->default('-')->nullable();
             $table->string('unverifikasi')->default('-')->nullable();

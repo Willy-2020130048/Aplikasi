@@ -1,6 +1,6 @@
 @extends('layouts.home')
 
-@section('title', 'Edit Profile')
+@section('title', 'Daftar Partisipasi Acara')
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
 @section('main')
 
@@ -29,17 +29,97 @@
         @method('POST')
         <div class="mx-auto max-w-lg ">
             <div class="py-1">
+                <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Nomor Induk Penduduk</span>
+                <input placeholder="Nomor Induk Penduduk" type="text" name="nip"
+                       class="text-md block px-3 py-2 rounded-lg w-full
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
+        dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
+            </div>
+            @error('nip')
+            <div class="text-red-600">
+                {{ $message }}
+            </div>
+            @enderror
+
+            <div class="py-1">
                 <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Nama Akun Plataran</span>
-                <input placeholder="" type="text" name="nama_akun"
+                <input placeholder="Akun Plataran" type="text" name="nama_akun"
                     class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
+                <label>*Daftar akun plataran <a href="https://anggota.ipdi.or.id/login" class="text-red-600">di sini</a></label>
             </div>
             @error('nama_akun')
                 <div class="text-red-600">
                     {{ $message }}
                 </div>
             @enderror
+
+            <div class="py-1">
+                <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Tipe Pegawai</span>
+                <input placeholder="Non ASN" type="text" name="tipe_pegawai"
+                       class="text-md block px-3 py-2 rounded-lg w-full
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
+        dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
+            </div>
+            @error('tipe_pegawai')
+            <div class="text-red-600">
+                {{ $message }}
+            </div>
+            @enderror
+
+            <div class="py-1">
+                <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Gelar</span>
+                <input placeholder="S.Kom" type="text" name="gelar"
+                       class="text-md block px-3 py-2 rounded-lg w-full
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
+        dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
+            </div>
+            @error('gelar')
+            <div class="text-red-600">
+                {{ $message }}
+            </div>
+            @enderror
+
+            <div class="py-1">
+                <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Pangkat / Golongan</span>
+                <input placeholder="" type="text" name="golongan"
+                       class="text-md block px-3 py-2 rounded-lg w-full
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
+        dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
+            </div>
+            @error('golongan')
+            <div class="text-red-600">
+                {{ $message }}
+            </div>
+            @enderror
+
+            <div class="py-1">
+                <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Jenis Nakes</span>
+                <input placeholder="" type="text" name="jenis_nakes"
+                       class="text-md block px-3 py-2 rounded-lg w-full
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
+        dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
+            </div>
+            @error('jenis_nakes')
+            <div class="text-red-600">
+                {{ $message }}
+            </div>
+            @enderror
+
+            <div class="py-1">
+                <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Jabatan</span>
+                <input placeholder="" type="text" name="jabatan"
+                       class="text-md block px-3 py-2 rounded-lg w-full
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
+        dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
+            </div>
+            @error('jabatan')
+            <div class="text-red-600">
+                {{ $message }}
+            </div>
+            @enderror
+
             <div class="py-1">
                 <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Bukti Pembayaran</span>
                 <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" value="{{ auth()->user()->foto }}"
