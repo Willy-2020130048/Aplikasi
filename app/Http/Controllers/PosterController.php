@@ -28,6 +28,12 @@ class PosterController
             [
                 'nama_akun' => 'required',
                 'bukti_pembayaran' => 'required',
+                'nip' => 'required',
+                'tipe_pegawai' => 'required',
+                'gelar' => 'required',
+                'golongan' => 'required',
+                'jabatan' => 'required',
+                'jenis_nakes' => 'required',
             ]
         );
         $detail = new DetailAcara();
@@ -39,6 +45,12 @@ class PosterController
             $photo->storeAs('public/bukti_pembayaran', $detail->id_peserta . '.' . $detail->id_acara . '.' . $photo->getClientOriginalExtension());
             $detail->bukti_pembayaran = $detail->id_peserta . '.' . $detail->id_acara . '.' . $photo->getClientOriginalExtension();
         }
+        $detail->nip = $request->nip;
+        $detail->tipe_pegawai = $request->tipe_pegawai;
+        $detail->gelar = $request->gelar;
+        $detail->golongan = $request->golongan;
+        $detail->jabatan = $request->jabatan;
+        $detail->jenis_nakes = $request->jenis_nakes;
         $detail->save();
         return redirect()->route('poster.index')->with('success', 'Registrasi acara berhasil.');
     }
