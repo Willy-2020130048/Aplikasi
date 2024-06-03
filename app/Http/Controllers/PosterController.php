@@ -26,6 +26,7 @@ class PosterController
     {
         $request->validate(
             [
+                'no_ktp' => 'required',
                 'nama_akun' => 'required',
                 'bukti_pembayaran' => 'required',
                 'nip' => 'required',
@@ -38,6 +39,7 @@ class PosterController
         );
         $detail = new DetailAcara();
         $detail->id_acara = $id;
+        $detail->no_ktp = $request->no_ktp;
         $detail->id_peserta = auth()->user()->id;
         $detail->nama_akun = $request->nama_akun;
         if ($request->hasfile('bukti_pembayaran')) {

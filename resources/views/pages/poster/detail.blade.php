@@ -29,8 +29,21 @@
         @method('POST')
         <div class="mx-auto max-w-lg ">
             <div class="py-1">
-                <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Nomor Induk Penduduk</span>
-                <input placeholder="Nomor Induk Penduduk" type="text" name="nip"
+                <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Nomor KTP</span>
+                <input placeholder="Nomor KTP" type="text" name="no_ktp"
+                       class="text-md block px-3 py-2 rounded-lg w-full
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
+        dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
+            </div>
+            @error('no_ktp')
+            <div class="text-red-600">
+                {{ $message }}
+            </div>
+            @enderror
+        <div class="mx-auto max-w-lg ">
+            <div class="py-1">
+                <span class="px-1 text-sm text-gray-600 dark:text-gray-200">NIP / NPR</span>
+                <input placeholder="NIP / NPR" type="text" name="nip"
                        class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
