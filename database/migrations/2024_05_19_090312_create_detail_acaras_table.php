@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('bukti_pembayaran');
             $table->string('no_ktp');
             $table->string('tipe_pegawai')->default('Non ASN');
-            $table->string('nip');
+            $table->string('nip')->nullable();
             $table->string('gelar');
             $table->string('golongan');
             $table->string('jenis_nakes');
