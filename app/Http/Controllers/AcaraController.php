@@ -55,6 +55,7 @@ class AcaraController extends Controller
         $acara->status = $request->status;
         $acara->tempat = $request->tempat;
         $acara->pengelola = $request->pengelola;
+        $acara->id_detail = $request->sponsor;
         $acara->save();
         return redirect()->route('acara.index')->with('success', 'Acara berhasil dibuat.');
     }
@@ -105,6 +106,7 @@ class AcaraController extends Controller
         $acara->status = $request->status;
         $acara->tempat = $request->tempat;
         $acara->pengelola = $request->pengelola;
+        $acara->id_detail = $request->sponsor;
         $acara->save();
         return redirect()->route('acara.index')->with('success', 'Acara berhasil dibuat.');
     }

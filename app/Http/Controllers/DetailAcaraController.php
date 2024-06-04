@@ -13,9 +13,11 @@ class DetailAcaraController extends Controller
      */
     public function index(Request $request)
     {
-        $pembayarans = DB::table('detail_acaras')->select('detail_acaras.*', 'users.nama_lengkap', 'acaras.nama_acara')
+        $pembayarans = DB::table('detail_acaras')->select('detail_acaras.*','users.nira', 'users.no_hp', 'reg_provinces.name', 'ipdi_unit.nama_unit', 'acaras.id_detail', 'acaras.nama_acara')
             ->join('users', 'users.id', "=", "detail_acaras.id_peserta")
             ->join('acaras', 'acaras.id', "=", "detail_acaras.id_acara")
+            ->join('ipdi_unit', 'ipdi_unit.id', "=", "users.instansi")
+            ->join('reg_provinces', 'reg_provinces.id', "=", "users.provinsi")
             ->when($request->input('nama_akun'), function ($query, $name) {
                 return $query->where('nama_akun', 'like', '%' . $name . '%');
             })->orderBy('id', 'desc')->paginate(10);

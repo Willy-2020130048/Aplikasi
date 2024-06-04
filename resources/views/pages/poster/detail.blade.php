@@ -69,6 +69,20 @@
             @enderror
 
             <div class="py-1">
+                <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Kabupaten / Kota</span>
+                <input placeholder="Akun Plataran" type="text" name="kota"
+                    class="text-md block px-3 py-2 rounded-lg w-full
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
+        dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
+            </div>
+            @error('kota')
+                <div class="text-red-600">
+                    {{ $message }}
+                </div>
+            @enderror
+
+{{--
+            <div class="py-1">
                 <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Tipe Pegawai</span>
                 <input placeholder="Non ASN" type="text" name="tipe_pegawai"
                        class="text-md block px-3 py-2 rounded-lg w-full
@@ -131,7 +145,7 @@
             <div class="text-red-600">
                 {{ $message }}
             </div>
-            @enderror
+            @enderror --}}
 
             <div class="py-1">
                 <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Bukti Pembayaran</span>
