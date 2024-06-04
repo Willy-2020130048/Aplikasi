@@ -60,7 +60,7 @@
                     class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
-                <label>*Daftar akun plataran <a href="https://anggota.ipdi.or.id/login" class="text-red-600">di sini</a></label>
+                <label>*Daftar akun plataran <a href="https://satusehat.kemkes.go.id" class="text-red-600">di sini</a></label>
             </div>
             @error('nama_akun')
                 <div class="text-red-600">
