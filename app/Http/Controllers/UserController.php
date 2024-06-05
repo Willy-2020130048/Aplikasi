@@ -80,9 +80,11 @@ class UserController extends Controller
 
     public function verify($id)
     {
+        $countId = DB::select("SELECT Max(RIGHT(nira,6)) as maxID FROM users WHERE nira != :nira", ['nira' => "belum terverifikasi"]);
+        $currentID = (int)$countId[0]->maxID + 1;
         $user = User::find($id);
         $user->status = 'terverifikasi';
-        $user->nira = $user->provinsi . "." . $user->instansi . "." . ($user->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($user->id, 6, "0", STR_PAD_LEFT);;
+        $user->nira = $user->provinsi . "." . $user->instansi . "." . ($user->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($currentID, 6, "0", STR_PAD_LEFT);;
         $user->save();
         return redirect('/admin/user')->with('success', 'Pengguna berhasil diverifikasi.');
     }

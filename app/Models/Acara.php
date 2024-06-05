@@ -12,6 +12,7 @@ class Acara extends Model
     protected $fillable = [
         'nama_acara',
         'jenis_acara',
+        'workshop',
         'tgl_mulai',
         'tgl_selesai',
         'deskripsi_acara',

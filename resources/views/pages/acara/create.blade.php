@@ -67,6 +67,34 @@
                         </div>
                         @enderror
 
+
+                        <div class="py-1">
+                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Workshop Acara
+                            </span>
+                            <select
+                                class="text-md block px-2 py-2 rounded-lg w-full
+                            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
+                                name="workshop" id="workshop">
+                                    <option value="none" selected>
+                                        Tidak Ada
+                                    </option>
+                                    <option value="Audit Klinis Dialisis">
+                                        Audit Klinis Dialisis
+                                    </option>
+                                    <option value="Health Technology Dialisis">
+                                        Health Technology Dialisis
+                                    </option>
+                                    <option value="CAPD">
+                                        CAPD
+                                    </option>
+                            </select>
+                        </div>
+                        @error('workshop')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                        @enderror
+
                         <div class="py-1">
                             <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Deskripsi Acara
                             </span>
