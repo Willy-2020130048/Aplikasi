@@ -49,6 +49,7 @@ class PosterController
         $detail->jabatan = $request->jabatan == null ? "-" : $request->jabatan;
         $detail->jenis_nakes = $request->jenis_nakes == null ? "-" : $request->jenis_nakes;
         $detail->kota = $request->kota;
+        $detail->sponsor = $request->sponsor;
         $detail->save();
         return redirect()->route('poster.index')->with('success', 'Registrasi acara berhasil.');
     }

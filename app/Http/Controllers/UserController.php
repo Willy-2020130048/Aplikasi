@@ -147,6 +147,7 @@ class UserController extends Controller
         $user->hd = $request->hd == null ? '' : $request->hd;
         $user->dialisis = $request->dialisis == null ? '' : $request->dialisis;
         $user->capd = $request->capd == null ? '' : $request->capd;
+        $user->username = $request->username;
         $user->provinsi = $request->provinsi == null ? '' : $request->provinsi;
         $user->save();
 

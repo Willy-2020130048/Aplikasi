@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('jenis_nakes')->nullable();
             $table->string('jabatan')->nullable();
             $table->string('kota')->nullable();
+            $table->string('sponsor')->nullable();
             $table->string('status')->default('Belum Dikonfirmasi');
             $table->string('verifikasi')->default('-')->nullable();
             $table->string('unverifikasi')->default('-')->nullable();

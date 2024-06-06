@@ -70,7 +70,7 @@
 
             <div class="py-1">
                 <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Kabupaten / Kota</span>
-                <input placeholder="Akun Plataran" type="text" name="kota"
+                <input placeholder="Kabupaten / Kota " type="text" name="kota"
                     class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -80,6 +80,20 @@
                     {{ $message }}
                 </div>
             @enderror
+
+            <div class="mx-auto max-w-lg ">
+                <div class="py-1">
+                    <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Sponsor</span>
+                    <input placeholder="Sponsor" type="text" name="sponsor"
+                           class="text-md block px-3 py-2 rounded-lg w-full
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
+        dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
+                </div>
+                @error('sponsor')
+                <div class="text-red-600">
+                    {{ $message }}
+                </div>
+                @enderror
 
 {{--
             <div class="py-1">
