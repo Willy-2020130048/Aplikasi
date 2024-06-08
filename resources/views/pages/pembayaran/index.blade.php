@@ -131,6 +131,9 @@
                                             Bukti Pembayaran
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
+                                            Status
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
                                             Verifikasi By
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">

@@ -50,7 +50,7 @@ class PosterController
         $detail->jenis_nakes = $request->jenis_nakes == null ? "-" : $request->jenis_nakes;
         $detail->kota = $request->kota;
         $detail->sponsor = $request->sponsor;
-        $detail->workshop = $request->workshop;
+        $detail->workshop = $request->workshop == null ? "Tidak Ada" : $request->workshop;
         $detail->save();
         return redirect()->route('partisipasi')->with('success', 'Berhasil partisipasi acara.');
     }
