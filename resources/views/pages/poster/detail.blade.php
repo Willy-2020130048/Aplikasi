@@ -9,6 +9,7 @@
         <h3 class="text-3xl font-bold text-gray-800 dark:text-neutral-200 text-center">{{ $acara->nama_acara }}</h3>
         <div class="text-md text-gray-800 dark:text-neutral-200 text-center">({{ $acara->jenis_acara }})</div>
         <div class="mt-8 text-md text-gray-800 dark:text-neutral-200">{{ $acara->deskripsi_acara }}</div>
+        <div class="mt-8 text-md text-gray-800 dark:text-neutral-200">Workshop: {{ $acara->workshop }}</div>
         <div class="mt-4 text-md text-gray-800 dark:text-neutral-200">Tanggal:
             {{ $acara->tgl_mulai == $acara->tgl_selesai ? date('d/m/Y', strtotime($acara->tgl_mulai)) : date('d/m/Y', strtotime($acara->tgl_mulai)) . ' sampai ' . date('d/m/Y', strtotime($acara->tgl_selesai)) }}
         </div>
@@ -99,6 +100,9 @@
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Workshop</span>
                         <select
+                        @if ($acara->workshop == null)
+                            disabled
+                        @endif
                             class="text-md block px-2 py-2 rounded-lg w-full
                             bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
                             name="workshop" id="workshop">
@@ -110,6 +114,12 @@
                                         {{ $workshop }}
                                     </option>
                             @endforeach
+                            @if ($acara->workshop == null){
+                                <option value="Tidak ada" selected>
+                                    Tidak ada workshop
+                                </option>
+                            }
+                            @endif
                         </select>
                     </div>
                     @error('sponsor')
