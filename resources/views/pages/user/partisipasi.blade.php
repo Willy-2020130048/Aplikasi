@@ -16,6 +16,7 @@
                 <h3 class="text-2xl font-bold text-gray-800 dark:text-neutral-200 text-center">{{ $acara->nama_acara }}</h3>
                 <div class="text-md text-gray-800 dark:text-neutral-200 text-center">({{ $acara->jenis_acara }})</div>
                 <div class="mt-8 text-md text-gray-800 dark:text-neutral-200">{{ $acara->deskripsi_acara }}</div>
+                <div class="mt-8 text-md text-gray-800 dark:text-neutral-200">Workshop: {{ $acara->workshopuser }}</div>
                 <div class="mt-4 text-md text-gray-800 dark:text-neutral-200">Tanggal:
                     {{ $acara->tgl_mulai == $acara->tgl_selesai ? date('d/m/Y', strtotime($acara->tgl_mulai)) : date('d/m/Y', strtotime($acara->tgl_mulai)) . ' sampai ' . date('d/m/Y', strtotime($acara->tgl_selesai)) }}
                 </div>

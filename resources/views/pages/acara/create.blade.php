@@ -71,23 +71,18 @@
                         <div class="py-1">
                             <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Workshop Acara
                             </span>
-                            <select
-                                class="text-md block px-2 py-2 rounded-lg w-full
-                            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
-                                name="workshop" id="workshop">
-                                    <option value="none" selected>
-                                        Tidak Ada
-                                    </option>
-                                    <option value="Audit Klinis Dialisis">
-                                        Audit Klinis Dialisis
-                                    </option>
-                                    <option value="Health Technology Dialisis">
-                                        Health Technology Dialisis
-                                    </option>
-                                    <option value="CAPD">
-                                        CAPD
-                                    </option>
-                            </select>
+                            <div class="flex items-center p-1">
+                                <input checked name="Audit" type="checkbox" value="Audit Klinis Dialisis" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Audit Klinis Dialisis</label>
+                            </div>
+                            <div class="flex items-center p-1">
+                                <input checked name="Health" type="checkbox" value="Health Technology Dialisis" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Health Technology Dialisis</label>
+                            </div>
+                            <div class="flex items-center p-1">
+                                <input checked name="CAPD" type="checkbox" value="CAPD" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">CAPD</label>
+                            </div>
                         </div>
                         @error('workshop')
                         <div class="text-red-600">

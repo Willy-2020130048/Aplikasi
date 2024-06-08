@@ -24,6 +24,7 @@ class DetailAcara extends Model
         'jabatan',
         'kota',
         'sponsor',
+        'workshop',
         'verifikasi',
         'unverifikasi',
     ];

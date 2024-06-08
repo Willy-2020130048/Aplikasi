@@ -56,7 +56,10 @@ class AcaraController extends Controller
         $acara->tempat = $request->tempat;
         $acara->pengelola = $request->pengelola;
         $acara->id_detail = $request->sponsor;
-        $acara->workshop = $request->workshop;
+        $acara->workshop = ($request->Audit == null ? "" : $request->Audit."-") . ($request->Health == null ? "" : $request->Health."-") . ($request->CAPD == null ? "" : $request->CAPD);
+        if(substr($acara->workshop, -1) == "-"){
+            $acara->workshop = substr_replace($acara->workshop, "", -1);
+        }
         $acara->save();
         return redirect()->route('acara.index')->with('success', 'Acara berhasil dibuat.');
     }

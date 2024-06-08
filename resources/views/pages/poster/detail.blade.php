@@ -95,6 +95,29 @@
                 </div>
                 @enderror
 
+                <div class="mx-auto max-w-lg ">
+                    <div class="py-1">
+                        <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Workshop</span>
+                        <select
+                            class="text-md block px-2 py-2 rounded-lg w-full
+                            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
+                            name="workshop" id="workshop">
+                            @php
+                                $list = explode("-" , $acara->workshop);
+                            @endphp
+                            @foreach ($list as $workshop)
+                                    <option value="{{ $workshop }}">
+                                        {{ $workshop }}
+                                    </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @error('sponsor')
+                    <div class="text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror
+
 {{--
             <div class="py-1">
                 <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Tipe Pegawai</span>

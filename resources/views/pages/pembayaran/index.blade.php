@@ -119,6 +119,9 @@
                                             Nama Acara
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
+                                            Workshop
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
                                             Nama Sponsor Acara
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
@@ -144,7 +147,7 @@
                                         $row += 1;
                                     @endphp
                                     <tr class="hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-neutral-800 {{$row % 2 == 0 ? "bg-white": "bg-gray-100"}}">
-                                        <td class="h-px w-40 min-w-20 align-top">
+                                        <td class="h-px w-60 min-w-20 align-top">
                                             <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
@@ -205,6 +208,14 @@
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{$pembayaran->nama_acara}}
+                                                    </span>
+                                            </div>
+                                        </td>
+                                        <td class="h-px w-40 min-w-40 align-top">
+                                            <div class="flex items-center gap-x-4 p-4">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{$pembayaran->workshop}}
                                                     </span>
                                             </div>
                                         </td>

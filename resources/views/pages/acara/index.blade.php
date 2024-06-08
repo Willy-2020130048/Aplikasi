@@ -248,7 +248,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-80 align-top">
+                                            <td class="h-px w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
