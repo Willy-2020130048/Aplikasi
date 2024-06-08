@@ -27,7 +27,7 @@ class DetailAcaraController extends Controller
     public function verify($id)
     {
         $pembayaran = DetailAcara::find($id);
-        $pembayaran->status = 'terverifikasi';
+        $pembayaran->status = 'Telah Dikonfirmasi';
         $pembayaran->verifikasi = auth()->user()->nama_lengkap;
         $pembayaran->save();
         return redirect('/admin/pembayaran')->with('success', 'pembayaran berhasil diverifikasi.');
@@ -36,7 +36,7 @@ class DetailAcaraController extends Controller
     public function unverify($id)
     {
         $pembayaran = DetailAcara::find($id);
-        $pembayaran->status = 'Belum Verifikasi';
+        $pembayaran->status = 'Belum Dikonfirmasi';
         $pembayaran->unverifikasi = auth()->user()->nama_lengkap;
         $pembayaran->save();
         return redirect('/admin/pembayaran')->with('success', 'pembayaran batal diverifikasi.');

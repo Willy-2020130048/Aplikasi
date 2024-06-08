@@ -234,7 +234,7 @@
                                             </div>
                                         </td>
                                         <td class="size-px whitespace-nowrap align-top">
-                                            @if ($pembayaran->status == 'terverifikasi')
+                                            @if ($pembayaran->status == 'Telah Dikonfirmasi')
                                                 <a class="block p-6" href="{{ route('pembayaran.unverify', $pembayaran->id) }}">
                                                     <span
                                                         class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">

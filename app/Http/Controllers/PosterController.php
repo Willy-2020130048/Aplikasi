@@ -51,6 +51,6 @@ class PosterController
         $detail->kota = $request->kota;
         $detail->sponsor = $request->sponsor;
         $detail->save();
-        return redirect()->route('poster.index')->with('success', 'Registrasi acara berhasil.');
+        return redirect()->route('partisipasi')->with('success', 'Berhasil partisipasi acara.');
     }
 }

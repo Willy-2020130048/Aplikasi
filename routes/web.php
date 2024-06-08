@@ -52,6 +52,10 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/updatepassword', [UserController::class, 'changepassword'])->name('users.changepassword');
         Route::get('/acara/{id}', [PosterController::class, 'detail'])->name('poster.detail');
         Route::post('/acara/{id}', [PosterController::class, 'store'])->name('poster.store');
+        Route::get('/partisipasi', function (Request $request) {
+        $acaras = DB::select("SELECT *, detail_acaras.status as statusacara FROM detail_acaras JOIN acaras on (acaras.id = detail_acaras.id_acara) WHERE detail_acaras.id_peserta = ?", [auth()->user()->id]);
+        return view('pages.user.partisipasi', compact('acaras'));
+        })->name('partisipasi');
     });
 
     //Admin

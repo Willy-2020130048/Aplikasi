@@ -143,17 +143,17 @@
                     </div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-200 dark:hover:text-white">
-                            Pelatihan
+                            Daftar acara yang telah diikuti
                         </h3>
                         <p class="mt-3 text-gray-500 dark:text-neutral-300">
-                            List pelatihan yang telah diikuti
+                            List acara yang telah diikuti
                         </p>
                     </div>
                     <div
                         class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
                         <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
-                            href="">
-                            Lihat Pelatihan
+                            href="/partisipasi">
+                            Lihat acara
                         </a>
                     </div>
                 </div>
