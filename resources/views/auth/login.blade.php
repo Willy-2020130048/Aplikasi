@@ -3,21 +3,14 @@
 @section('title', 'login')
 
 @section('main')
-
+<main class="w-full flex flex-col content-center items-center pt-48">
     <div
-        class="lg:w-1/3 md:w-3/5 w-9/10 mt-2 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
-        <div class="p-4 sm:p-7">
-            <div class="text-center">
-                <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Sign in</h1>
-                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                    Don't have an account yet?
-                    <a class="text-blue-600 decoration-2 hover:underline font-medium" href="{{ route('register') }}">
-                        Sign up here
-                    </a>
-                </p>
-            </div>
+        class="w-full max-w-2xl mt-2 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700 p-8 flex flex-col items-center">
+        <div>
+            <img src="../storage/bukti_pembayaran/Logo.png" class="object-cover h-36 w-36">
+        </div>
 
-            <div class="mt-5">
+            <div class="w-full mt-5">
                 {{-- <button type="button"
                     class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800">
                     <svg class="w-4 h-auto" width="46" height="47" viewBox="0 0 46 47" fill="none">
@@ -118,7 +111,12 @@
                     </div>
                 </form>
                 <!-- End Form -->
+                <div class="pt-4 ">
+                    <a href="/register"><h1 class="text-right font-bold text-blue-600">Daftar Menjadi Anggota</h1></a>
+
+                </div>
             </div>
         </div>
     </div>
+</main>
 @endsection

@@ -1,9 +1,10 @@
 <!-- ========== HEADER ========== -->
 <header
     class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white border-b text-sm py-2.5 sm:py-4 dark:bg-slate-900 dark:border-gray-700">
-    <nav class="max-w-7xl flex basis-full items-center w-full mx-auto px-4 sm:px-6 lg:px-8" aria-label="Global">
-        <div class="me-5 md:me-8">
-            <a class="flex-none text-4xl text-red-500 font-semibold" href="/" aria-label="Brand">IPDI</a>
+    <nav class="max-w-full flex basis-full items-center w-full mx-auto px-4 sm:px-6 lg:px-8" aria-label="Global">
+        <div class="ml-12 me-5 md:me-8 w-full flex align-center">
+            <img src="../storage/bukti_pembayaran/Logo.png" class="object-cover h-12 w-12">
+            <a class="flex-none text-4xl text-red-500 font-semibold p-1" href="/" aria-label="Brand">IPDI</a>
         </div>
 
         <div class="w-full flex items-center justify-end ms-auto sm:justify-between sm:gap-x-3 sm:order-3">
@@ -20,7 +21,7 @@
             </div>
             <div></div>
 
-            <div class="flex flex-row items-center justify-end gap-2">
+            <div class="flex flex-row items-center justify-end gap-2 mr-12">
                 <button type="button"
                     class="hs-dark-mode-active:hidden block hs-dark-mode group flex items-center text-gray-600 hover:text-blue-600 font-medium dark:text-neutral-400 dark:hover:text-neutral-500"
                     data-hs-theme-click-value="dark" onclick="darkMode()">

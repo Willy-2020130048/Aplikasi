@@ -4,7 +4,7 @@
 
 @section('main')
     <main class = "w-full flex flex-col items-center">
-        <div class="w-full bg-red-700 dark:bg-gray-700">
+        {{-- <div class="w-full bg-red-700 dark:bg-gray-700">
             <div class="max-w-[85rem] px-4 py-4 sm:px-6 lg:px-8 mx-auto">
                 <!-- Grid -->
                 <div class="grid justify-center md:grid-cols-2 md:justify-between md:items-center gap-2">
@@ -28,7 +28,7 @@
                 </div>
                 <!-- End Grid -->
             </div>
-        </div>
+        </div> --}}
 
         @foreach ($acaras as $acara)
             <div
