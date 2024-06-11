@@ -39,7 +39,7 @@ class PosterController
         $detail->nama_akun = $request->nama_akun;
         if ($request->hasfile('bukti_pembayaran')) {
             $photo = $request->file('bukti_pembayaran');
-            $photo->storeAs('public/bukti_pembayaran', $detail->id_peserta . '.' . $detail->id_acara . '.' . $photo->getClientOriginalExtension());
+            $photo->storeAs('public', $detail->id_peserta . '.' . $detail->id_acara . '.' . $photo->getClientOriginalExtension());
             $detail->bukti_pembayaran = $detail->id_peserta . '.' . $detail->id_acara . '.' . $photo->getClientOriginalExtension();
         }
         $detail->nip = $request->nip == null ? "-" : $request->nip;

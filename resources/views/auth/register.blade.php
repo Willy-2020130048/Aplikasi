@@ -7,7 +7,7 @@
         class="lg:w-1/3 md:w-3/5 w-9/10 mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
         <div class="p-4 sm:p-7">
             <div class="text-center items-center flex flex-col">
-                <img src="../storage/bukti_pembayaran/Logo.png" class="object-cover h-24 w-24">
+                <img src="../storage/Logo.png" class="object-cover h-24 w-24">
                 <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Daftar Anggota</h1>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
                     Sudah memiliki akun ?

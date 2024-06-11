@@ -125,7 +125,7 @@ class UserController extends Controller
         );
         if ($request->hasfile('foto')) {
             $photo = $request->file('foto');
-            $photo->storeAs('public/bukti_pembayaran', 'foto' . $user->username . '.' . $photo->getClientOriginalExtension());
+            $photo->storeAs('public', 'foto' . $user->username . '.' . $photo->getClientOriginalExtension());
             $user->foto = 'foto' . $user->username . '.' . $photo->getClientOriginalExtension();
         }
 

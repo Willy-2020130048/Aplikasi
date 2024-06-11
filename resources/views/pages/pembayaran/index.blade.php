@@ -241,7 +241,7 @@
                                         <td class="h-px w-40 min-w-80 align-top">
                                             <div class="flex items-center gap-x-4 p-4">
                                                     @if ($pembayaran->bukti_pembayaran)
-                                                        <img src="../storage/bukti_pembayaran{{ asset($pembayaran->bukti_pembayaran) }}" class="object-cover" onclick="openModal('../storage/bukti_pembayaran{{ asset($pembayaran->bukti_pembayaran) }}')">
+                                                        <img src="../storage{{ asset($pembayaran->bukti_pembayaran) }}" class="object-cover" onclick="openModal('../storage{{ asset($pembayaran->bukti_pembayaran) }}')">
                                                     @else
                                                         <label>Belum ada bukti pembayaran</label>
                                                     @endif

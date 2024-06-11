@@ -7,7 +7,7 @@
     <div
         class="w-full max-w-2xl mt-2 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700 p-8 flex flex-col items-center">
         <div>
-            <img src="../storage/bukti_pembayaran/Logo.png" class="object-cover h-36 w-36">
+            <img src="../storage/Logo.png" class="object-cover h-36 w-36">
         </div>
 
             <div class="w-full mt-5">

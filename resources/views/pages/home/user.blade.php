@@ -39,7 +39,7 @@
                 <div
                     class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
                     <div class="h-52 flex flex-col justify-center items-center bg-blue-600 rounded-t-xl">
-                        <img src="../storage/bukti_pembayaran/Logo.png" class="object-cover h-36 w-36">
+                        <img src="../storage/Logo.png" class="object-cover h-36 w-36">
                     </div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-200 dark:hover:text-white">
@@ -63,7 +63,7 @@
                 <div
                     class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
                     <div class="h-52 flex flex-col justify-center items-center bg-rose-500 rounded-t-xl">
-                        <img src="../storage/bukti_pembayaran/Logo2.png" class="object-cover h-36 w-36 rounded-full">
+                        <img src="../storage/Logo2.png" class="object-cover h-36 w-36 rounded-full">
                     </div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-200 dark:hover:text-white">
@@ -87,7 +87,7 @@
                 <div
                     class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
                     <div class="h-52 flex flex-col justify-center items-center bg-amber-500 rounded-t-xl">
-                        <img src="../storage/bukti_pembayaran/Logo.png" class="object-cover h-36 w-36 rounded-full">
+                        <img src="../storage/Logo.png" class="object-cover h-36 w-36 rounded-full">
                     </div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-200 dark:hover:text-white">

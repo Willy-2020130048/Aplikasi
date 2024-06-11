@@ -9,9 +9,9 @@
         <div class="p-4 sm:pt-7">
             <div class="flex text-center justify-center">
                 @if (auth()->user()->foto)
-                    <img src="../storage/bukti_pembayaran{{ asset(auth()->user()->foto) }}" class="object-cover h-48 w-96">
+                    <img src="../storage{{ asset(auth()->user()->foto) }}" class="object-cover h-48 w-96">
                 @else
-                    <img src='../storage/bukti_pembayaran/download.png' class="object-cover h-48 w-96">
+                    <img src='../storage/download.png' class="object-cover h-48 w-96">
                 @endif
             </div>
                 <div class="mx-auto max-w-lg ">
