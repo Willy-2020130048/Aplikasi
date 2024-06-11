@@ -85,10 +85,33 @@
             <div class="mx-auto max-w-lg ">
                 <div class="py-1">
                     <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Sponsor</span>
-                    <input placeholder="Sponsor" type="text" name="sponsor"
-                           class="text-md block px-3 py-2 rounded-lg w-full
-        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
-        dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
+                    <select
+                                class="text-md block px-2 py-2 rounded-lg w-full
+                            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
+                                name="sponsor" id="sponsor">
+                                    <option value="PT. Sinar Roda Utama/SRU (Nipro)">PT. Sinar Roda Utama/SRU (Nipro)</option>
+                                    <option value="PT. Fresenius Medical Care/FMC (Fresenius, CAPD)">PT. Fresenius Medical Care/FMC (Fresenius, CAPD)</option>
+                                    <option value="PT. Tawada Healthcare (Gambro)">PT. Tawada Healthcare (Gambro)</option>
+                                    <option value="PT. Renalmed Tirta Utama/RTU (Bellco/Nikisho)">PT. Renalmed Tirta Utama/RTU (Bellco/Nikisho)</option>
+                                    <option value="PT. B.Braun Medical Indonesia/BMI (Bbraun)">PT. B.Braun Medical Indonesia/BMI (Bbraun)</option>
+                                    <option value="PT. Mendjangan (JoyHealth/JiHua)">PT. Mendjangan (JoyHealth/JiHua)</option>
+                                    <option value="PT. Sifa Anugrah Sehati (SWS)">PT. Sifa Anugrah Sehati (SWS)</option>
+                                    <option value="PT. Interskala (MKCells)">PT. Interskala (MKCells)</option>
+                                    <option value="PT. Binsa (Renalpro)">PT. Binsa (Renalpro)</option>
+                                    <option value="PT. Kalbe Farma (Hemapo, Nephrisol-D, CAPD)">PT. Kalbe Farma (Hemapo, Nephrisol-D, CAPD)</option>
+                                    <option value="PT. Daewong Pharmaceutical (Epodion)">PT. Daewong Pharmaceutical (Epodion)</option>
+                                    <option value="PT. Etana (Renogen)">PT. Etana (Renogen)</option>
+                                    <option value="PT. Wellesta (Recormon, Mircera)">PT. Wellesta (Recormon, Mircera)</option>
+                                    <option value="PT. Sanbe Farma (Neurosanbe)">PT. Sanbe Farma (Neurosanbe)</option>
+                                    <option value="PT. Aventis Farma (Lovenox)">PT. Aventis Farma (Lovenox)</option>
+                                    <option value="PT. Fahrenheit (Inviclot)">PT. Fahrenheit (Inviclot)</option>
+                                    <option value="PT. Transmedic (Renatron, Jafron, Citralock)">PT. Transmedic (Renatron, Jafron, Citralock)</option>
+                                    <option value="PT. Eisai Indonesia (Methycobal)">PT. Eisai Indonesia (Methycobal)</option>
+                                    <option value="PT. P&G (Neurobion)">PT. P&G (Neurobion)</option>
+                                    <option value="PT. ABN">PT. ABN</option>
+                                    <option value="Abrahamed">Abrahamed</option>
+                                    <option value="Lainnya">Lainnya </option>
+                            </select>
                 </div>
                 @error('sponsor')
                 <div class="text-red-600">
