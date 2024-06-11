@@ -6,6 +6,9 @@
 
     <div
         class="mt-8 w-full max-w-4xl relative z-10 bg-white border rounded-xl md:p-10 dark:bg-gray-950 dark:border-neutral-800">
+        <div>
+            <img src="../storage/acara.jpeg" class="object-cover w-full">
+        </div>
         <h3 class="text-3xl font-bold text-gray-800 dark:text-neutral-200 text-center">{{ $acara->nama_acara }}</h3>
         <div class="text-md text-gray-800 dark:text-neutral-200 text-center">({{ $acara->jenis_acara }})</div>
         {{-- <div class="mt-8 text-md text-gray-800 dark:text-neutral-200">{{ $acara->deskripsi_acara }}</div>
