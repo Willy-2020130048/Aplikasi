@@ -24,36 +24,12 @@ class MailNotify extends Mailable
         $this->data = $data;
     }
 
-    /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
+    public function build()
     {
-        return new Envelope(
-            from: new Address(''),
-            subject: 'Mail Notify'
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
-    {
-        return new Content(
-            view: 'view.name',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [
-            Attachment::fromPath('/path/to/file'),
-        ];
+        return $this->from('Ipdi@Ipdi.com', 'IPDI')
+                    ->view('email.index', ['data' => $this->data])
+                    ->attach(storage_path('app/public/Announcement.pdf'), [
+                        'as' => 'Announcement.pdf',
+                    ]);
     }
 }
