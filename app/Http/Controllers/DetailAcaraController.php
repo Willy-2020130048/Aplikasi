@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailNotify;
+use App\Models\Acara;
 use App\Models\DetailAcara;
+use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Mail;
 
 class DetailAcaraController extends Controller
 {
@@ -13,7 +18,7 @@ class DetailAcaraController extends Controller
      */
     public function index(Request $request)
     {
-        $pembayarans = DB::table('detail_acaras')->select('detail_acaras.*','users.nira', 'users.no_hp', 'reg_provinces.name', 'ipdi_unit.nama_unit', 'acaras.id_detail', 'acaras.nama_acara')
+        $pembayarans = DB::table('detail_acaras')->select('detail_acaras.*', 'users.nira', 'users.no_hp', 'reg_provinces.name', 'ipdi_unit.nama_unit', 'acaras.id_detail', 'acaras.nama_acara')
             ->join('users', 'users.id', "=", "detail_acaras.id_peserta")
             ->join('acaras', 'acaras.id', "=", "detail_acaras.id_acara")
             ->join('ipdi_unit', 'ipdi_unit.id', "=", "users.instansi")
@@ -30,7 +35,18 @@ class DetailAcaraController extends Controller
         $pembayaran->status = 'Telah Dikonfirmasi';
         $pembayaran->verifikasi = auth()->user()->nama_lengkap;
         $pembayaran->save();
-        return redirect('/admin/pembayaran')->with('success', 'pembayaran berhasil diverifikasi.');
+
+        $partisipan = User::find($pembayaran->id_peserta);
+        $acara = Acara::find($pembayaran->id_acara);
+        $data = [
+            'body' => 'Anda telah berhasil mendaftarkan diri dalam acara ' . $acara->nama_acara,
+        ];
+        try {
+            Mail::to($$partisipan->email)->send(new MailNotify($data));
+        } catch (Exception $th) {
+            return redirect('/admin/pembayaran')->with('success', 'Gagal Mengirim Email.');
+        }
+        return redirect('/admin/pembayaran')->with('success', 'pembayaran berhasil diverifikasi dan email terkirim.');
     }
 
     public function unverify($id)
@@ -41,6 +57,7 @@ class DetailAcaraController extends Controller
         $pembayaran->save();
         return redirect('/admin/pembayaran')->with('success', 'pembayaran batal diverifikasi.');
     }
+
 
     /**
      * Show the form for creating a new resource.
