@@ -5,15 +5,15 @@
 
 </head>
 
-<body>
+<body style="color: black">
 
     <h3>FORM PITNAS IPDI</h3>
     <h4>Nomor Pendaftaran PITNAS</h4>
     <p>PITNASNomor</p>
     <h4>Nama Lengkap</h4>
-    <p>Nama ...</p>
+    <p>{{$data['partisipan']->nama_lengkap}}</p>
     <h4>Jenis Kelamin</h4>
-    <p>Wanita / Pria</p>
+    <p>{{data['partisipan']->jenis_kelamin}}</p>
     <h4>Nama Rumah Sakit</h4>
     <p>Sentosa</p>
     <h4>NIRA PPNI</h4>

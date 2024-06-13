@@ -40,6 +40,9 @@ class DetailAcaraController extends Controller
         $acara = Acara::find($pembayaran->id_acara);
         $data = [
             'body' => 'Anda telah berhasil mendaftarkan diri dalam acara ' . $acara->nama_acara,
+            'acara' => $acara,
+            'partisipan' => $partisipan,
+            'detail' => $pembayaran,
         ];
         try {
             Mail::to($$partisipan->email)->send(new MailNotify($data));
