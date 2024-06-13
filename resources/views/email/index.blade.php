@@ -14,7 +14,7 @@
     <h4>Jenis Kelamin</h4>
     <p>{{ $data['partisipan']->jenis_kelamin }}</p>
     <h4>Nama Rumah Sakit</h4>
-    <p>{{ $data['partisipan']->instansi }}</p>
+    <p>{{ $data['instansi']->nama_unit }}</p>
     <h4>NIRA IPDI</h4>
     <p>{{ $data['partisipan']->nira }}</p>
     <h4>Email Anda</h4>

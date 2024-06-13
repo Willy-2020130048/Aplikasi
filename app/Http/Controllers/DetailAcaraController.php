@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\MailNotify;
 use App\Models\Acara;
 use App\Models\DetailAcara;
+use App\Models\Instansi;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -38,14 +39,16 @@ class DetailAcaraController extends Controller
 
         $partisipan = User::find($pembayaran->id_peserta);
         $acara = Acara::find($pembayaran->id_acara);
+        $instansi = DB::table('ipdi_unit')->where('id', $partisipan->instansi)->get();
         $data = [
             'body' => 'Anda telah berhasil mendaftarkan diri dalam acara ' . $acara->nama_acara,
             'acara' => $acara,
             'partisipan' => $partisipan,
             'detail' => $pembayaran,
+            'instansi' => $instansi,
         ];
         try {
-            Mail::to($$partisipan->email)->send(new MailNotify($data));
+            Mail::to($partisipan->email)->send(new MailNotify($data));
         } catch (Exception $th) {
             return redirect('/admin/pembayaran')->with('success', 'Gagal Mengirim Email.');
         }
