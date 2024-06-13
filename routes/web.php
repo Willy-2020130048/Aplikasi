@@ -54,8 +54,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/acara/{id}', [PosterController::class, 'detail'])->name('poster.detail');
         Route::post('/acara/{id}', [PosterController::class, 'store'])->name('poster.store');
         Route::get('/partisipasi', function (Request $request) {
-        $acaras = DB::select("SELECT *, detail_acaras.status as statusacara, detail_acaras.workshop as workshopuser FROM detail_acaras JOIN acaras on (acaras.id = detail_acaras.id_acara) WHERE detail_acaras.id_peserta = ?", [auth()->user()->id]);
-        return view('pages.user.partisipasi', compact('acaras'));
+            $acaras = DB::select("SELECT *, detail_acaras.status as statusacara, detail_acaras.workshop as workshopuser FROM detail_acaras JOIN acaras on (acaras.id = detail_acaras.id_acara) WHERE detail_acaras.id_peserta = ?", [auth()->user()->id]);
+            return view('pages.user.partisipasi', compact('acaras'));
         })->name('partisipasi');
     });
 
@@ -77,7 +77,6 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('pembayaran', DetailAcaraController::class);
             Route::get('/pembayaran/verify/{id}', [DetailAcaraController::class, 'verify'])->name('pembayaran.verify');
             Route::get('/pembayaran/unverify/{id}', [DetailAcaraController::class, 'unverify'])->name('pembayaran.unverify');
-            Route::get('/email', [MailController::class, 'index'])->name('sendemail');
         });
     });
 });

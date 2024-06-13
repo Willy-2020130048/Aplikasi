@@ -99,7 +99,7 @@
                     <div
                         class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
                         <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
-                            href="{{route('acara.index')}}">
+                            href="{{ route('acara.index') }}">
                             Klik untuk mengatur acara
                         </a>
                     </div>
@@ -138,15 +138,8 @@
                     <div
                         class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
                         <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
-                            href="{{route('pembayaran.index')}}">
+                            href="{{ route('pembayaran.index') }}">
                             Klik untuk mengatur transaksi
-                        </a>
-                    </div>
-                    <div
-                        class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
-                        <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
-                            href="{{route('sendemail')}}">
-                            Klik Send Email
                         </a>
                     </div>
                 </div>
