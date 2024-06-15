@@ -18,9 +18,8 @@
             </div>
 
             <!-- Form -->
-            <form method="POST"
-                action="{{ auth()->user()->role == 'admin' ? route('user.update', auth()->user()) : route('users.update', auth()->user()) }}"
-                class="mt-8" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('user.update', auth()->user()) }}" class="mt-8"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mx-auto max-w-lg ">

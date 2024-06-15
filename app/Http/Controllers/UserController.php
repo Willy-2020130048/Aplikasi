@@ -158,10 +158,21 @@ class UserController extends Controller
         $user->username = $request->username;
         $user->provinsi = $request->provinsi == null ? '' : $request->provinsi;
         $user->save();
-        if (auth()->user()->role == "admin") {
-            return redirect('/admin')->with('success', 'User updated succesfully.');
-        } else {
-            return redirect('/')->with('success', 'User updated succesfully.');
+
+        switch (auth()->user()->role) {
+            case "user":
+                return redirect('/')->with('success', 'User updated succesfully.');
+                break;
+            case "admin":
+                return redirect('/admin')->with('success', 'User updated succesfully.');
+                break;
+            case "userverifikator":
+                return redirect('/userverifikator')->with('success', 'User updated succesfully.');
+                break;
+            case "acaraverifikator":
+                return redirect('/acaraverifikator')->with('success', 'User updated succesfully.');
+                break;
+            default:
         }
     }
 

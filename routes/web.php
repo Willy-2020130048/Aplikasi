@@ -5,8 +5,10 @@ use App\Http\Controllers\PosterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DetailAcaraController;
 use App\Http\Controllers\MailController;
+use App\Http\Middleware\AcaraVerifikatorAuth;
 use App\Http\Middleware\AdminAuth;
 use App\Http\Middleware\UserAuth;
+use App\Http\Middleware\UserVerifikatorAuth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -84,6 +86,44 @@ Route::middleware(['auth'])->group(function () {
                 })->get();
                 return view('pages.user.edit', compact('dataProv', 'dataInstansi'));
             })->name('editprofile_admin');
+        });
+    });
+
+
+    Route::middleware([UserVerifikatorAuth::class])->group(function () {
+        Route::prefix('userverifikator')->group(function () {
+            Route::get('/', function () {
+                return view('pages.home.userverifikator');
+            })->name('userverifikator');
+            Route::resource('userverifikator', UserController::class);
+            Route::get('/password', function () {
+                return view('pages.user.password');
+            })->name('changepassword_userverifikator');
+            Route::get('/user/verify/{id}', [UserController::class, 'verify'])->name('userverifikator.verify');
+            Route::get('/user/unverify/{id}', [UserController::class, 'unverify'])->name('userverifikator.unverify');
+            Route::get('/user/changepassword/{id}', [UserController::class, 'resetpassword'])->name('user.changepassword');
+            Route::put('/updatepassword', [UserController::class, 'changepassword'])->name('userverifikator.changepassword');
+            Route::get('/profile', function (Request $request) {
+                $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
+                $dataInstansi = DB::table('ipdi_unit')->select('id', 'nama_unit')->when($request->input('currentProv') == null ? auth()->user()->provinsi : $request->input('currentProv'), function ($query, $provinsi) {
+                    return $query->where('id_propinsi', $provinsi);
+                })->get();
+                return view('pages.user.edit', compact('dataProv', 'dataInstansi'));
+            })->name('editprofile_userverifikator');
+
+            Route::resource('users', UserController::class)->only('update');
+            Route::get('/users/profile', [UserController::class, 'showProfile'])->name('userverifikator.profile');
+            Route::get('/acara', [\App\Http\Controllers\PosterController::class, 'index'])->name('poster.index');
+            Route::get('/password', function () {
+                return view('pages.user.password');
+            })->name('changepassword_userverifikator');
+            Route::put('/updatepassword', [UserController::class, 'changepassword'])->name('users.changepassword');
+            Route::get('/acara/{id}', [PosterController::class, 'detail'])->name('poster.detail');
+            Route::post('/acara/{id}', [PosterController::class, 'store'])->name('poster.store');
+            Route::get('/partisipasi', function (Request $request) {
+                $acaras = DB::select("SELECT *, detail_acaras.status as statusacara, detail_acaras.workshop as workshopuser FROM detail_acaras JOIN acaras on (acaras.id = detail_acaras.id_acara) WHERE detail_acaras.id_peserta = ?", [auth()->user()->id]);
+                return view('pages.user.partisipasi', compact('acaras'));
+            })->name('partisipasi');
         });
     });
 });

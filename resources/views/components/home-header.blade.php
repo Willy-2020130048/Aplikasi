@@ -97,29 +97,53 @@
                                 class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                                 Home
                             </a>
-                            @if (auth()->user()->role == 'user')
-                                <a href="{{ route('editprofile', auth()->user()) }}"
-                                    class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                                    Profile
-                                </a>
-                                <a href="{{ route('changepassword_user') }}"
-                                    class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                                    Ganti Password
-                                </a>
-                            @else
-                                <a href="{{ route('editprofile_admin', auth()->user()) }}"
-                                    class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                                    Profile
-                                </a>
-                                <a href="{{ route('changepassword_admin') }}"
-                                    class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                                    Ganti Password
-                                </a>
-                            @endif
-                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
-                                Logout
-                            </a>
+                            @switch(auth()->user()->role)
+                                @case('user')
+                                    <a href="{{ route('editprofile', auth()->user()) }}"
+                                        class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                                        Profile
+                                    </a>
+                                    <a href="{{ route('changepassword_user') }}"
+                                        class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                                        Ganti Password
+                                    </a>
+                                @break
+
+                                @case('admin')
+                                    <a href="{{ route('editprofile_admin', auth()->user()) }}"
+                                        class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                                        Profile
+                                    </a>
+                                    <a href="{{ route('changepassword_admin') }}"
+                                        class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                                        Ganti Password
+                                    </a>
+                                @break
+
+                                @case('userverifikator')
+                                    <a href="{{ route('editprofile_userverifikator', auth()->user()) }}"
+                                        class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                                        Profile
+                                    </a>
+                                    <a href="{{ route('changepassword_user') }}"
+                                        class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                                        Ganti Password
+                                    </a>
+                                @break
+
+                                @case('acaraverifikator')
+                                    <a href="{{ route('editprofile_acaraverifikator', auth()->user()) }}"
+                                        class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                                        Profile
+                                    </a>
+                                    <a href="{{ route('changepassword_acaraverifikator') }}"
+                                        class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                                        Ganti Password
+                                    </a>
+                                @break
+
+                                @default
+                            @endswitch
                         </div>
                     </div>
                 </div>

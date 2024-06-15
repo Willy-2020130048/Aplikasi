@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminAuth
+class UserVerifikatorAuth
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,9 @@ class AdminAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->role == 'admin') {
+        if (auth()->check() && auth()->user()->role == 'userverifikator') {
             return $next($request);
         }
-        return redirect(route('userverifikator'));
+        return redirect(route('acaraverifikator'));
     }
 }
