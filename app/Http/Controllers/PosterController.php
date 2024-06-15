@@ -32,26 +32,31 @@ class PosterController
                 'kota' => 'required',
             ]
         );
-        $detail = new DetailAcara();
-        $detail->id_acara = $id;
-        $detail->no_ktp = $request->no_ktp;
-        $detail->id_peserta = auth()->user()->id;
-        $detail->nama_akun = $request->nama_akun;
-        if ($request->hasfile('bukti_pembayaran')) {
-            $photo = $request->file('bukti_pembayaran');
-            $photo->storeAs('public', $detail->id_peserta . '.' . $detail->id_acara . '.' . $photo->getClientOriginalExtension());
-            $detail->bukti_pembayaran = $detail->id_peserta . '.' . $detail->id_acara . '.' . $photo->getClientOriginalExtension();
+        $check = DB::table('detail_acaras')->where("id_peserta", "=", auth()->user()->id)->where("id_acara", $id)->get();
+        if (count($check) == 0) {
+            $detail = new DetailAcara();
+            $detail->id_acara = $id;
+            $detail->no_ktp = $request->no_ktp;
+            $detail->id_peserta = auth()->user()->id;
+            $detail->nama_akun = $request->nama_akun;
+            if ($request->hasfile('bukti_pembayaran')) {
+                $photo = $request->file('bukti_pembayaran');
+                $photo->storeAs('public', $detail->id_peserta . '.' . $detail->id_acara . '.' . $photo->getClientOriginalExtension());
+                $detail->bukti_pembayaran = $detail->id_peserta . '.' . $detail->id_acara . '.' . $photo->getClientOriginalExtension();
+            }
+            $detail->nip = $request->nip == null ? "-" : $request->nip;
+            $detail->tipe_pegawai = $request->tipe_pegawai == null ? "-" : $request->tipe_pegawai;
+            $detail->gelar = $request->gelar == null ? "-" : $request->gelar;
+            $detail->golongan = $request->golongan == null ? "-" : $request->golongan;
+            $detail->jabatan = $request->jabatan == null ? "-" : $request->jabatan;
+            $detail->jenis_nakes = $request->jenis_nakes == null ? "-" : $request->jenis_nakes;
+            $detail->kota = $request->kota;
+            $detail->sponsor = $request->sponsor;
+            $detail->workshop = $request->workshop == null ? "Tidak Ada" : $request->workshop;
+            $detail->save();
+            return redirect()->route(auth()->user()->role . '.partisipasi')->with('success', 'Berhasil partisipasi acara.');
+        } else {
+            return redirect()->route(auth()->user()->role . '.partisipasi')->with('success', 'Anda sudah pernah mendaftar partisipasi acara.');
         }
-        $detail->nip = $request->nip == null ? "-" : $request->nip;
-        $detail->tipe_pegawai = $request->tipe_pegawai == null ? "-" : $request->tipe_pegawai;
-        $detail->gelar = $request->gelar == null ? "-" : $request->gelar;
-        $detail->golongan = $request->golongan == null ? "-" : $request->golongan;
-        $detail->jabatan = $request->jabatan == null ? "-" : $request->jabatan;
-        $detail->jenis_nakes = $request->jenis_nakes == null ? "-" : $request->jenis_nakes;
-        $detail->kota = $request->kota;
-        $detail->sponsor = $request->sponsor;
-        $detail->workshop = $request->workshop == null ? "Tidak Ada" : $request->workshop;
-        $detail->save();
-        return redirect()->route(auth()->user()->role . '.partisipasi')->with('success', 'Berhasil partisipasi acara.');
     }
 }

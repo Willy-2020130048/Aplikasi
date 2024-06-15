@@ -27,8 +27,8 @@
     </div>
 
     <!-- Form -->
-    <form method="POST" action="{{ route(auth()->user()->role . '.poster.store', $acara->id) }}" class="mt-8 w-full max-w-4xl"
-        enctype="multipart/form-data">
+    <form method="POST" action="{{ route(auth()->user()->role . '.poster.store', $acara->id) }}"
+        class="mt-8 w-full max-w-4xl" enctype="multipart/form-data">
         @csrf
         @method('POST')
         <div class="mx-auto max-w-lg ">
@@ -64,7 +64,7 @@
                         class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
-                    <label>*Daftar akun plataran <a href="https://satusehat.kemkes.go.id" class="text-red-600">di
+                    <label>*Daftar akun plataran <a href="https://lms.kemkes.go.id/" class="text-red-600">di
                             sini</a></label>
                 </div>
                 @error('nama_akun')

@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password as RulesPassword;
 
 class UserController extends Controller
 {
@@ -43,6 +47,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'no_str' => 'required|string',
+            'nama_lengkap' => 'required|string|max:255',
+            'username' => 'required|unique:users,username',
+            'jenis_kelamin' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'provinsi' => 'required',
+            'instansi' => 'required',
+            'password' => 'required|string',
+        ]);
+
+        User::create([
+            'no_str' => $request->no_str,
+            'nama_lengkap' => $request->nama_lengkap,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'username' => $request->username,
+            'email' => $request->email,
+            'provinsi' => $request->provinsi,
+            'instansi' => $request->instansi,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route(auth()->user()->role . '_user.index');
     }
 
     /**

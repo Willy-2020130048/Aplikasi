@@ -17,15 +17,16 @@
             </div>
             <div class="mt-5">
                 <!-- Form -->
-                <form id="goRegister" method="POST" action="{{ route('register') }}" class="mt-8" x-data="{ password: '', password_confirm: '' }">
+                <form id="goRegister" method="POST" action="{{ route(auth()->user()->role . '_user.store') }}"
+                    class="mt-8" x-data="{ password: '', password_confirm: '' }">
                     @csrf
                     <div class="mx-auto max-w-lg ">
                         <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Nomor STR
+                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Nomor STR
                             </span>
                             <input placeholder="" type="text" name="no_str"
                                 class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
                         </div>
                         @error('no_str')
                             <div class="text-red-600">
@@ -33,11 +34,11 @@
                             </div>
                         @enderror
                         <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Nama Lengkap
+                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Nama Lengkap
                             </span>
                             <input placeholder="" type="text" name="nama_lengkap"
                                 class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
                         </div>
                         @error('nama_lengkap')
                             <div class="text-red-600">
@@ -45,52 +46,26 @@
                             </div>
                         @enderror
                         <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Jenis kelamin
+                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Jenis kelamin
                             </span>
-                            <input placeholder="" type="text" name="jenis_kelamin"
-                                class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+                            <select
+                                class="text-md block px-2 py-2 rounded-lg w-full
+                        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
+                                name="jenis_kelamin" id="jenis_kelamin">
+                                <option value="Laki-Laki" selected>Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
                         </div>
                         @error('jenis_kelamin')
                             <div class="text-red-600">
                                 {{ $message }}
                             </div>
                         @enderror
-                        {{-- <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Tempat Lahir</span>
-                            <input placeholder="" type="text" name="tempat_lahir"
-                                class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
-                        </div>
                         <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Tanggal Lahir</span>
-                            <input placeholder="" type="date" name="tanggal_lahir"
-                                class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
-                        </div>
-                        <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Agama</span>
-                            <input placeholder="" type="text" name="agama"
-                                class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
-                        </div>
-                        <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Alamat</span>
-                            <input placeholder="" type="text" name="alamat"
-                                class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
-                        </div>
-                        <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Kode Pos</span>
-                            <input placeholder="" type="text" name="kode_pos"
-                                class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
-                        </div> --}}
-                        <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Email</span>
+                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Email</span>
                             <input placeholder="" type="email" name="email"
                                 class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
                         </div>
                         @error('email')
                             <div class="text-red-600">
@@ -98,22 +73,22 @@
                             </div>
                         @enderror
                         {{-- <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Nomor Handphone</span>
-                            <input placeholder="" type="text" name="no_hp"
-                                class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
-                        </div>
+                        <span class="px-1 text-sm text-gray-600">Nomor Handphone</span>
+                        <input placeholder="" type="text" name="no_hp"
+                            class="text-md block px-3 py-2 rounded-lg w-full
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+                    </div>
+                    <div class="py-1">
+                        <span class="px-1 text-sm text-gray-600">Pendidikan</span>
+                        <input placeholder="" type="text" name="pendidikan"
+                            class="text-md block px-3 py-2 rounded-lg w-full
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+                    </div> --}}
                         <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Pendidikan</span>
-                            <input placeholder="" type="text" name="pendidikan"
-                                class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
-                        </div> --}}
-                        <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Provinsi</span>
+                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Provinsi</span>
                             <select
                                 class="text-md block px-2 py-2 rounded-lg w-full
-                            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
+                        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
                                 name="provinsi" id="provinsi" onchange="formSubmit()">
                                 @foreach ($dataProv as $prov)
                                     <option value="{{ $prov->id }}">
@@ -128,10 +103,10 @@
                             </div>
                         @enderror
                         <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Instansi</span>
+                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Instansi</span>
                             <select
                                 class="text-md block px-3 py-2 rounded-lg w-full
-                            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
+                        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
                                 name="instansi" id ="instansi">
                                 @foreach ($dataInstansi as $instansi)
                                     <option value="{{ $instansi->id }}">{{ $instansi->nama_unit }}
@@ -145,34 +120,34 @@
                             </div>
                         @enderror
                         {{-- <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Mulai Kerja di HD</span>
-                            <input placeholder="" type="text" name="hd"
-                                class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
-                        </div>
+                        <span class="px-1 text-sm text-gray-600">Mulai Kerja di HD</span>
+                        <input placeholder="" type="text" name="hd"
+                            class="text-md block px-3 py-2 rounded-lg w-full
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+                    </div>
+                    <div class="py-1">
+                        <span class="px-1 text-sm text-gray-600">Pelatihan Dialisis</span>
+                        <input placeholder="" type="text" name="dialisis"
+                            class="text-md block px-3 py-2 rounded-lg w-full
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+                    </div>
+                    <div class="py-1">
+                        <span class="px-1 text-sm text-gray-600">Pelatihan CAPD</span>
+                        <input placeholder="" type="text" name="capd"
+                            class="text-md block px-3 py-2 rounded-lg w-full
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+                    </div>
+                    <div class="py-1">
+                        <span class="px-1 text-sm text-gray-600">Foto</span>
+                        <input placeholder="" type="file" name="foto"
+                            class="text-md block px-3 py-2 rounded-lg w-full
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+                    </div> --}}
                         <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Pelatihan Dialisis</span>
-                            <input placeholder="" type="text" name="dialisis"
-                                class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
-                        </div>
-                        <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Pelatihan CAPD</span>
-                            <input placeholder="" type="text" name="capd"
-                                class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
-                        </div>
-                        <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Foto</span>
-                            <input placeholder="" type="file" name="foto"
-                                class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
-                        </div> --}}
-                        <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Username</span>
+                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Username</span>
                             <input placeholder="" type="text" name="username"
                                 class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
                         </div>
                         @error('username')
                             <div class="text-red-600">
@@ -180,10 +155,10 @@
                             </div>
                         @enderror
                         <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Password</span>
+                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Password</span>
                             <input placeholder="" type="password" x-model="password" name="password"
                                 class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
                         </div>
                         @error('password')
                             <div class="text-red-600">
@@ -191,10 +166,10 @@
                             </div>
                         @enderror
                         <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600">Password Confirm</span>
+                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Password Confirm</span>
                             <input placeholder="" type="password" x-model="password_confirm" name="password_confirmation"
                                 class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
                         </div>
                         @error('password_confirmation')
                             <div class="text-red-600">
@@ -258,7 +233,7 @@
                             </ul>
                         </div>
                         <button type="submit"
-                            class="mt-3 text-lg font-semibold bg-gray-800 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
+                            class="mt-3 text-lg font-semibold bg-green-800 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
                             Daftar Akun
                         </button>
                     </div>
