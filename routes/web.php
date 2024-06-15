@@ -77,6 +77,13 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('pembayaran', DetailAcaraController::class);
             Route::get('/pembayaran/verify/{id}', [DetailAcaraController::class, 'verify'])->name('pembayaran.verify');
             Route::get('/pembayaran/unverify/{id}', [DetailAcaraController::class, 'unverify'])->name('pembayaran.unverify');
+            Route::get('/profile', function (Request $request) {
+                $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
+                $dataInstansi = DB::table('ipdi_unit')->select('id', 'nama_unit')->when($request->input('currentProv') == null ? auth()->user()->provinsi : $request->input('currentProv'), function ($query, $provinsi) {
+                    return $query->where('id_propinsi', $provinsi);
+                })->get();
+                return view('pages.user.edit', compact('dataProv', 'dataInstansi'));
+            })->name('editprofile_admin');
         });
     });
 });

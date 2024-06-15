@@ -455,7 +455,7 @@
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $user->provinsi }}
+                                                        {{ $user->name }}
                                                     </span>
                                                 </div>
                                             </td>
@@ -463,7 +463,7 @@
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $user->instansi }}
+                                                        {{ $user->nama_unit }}
                                                     </span>
                                                 </div>
                                             </td>

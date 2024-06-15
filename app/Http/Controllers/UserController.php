@@ -15,9 +15,13 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = DB::table('users')->where('role', '=', 'user')->when($request->input('name'), function ($query, $name) {
-            return $query->where('nama_lengkap', 'like', '%' . $name . '%');
-        })->orderBy('id', 'desc')->paginate(10);
+        $users = DB::table('users')->join('reg_provinces', 'reg_provinces.id', '=', 'users.provinsi')->join('ipdi_unit', 'ipdi_unit.id', '=', 'users.instansi')->where('role', '=', 'user')->when($request->input('name'), function ($query, $name) {
+            return $query->whereAny([
+                'nama_lengkap',
+                'name',
+                'nama_unit',
+            ], 'LIKE', '%' . $name . '%');
+        })->orderBy('users.id', 'desc')->paginate(10);
         return view('pages.user.index', compact('users'));
     }
 
@@ -64,9 +68,9 @@ class UserController extends Controller
         ]);
 
         $user = User::find(auth()->user()->id);
-            $user->password = $request->password;
-            $user->save();
-            return redirect(auth()->user()->role == 'user' ? '/' : '/admin')->with('success', "berhasil mengganti password");
+        $user->password = $request->password;
+        $user->save();
+        return redirect(auth()->user()->role == 'user' ? '/' : '/admin')->with('success', "berhasil mengganti password");
     }
 
     public function resetpassword($id)
@@ -100,7 +104,9 @@ class UserController extends Controller
 
     public function showProfile(AuthUser $user)
     {
-        return view('pages.user.profile');
+        $dataProv = DB::table('reg_provinces')->select('id', 'name')->where('id', auth()->user()->provinsi)->get();
+        $dataInstansi = DB::table('ipdi_unit')->select('id', 'nama_unit')->where('id', auth()->user()->instansi)->get();
+        return view('pages.user.profile', compact('dataProv', 'dataInstansi'));
     }
 
     public function update(Request $request, AuthUser $user)
@@ -150,9 +156,11 @@ class UserController extends Controller
         $user->username = $request->username;
         $user->provinsi = $request->provinsi == null ? '' : $request->provinsi;
         $user->save();
-
-        return redirect('/')->with('success', 'User updated succesfully.');
-        //
+        if (auth()->user()->role == "admin") {
+            return redirect('/admin')->with('success', 'User updated succesfully.');
+        } else {
+            return redirect('/')->with('success', 'User updated succesfully.');
+        }
     }
 
     public function destroy($id)
