@@ -50,9 +50,9 @@ class DetailAcaraController extends Controller
         try {
             Mail::to($partisipan->email)->send(new MailNotify($data));
         } catch (Exception $th) {
-            return redirect('/admin/pembayaran')->with('success', 'Gagal Mengirim Email.');
+            return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'Gagal Mengirim Email.');
         }
-        return redirect('/admin/pembayaran')->with('success', 'pembayaran berhasil diverifikasi dan email terkirim.');
+        return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'pembayaran berhasil diverifikasi dan email terkirim.');
     }
 
     public function unverify($id)
@@ -61,7 +61,7 @@ class DetailAcaraController extends Controller
         $pembayaran->status = 'Belum Dikonfirmasi';
         $pembayaran->unverifikasi = auth()->user()->nama_lengkap;
         $pembayaran->save();
-        return redirect('/admin/pembayaran')->with('success', 'pembayaran batal diverifikasi.');
+        return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'pembayaran batal diverifikasi.');
     }
 
 

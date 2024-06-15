@@ -27,7 +27,7 @@
     </div>
 
     <!-- Form -->
-    <form method="POST" action="{{ route('poster.store', $acara->id) }}" class="mt-8 w-full max-w-4xl"
+    <form method="POST" action="{{ route(auth()->user()->role . '.poster.store', $acara->id) }}" class="mt-8 w-full max-w-4xl"
         enctype="multipart/form-data">
         @csrf
         @method('POST')

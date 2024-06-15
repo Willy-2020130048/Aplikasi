@@ -10,7 +10,7 @@
                     Pengguna
                 </p>
                 <div class="px-8 w-full flex items-center justify-end gap-2">
-                    <a href="{{ route('user.create') }}">
+                    <a href="{{ route(auth()->user()->role . '_user.create') }}">
                         <button type="button"
                             class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-2 text-white hover:bg-red-900 disabled:opacity-50 disabled:pointer-events-none">
                             Tambah Pengguna
@@ -32,7 +32,7 @@
                             <div
                                 class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-neutral-700">
                                 <!-- Input -->
-                                <form method="GET" action="{{ route('user.index') }}">
+                                <form method="GET" action="{{ route(auth()->user()->role . '_user.index') }}">
                                     <label for="name"
                                         class="mb-2 text-sm font-medium text-primary-900 sr-only dark:text-white">Search</label>
                                     <div class="relative">
@@ -493,7 +493,8 @@
                                             </td>
                                             <td class="size-px whitespace-nowrap align-top">
                                                 @if ($user->status == 'terverifikasi')
-                                                    <a class="block p-6" href="{{ route('user.unverify', $user->id) }}">
+                                                    <a class="block p-6"
+                                                        href="{{ route(auth()->user()->role . '.user.unverify', $user->id) }}">
                                                         <span
                                                             class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
                                                             <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg"
@@ -506,7 +507,8 @@
                                                         </span>
                                                     </a>
                                                 @else
-                                                    <a class="block p-6" href="{{ route('user.verify', $user->id) }}">
+                                                    <a class="block p-6"
+                                                        href="{{ route(auth()->user()->role . '.user.verify', $user->id) }}">
                                                         <span
                                                             class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-red-100 text-red-800 rounded-full dark:bg-red-500/10 dark:text-red-500">
                                                             <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg"
@@ -522,7 +524,8 @@
                                             </td>
                                             <td class="align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
-                                                    <a href="{{ route('user.changepassword', $user->id) }}">
+                                                    <a
+                                                        href="{{ route(auth()->user()->role . '.resetpassword', $user->id) }}">
                                                         <button
                                                             class="text-sm font-semibold bg-red-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
                                                             Reset Password

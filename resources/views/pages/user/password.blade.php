@@ -11,7 +11,7 @@
                 <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Ganti Password</h1>
             </div>
             <!-- Form -->
-            <form method="POST" action="{{ route(auth()->user()->role == 'user' ? 'users.changepassword' : 'admin.changepassword', auth()->user()->id) }}" class="mt-8"
+            <form method="POST" action="{{ route(auth()->user()->role . '.updatepassword') }}" class="mt-8"
                 x-data="{ password: '', password_confirm: '' }">
                 @csrf
                 @method('PUT')
@@ -27,9 +27,9 @@
                     </div>
                 @enderror --}}
                 @if ($message = Session::get('notvalid'))
-                <div class="text-red-600">
-                    {{ $message }}
-                </div>
+                    <div class="text-red-600">
+                        {{ $message }}
+                    </div>
                 @endif
                 <div class ="py-1">
                     <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Password Baru</span>

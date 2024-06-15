@@ -13,7 +13,7 @@
 
             <div class="mt-5">
                 <!-- Form -->
-                <form method="POST" action="{{ route('acara.update', $acara->id) }}" class="mt-8">
+                <form method="POST" action="{{ route(auth()->user()->role . '_acara.update', $acara->id) }}" class="mt-8">
                     @method('PUT')
                     @csrf
                     <div class="mx-auto max-w-lg ">
@@ -138,20 +138,20 @@
                             <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Sponsor
                             </span>
                             <input placeholder="" type="text" name="sponsor"
-                                   class="text-md block px-3 py-2 rounded-lg w-full
+                                class="text-md block px-3 py-2 rounded-lg w-full
             bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
                         </div>
                         @error('sponsor')
-                        <div class="text-red-600">
-                            {{ $message }}
-                        </div>
+                            <div class="text-red-600">
+                                {{ $message }}
+                            </div>
                         @enderror
 
                         <button type="submit"
                             class="mt-3 text-lg font-semibold bg-green-800 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
                             Edit Acara
                         </button>
-                        <a href="{{ route('acara.index') }}"
+                        <a href="{{ route(auth()->user()->role . '_acara.index') }}"
                             class="mt-3 text-lg text-center font-semibold bg-red-600 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
                             Batal
                         </a>

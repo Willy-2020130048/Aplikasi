@@ -10,7 +10,7 @@
                     Acara
                 </p>
                 <div class="px-8 w-full flex items-center justify-end gap-2">
-                    <a href="{{ route('acara.create') }}">
+                    <a href="{{ route(auth()->user()->role . '_acara.create') }}">
                         <button type="button"
                             class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-2 text-white hover:bg-red-900 disabled:opacity-50 disabled:pointer-events-none">
                             Tambah Acara
@@ -32,7 +32,7 @@
                             <div
                                 class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-neutral-700">
                                 <!-- Input -->
-                                <form method="GET" action="{{ route('acara.index') }}">
+                                <form method="GET" action="{{ route(auth()->user()->role . '_acara.index') }}">
                                     <label for="name"
                                         class="mb-2 text-sm font-medium text-primary-900 sr-only dark:text-white">Search</label>
                                     <div class="relative">
@@ -266,10 +266,12 @@
                                             </td>
                                             <td class="h-px w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
-                                                    <a href="{{ route('acara.edit', $acara->id) }}">
+                                                    {{-- <a
+                                                        href="{{ route(auth()->user()->role . '_acara.edit', $acara->id) }}">
                                                         <button class="text-green-600">Edit</button>
-                                                    </a>
-                                                    <form action="{{ route('acara.destroy', $acara->id) }}"
+                                                    </a> --}}
+                                                    <form
+                                                        action="{{ route(auth()->user()->role . '_acara.destroy', $acara->id) }}"
                                                         method="POST">
                                                         @method('DELETE')
                                                         @csrf

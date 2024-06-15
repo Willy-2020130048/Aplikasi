@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,15 +16,13 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = DB::table('users')->join('reg_provinces', 'reg_provinces.id', '=', 'users.provinsi')->join('ipdi_unit', 'ipdi_unit.id', '=', 'users.instansi')->where('role', '=', 'user')->when($request->input('name'), function ($query, $name) {
+        $users = DB::table('users')->select('users.*', 'ipdi_unit.nama_unit', 'reg_provinces.name')->join('reg_provinces', 'reg_provinces.id', '=', 'users.provinsi')->join('ipdi_unit', 'ipdi_unit.id', '=', 'users.instansi')->where('role', '=', 'user')->when($request->input('name'), function ($query, $name) {
             return $query->whereAny([
                 'nama_lengkap',
                 'name',
                 'nama_unit',
             ], 'LIKE', '%' . $name . '%');
         })->orderBy('users.id', 'desc')->paginate(10);
-
-
         return view('pages.user.index', compact('users'));
     }
 
@@ -72,7 +71,7 @@ class UserController extends Controller
         $user = User::find(auth()->user()->id);
         $user->password = $request->password;
         $user->save();
-        return redirect(auth()->user()->role == 'user' ? '/' : '/admin')->with('success', "berhasil mengganti password");
+        return redirect()->route(auth()->user()->role)->with('success', "berhasil mengganti password");
     }
 
     public function resetpassword($id)
@@ -81,7 +80,7 @@ class UserController extends Controller
         $text = fake()->text(8);
         $user->password = Hash::make('password');
         $user->save();
-        return redirect('/admin/user')->with('success', "Password berhasil direset menjadi (password)");
+        return redirect()->route(auth()->user()->role . '_user.index')->with('success', "Password berhasil direset menjadi (password)");
     }
 
     public function verify($id)
@@ -92,7 +91,7 @@ class UserController extends Controller
         $user->status = 'terverifikasi';
         $user->nira = $user->provinsi . "." . $user->instansi . "." . ($user->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($currentID, 6, "0", STR_PAD_LEFT);;
         $user->save();
-        return redirect('/admin/user')->with('success', 'Pengguna berhasil diverifikasi.');
+        return redirect()->route(auth()->user()->role . '_user.index')->with('success', 'Pengguna berhasil diverifikasi.');
     }
 
     public function unverify($id)
@@ -101,7 +100,7 @@ class UserController extends Controller
         $user->status = 'menunggu';
         $user->nira = 'Belum Terverifikasi';
         $user->save();
-        return redirect('/admin/user')->with('success', 'Pengguna batal diverifikasi.');
+        return redirect()->route(auth()->user()->role . '_user.index')->with('success', 'Pengguna batal diverifikasi.');
     }
 
     public function showProfile(AuthUser $user)
@@ -111,8 +110,9 @@ class UserController extends Controller
         return view('pages.user.profile', compact('dataProv', 'dataInstansi'));
     }
 
-    public function update(Request $request, AuthUser $user)
+    public function update(Request $request)
     {
+        $user = User::find(auth()->user()->id);
         if ($user->email != $request->email) {
             $request->validate(['email' => 'required|email|unique:users,email',]);
         }
@@ -144,6 +144,7 @@ class UserController extends Controller
         if ($request->tanggal_lahir) {
             $user->tanggal_lahir = $request->tanggal_lahir == null ? '' : $request->tanggal_lahir;
         }
+
         $user->agama = $request->agama == null ? '' : $request->agama;
         $user->alamat = $request->alamat == null ? '' : $request->alamat;
         $user->kode_pos = $request->kode_pos == null ? '' : $request->kode_pos;
@@ -159,21 +160,7 @@ class UserController extends Controller
         $user->provinsi = $request->provinsi == null ? '' : $request->provinsi;
         $user->save();
 
-        switch (auth()->user()->role) {
-            case "user":
-                return redirect('/')->with('success', 'User updated succesfully.');
-                break;
-            case "admin":
-                return redirect('/admin')->with('success', 'User updated succesfully.');
-                break;
-            case "userverifikator":
-                return redirect('/userverifikator')->with('success', 'User updated succesfully.');
-                break;
-            case "acaraverifikator":
-                return redirect('/acaraverifikator')->with('success', 'User updated succesfully.');
-                break;
-            default:
-        }
+        return redirect()->route(auth()->user()->role)->with('success', 'User updated succesfully.');
     }
 
     public function destroy($id)

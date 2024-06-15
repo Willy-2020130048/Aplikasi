@@ -52,6 +52,6 @@ class PosterController
         $detail->sponsor = $request->sponsor;
         $detail->workshop = $request->workshop == null ? "Tidak Ada" : $request->workshop;
         $detail->save();
-        return redirect()->route('partisipasi')->with('success', 'Berhasil partisipasi acara.');
+        return redirect()->route(auth()->user()->role . '.partisipasi')->with('success', 'Berhasil partisipasi acara.');
     }
 }

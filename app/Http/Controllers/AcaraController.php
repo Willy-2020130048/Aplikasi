@@ -56,12 +56,12 @@ class AcaraController extends Controller
         $acara->tempat = $request->tempat;
         $acara->pengelola = $request->pengelola;
         $acara->id_detail = $request->sponsor;
-        $acara->workshop = ($request->Audit == null ? "" : $request->Audit."-") . ($request->Health == null ? "" : $request->Health."-") . ($request->CAPD == null ? "" : $request->CAPD);
-        if(substr($acara->workshop, -1) == "-"){
+        $acara->workshop = ($request->Audit == null ? "" : $request->Audit . "-") . ($request->Health == null ? "" : $request->Health . "-") . ($request->CAPD == null ? "" : $request->CAPD);
+        if (substr($acara->workshop, -1) == "-") {
             $acara->workshop = substr_replace($acara->workshop, "", -1);
         }
         $acara->save();
-        return redirect()->route('acara.index')->with('success', 'Acara berhasil dibuat.');
+        return redirect()->route(auth()->user()->role . '_acara.index')->with('success', 'Acara berhasil dibuat.');
     }
 
     /**
@@ -113,7 +113,7 @@ class AcaraController extends Controller
         $acara->id_detail = $request->sponsor;
         $acara->workshop = $request->workshop;
         $acara->save();
-        return redirect()->route('acara.index')->with('success', 'Acara berhasil dibuat.');
+        return redirect()->route(auth()->user()->role . '_acara.index')->with('success', 'Acara berhasil dibuat.');
     }
 
     /**
@@ -123,6 +123,6 @@ class AcaraController extends Controller
     {
         $acara = Acara::find($id);
         $acara->delete();
-        return redirect()->route('acara.index');
+        return redirect()->route(auth()->user()->role . '_acara.index')->with('success', 'Acara berhasil dihapus.');
     }
 }

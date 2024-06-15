@@ -20,7 +20,7 @@
                             <div
                                 class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-neutral-700">
                                 <!-- Input -->
-                                <form method="GET" action="{{ route('pembayaran.index') }}">
+                                <form method="GET" action="{{ route(auth()->user()->role . '_pembayaran.index') }}">
                                     <label for="name"
                                         class="mb-2 text-sm font-medium text-primary-900 sr-only dark:text-white">Search</label>
                                     <div class="relative">
@@ -254,7 +254,7 @@
                                             <td class="size-px whitespace-nowrap align-top">
                                                 @if ($pembayaran->status == 'Telah Dikonfirmasi')
                                                     <a class="block p-6"
-                                                        href="{{ route('pembayaran.unverify', $pembayaran->id) }}">
+                                                        href="{{ route(auth()->user()->role . '.pembayaran.unverify', $pembayaran->id) }}">
                                                         <span
                                                             class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
                                                             <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg"
@@ -268,7 +268,7 @@
                                                     </a>
                                                 @else
                                                     <a class="block p-6"
-                                                        href="{{ route('pembayaran.verify', $pembayaran->id) }}">
+                                                        href="{{ route(auth()->user()->role . '.pembayaran.verify', $pembayaran->id) }}">
                                                         <span
                                                             class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-red-100 text-red-800 rounded-full dark:bg-red-500/10 dark:text-red-500">
                                                             <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg"

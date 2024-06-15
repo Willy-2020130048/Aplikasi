@@ -18,7 +18,7 @@
             </div>
 
             <!-- Form -->
-            <form method="POST" action="{{ route('user.update', auth()->user()) }}" class="mt-8"
+            <form method="POST" action="{{ route(auth()->user()->role . '_user.update', auth()->user()) }}" class="mt-8"
                 enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
