@@ -542,7 +542,7 @@
 
                                 <div>
                                     <div class="inline-flex gap-x-2">
-                                        <a href="">
+                                        <a href="{{ $users->previousPageUrl() }}">
                                             <button type="button"
                                                 class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
                                                 <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
@@ -555,7 +555,7 @@
                                             </button>
                                         </a>
 
-                                        <a href="">
+                                        <a href="{{ $users->nextPageUrl() }}">
                                             <button type="button"
                                                 class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
                                                 Next
