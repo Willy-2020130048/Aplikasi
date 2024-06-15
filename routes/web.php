@@ -143,17 +143,17 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware([AcaraVerifikatorAuth::class])->group(function () {
         Route::prefix('acaraverifikator')->group(function () {
             Route::get('/', function () {
-                return view('pages.admin.index');
+                return view('pages.home.acaraverifikator');
             })->name('acaraverifikator');
             Route::get('/password', function () {
                 return view('pages.user.password');
-            })->name('changepassword_acaraverifikator');
+            })->name('acaraverifikator.changepassword');
 
             Route::resource('acaraverifikator', UserController::class)->only('update');
             Route::put('/updatepassword', [UserController::class, 'changepassword'])->name('acaraverifikator.updatepassword');
             Route::get('/user/profile', [UserController::class, 'showProfile'])->name('acaraverifikator.profile');
 
-            Route::resource('acaraverifikator.pembayaran', DetailAcaraController::class);
+            Route::resource('acaraverifikator_pembayaran', DetailAcaraController::class);
             Route::get('/pembayaran/verify/{id}', [DetailAcaraController::class, 'verify'])->name('acaraverifikator.pembayaran.verify');
             Route::get('/pembayaran/unverify/{id}', [DetailAcaraController::class, 'unverify'])->name('acaraverifikator.pembayaran.unverify');
 
@@ -164,6 +164,14 @@ Route::middleware(['auth'])->group(function () {
                 })->get();
                 return view('pages.user.edit', compact('dataProv', 'dataInstansi'));
             })->name('acaraverifikator.editprofile');
+
+            Route::get('/acara', [\App\Http\Controllers\PosterController::class, 'index'])->name('acaraverifikator.poster.index');
+            Route::get('/acara/{id}', [PosterController::class, 'detail'])->name('acaraverifikator.poster.detail');
+            Route::post('/acara/{id}', [PosterController::class, 'store'])->name('acaraverifikator.poster.store');
+            Route::get('/partisipasi', function (Request $request) {
+                $acaras = DB::select("SELECT *, detail_acaras.status as statusacara, detail_acaras.workshop as workshopuser FROM detail_acaras JOIN acaras on (acaras.id = detail_acaras.id_acara) WHERE detail_acaras.id_peserta = ?", [auth()->user()->id]);
+                return view('pages.user.partisipasi', compact('acaras'));
+            })->name('acaraverifikator.partisipasi');
         });
     });
 });
