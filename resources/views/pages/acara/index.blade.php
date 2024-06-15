@@ -287,14 +287,6 @@
                             <!-- Footer -->
                             <div
                                 class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200 dark:border-neutral-700">
-                                <div class="max-w-sm space-y-3">
-                                    <select
-                                        class="py-2 px-3 pe-9 block border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-900 dark:border-neutral-700 dark:text-neutral-400">
-                                        <option selected>5</option>
-                                        <option>10</option>
-                                        <option>20</option>
-                                    </select>
-                                </div>
 
                                 <div>
                                     <div class="inline-flex gap-x-2">

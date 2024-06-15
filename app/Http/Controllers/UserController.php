@@ -22,6 +22,8 @@ class UserController extends Controller
                 'nama_unit',
             ], 'LIKE', '%' . $name . '%');
         })->orderBy('users.id', 'desc')->paginate(10);
+
+
         return view('pages.user.index', compact('users'));
     }
 

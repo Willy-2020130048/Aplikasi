@@ -539,38 +539,34 @@
                             <!-- Footer -->
                             <div
                                 class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200 dark:border-neutral-700">
-                                <div class="max-w-sm space-y-3">
-                                    <select
-                                        class="py-2 px-3 pe-9 block border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-900 dark:border-neutral-700 dark:text-neutral-400">
-                                        <option selected>5</option>
-                                        <option>10</option>
-                                        <option>20</option>
-                                    </select>
-                                </div>
 
                                 <div>
                                     <div class="inline-flex gap-x-2">
-                                        <button type="button"
-                                            class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
-                                            <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
-                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path d="m15 18-6-6 6-6" />
-                                            </svg>
-                                            Prev
-                                        </button>
+                                        <a href="">
+                                            <button type="button"
+                                                class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+                                                <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
+                                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path d="m15 18-6-6 6-6" />
+                                                </svg>
+                                                Prev
+                                            </button>
+                                        </a>
 
-                                        <button type="button"
-                                            class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
-                                            Next
-                                            <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
-                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path d="m9 18 6-6-6-6" />
-                                            </svg>
-                                        </button>
+                                        <a href="">
+                                            <button type="button"
+                                                class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+                                                Next
+                                                <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
+                                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path d="m9 18 6-6-6-6" />
+                                                </svg>
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -584,39 +580,3 @@
         <!-- End Table Section -->
     </main>
 @endsection
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#getInstansi').on('submit', function(event) {
-            event.preventDefault();
-            jQuery('#currentProv')[0].value = document.getElementById('provinsi').value;
-
-            jQuery.ajax({
-                url: '/dataInstansi',
-                data: jQuery('#getInstansi').serialize(),
-                type: "GET",
-                success: function(result) {
-                    var select = jQuery('#instansi');
-                    console.log(jQuery('#instansi'));
-                    select.empty();
-                    result.forEach(function(item) {
-                        var option = jQuery('<option>', {
-                            value: item.id,
-                            text: item.nama_unit
-                        });
-                        select.append(option);
-                    });
-                },
-
-                error: function(xhr, status, error) {
-                    console.error('Error:', error);
-                    // Handle error
-                }
-            });
-
-        })
-    });
-
-    function formSubmit() {
-        $('#getInstansi').submit();
-    }
-</script>
