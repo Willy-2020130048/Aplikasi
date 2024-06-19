@@ -24,7 +24,7 @@
                 <!-- Card -->
                 <div
                     class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-slate-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                    <div class="h-52 flex flex-col justify-center items-center bg-rose-500 rounded-t-xl">
+                    <div class="h-60 flex flex-col justify-center items-center bg-rose-500 rounded-t-xl">
                         <svg class="size-28" width="56" height="56" viewBox="0 0 56 56" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <rect width="56" height="56" rx="10" fill="white" />
@@ -68,8 +68,8 @@
                 <!-- Card -->
                 <div
                     class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                    <div class="h-52 flex flex-col justify-center items-center bg-blue-600 rounded-t-xl">
-                        <img src="../storage/Logo.png" class="object-cover h-36 w-36">
+                    <div class="h-full flex flex-col justify-center items-center bg-blue-600 rounded-t-xl">
+                        <img src="../storage/Logo.png" class="object-cover w-full rounded-t-xl">
                     </div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-200 dark:hover:text-white">
@@ -92,8 +92,8 @@
                 <!-- Card -->
                 <div
                     class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                    <div class="h-52 flex flex-col justify-center items-center bg-rose-500 rounded-t-xl">
-                        <img src="../storage/Logo2.png" class="object-cover h-36 w-36 rounded-full">
+                    <div class="h-full flex flex-col justify-center items-center bg-rose-500 rounded-t-xl">
+                        <img src="../storage/Logo2.png" class="object-cover w-full rounded-t-xl">
                     </div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-200 dark:hover:text-white">
@@ -116,8 +116,8 @@
                 <!-- Card -->
                 <div
                     class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                    <div class="h-52 flex flex-col justify-center items-center bg-amber-500 rounded-t-xl">
-                        <img src="../storage/Logo.png" class="object-cover h-36 w-36 rounded-full">
+                    <div class="h-full flex flex-col justify-center items-center bg-amber-500 rounded-t-xl">
+                        <img src="../storage/Logo.png" class="object-cover w-full p-4 rounded-full">
                     </div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-200 dark:hover:text-white">
