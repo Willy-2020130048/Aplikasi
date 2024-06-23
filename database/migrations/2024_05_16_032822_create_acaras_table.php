@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_acara');
             $table->string('jenis_acara')->default('Umum');
-            $table->string('workshop')->default('none');
+            $table->string('workshop')->default('Tidak ada');
             $table->string('deskripsi_acara');
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');

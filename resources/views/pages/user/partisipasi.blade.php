@@ -12,7 +12,7 @@
 
         @foreach ($acaras as $acara)
             <div
-                class="mt-8 w-full max-w-4xl relative bg-white border rounded-xl md:p-10 dark:bg-gray-950 dark:border-neutral-800">
+                class="mt-8 w-full max-w-4xl relative bg-white border-2 border-black rounded-xl md:p-10 dark:bg-gray-950 dark:border-neutral-800">
                 <h3 class="text-2xl font-bold text-gray-800 dark:text-neutral-200 text-center">{{ $acara->nama_acara }}</h3>
                 <div class="text-md text-gray-800 dark:text-neutral-200 text-center">({{ $acara->jenis_acara }})</div>
                 <div class="mt-8 text-md text-gray-800 dark:text-neutral-200">{{ $acara->deskripsi_acara }}</div>
@@ -36,6 +36,9 @@
                 </div>
                 <div class="mt-4 text-md text-gray-800 dark:text-neutral-200">Akun Plataran:
                     {{ $acara->nama_akun }}
+                </div>
+                <div class="mt-4 text-md text-gray-800 dark:text-neutral-200">Nama Instansi:
+                    {{ $users[0]->nama_unit }}
                 </div>
                 <div class="mt-4 text-md text-gray-800 dark:text-neutral-200">Asal Kota:
                     {{ $acara->kota }}
