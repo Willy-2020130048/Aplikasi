@@ -5,13 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password as RulesPassword;
 
 class UserController extends Controller
 {
@@ -27,6 +22,7 @@ class UserController extends Controller
                 'nama_unit',
             ], 'LIKE', '%' . $name . '%');
         })->orderBy('users.id', 'desc')->paginate(10);
+        $users->appends($request->all());
         return view('pages.user.index', compact('users'));
     }
 
