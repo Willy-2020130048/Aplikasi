@@ -29,16 +29,19 @@
                 </div>
                 <div class="mt-4 text-md text-gray-800 font-bold dark:text-neutral-200">Data Partisipan</div>
                 <div class="mt-4 text-md text-gray-800 dark:text-neutral-200">Nomor KTP:
-                    ({{ $acara->status }})
+                    {{ $acara->no_ktp }}
+                </div>
+                <div class="mt-4 text-md text-gray-800 dark:text-neutral-200">Nama Lengkap:
+                    {{ $users[0]->nama_lengkap }}
                 </div>
                 <div class="mt-4 text-md text-gray-800 dark:text-neutral-200">Akun Plataran:
-                    ({{ $acara->status }})
+                    {{ $acara->nama_akun }}
                 </div>
                 <div class="mt-4 text-md text-gray-800 dark:text-neutral-200">Asal Kota:
-                    ({{ $acara->status }})
+                    {{ $acara->kota }}
                 </div>
                 <div class="mt-4 text-md text-gray-800 dark:text-neutral-200">Sponsor:
-                    ({{ $acara->status }})
+                    {{ $acara->sponsor }}
                 </div>
                 <div class="mt-5">
                     <span class="text-xl font-bold text-gray-800 dark:text-neutral-200">Rp.

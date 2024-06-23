@@ -58,7 +58,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/acara/{id}', [PosterController::class, 'store'])->name('user.poster.store');
         Route::get('/partisipasi', function (Request $request) {
             $acaras = DB::select("SELECT *, detail_acaras.status as statusacara, detail_acaras.workshop as workshopuser FROM detail_acaras JOIN acaras on (acaras.id = detail_acaras.id_acara) WHERE detail_acaras.id_peserta = ?", [auth()->user()->id]);
-            return view('pages.user.partisipasi', compact('acaras'));
+            $users = DB::select("SELECT * FROM users WHERE id = ?", [auth()->user()->id]);
+            return view('pages.user.partisipasi', compact('acaras', 'users'));
         })->name('user.partisipasi');
     });
 
@@ -98,7 +99,8 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/partisipasi', function (Request $request) {
                 $acaras = DB::select("SELECT *, detail_acaras.status as statusacara, detail_acaras.workshop as workshopuser FROM detail_acaras JOIN acaras on (acaras.id = detail_acaras.id_acara) WHERE detail_acaras.id_peserta = ?", [auth()->user()->id]);
-                return view('pages.user.partisipasi', compact('acaras'));
+                $users = DB::select("SELECT * FROM users WHERE id = ?", [auth()->user()->id]);
+                return view('pages.user.partisipasi', compact('acaras', 'users'));
             })->name('admin.partisipasi');
         });
     });
@@ -135,7 +137,8 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/acara/{id}', [PosterController::class, 'store'])->name('userverifikator.poster.store');
             Route::get('/partisipasi', function (Request $request) {
                 $acaras = DB::select("SELECT *, detail_acaras.status as statusacara, detail_acaras.workshop as workshopuser FROM detail_acaras JOIN acaras on (acaras.id = detail_acaras.id_acara) WHERE detail_acaras.id_peserta = ?", [auth()->user()->id]);
-                return view('pages.user.partisipasi', compact('acaras'));
+                $users = DB::select("SELECT * FROM users WHERE id = ?", [auth()->user()->id]);
+                return view('pages.user.partisipasi', compact('acaras', 'users'));
             })->name('userverifikator.partisipasi');
         });
     });
@@ -170,7 +173,8 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/acara/{id}', [PosterController::class, 'store'])->name('acaraverifikator.poster.store');
             Route::get('/partisipasi', function (Request $request) {
                 $acaras = DB::select("SELECT *, detail_acaras.status as statusacara, detail_acaras.workshop as workshopuser FROM detail_acaras JOIN acaras on (acaras.id = detail_acaras.id_acara) WHERE detail_acaras.id_peserta = ?", [auth()->user()->id]);
-                return view('pages.user.partisipasi', compact('acaras'));
+                $users = DB::select("SELECT * FROM users WHERE id = ?", [auth()->user()->id]);
+                return view('pages.user.partisipasi', compact('acaras', 'users'));
             })->name('acaraverifikator.partisipasi');
         });
     });
