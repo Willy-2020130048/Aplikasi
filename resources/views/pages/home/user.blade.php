@@ -4,33 +4,6 @@
 
 @section('main')
     <main class="w-full">
-        <!-- Announcement Banner -->
-        {{-- <div class="w-full bg-red-700 dark:bg-gray-700">
-            <div class="max-w-[85rem] px-4 py-4 sm:px-6 lg:px-8 mx-auto">
-                <!-- Grid -->
-                <div class="grid justify-center md:grid-cols-2 md:justify-between md:items-center gap-2">
-                    <div class="text-center md:text-start">
-                        <p class="text-xs text-white/80 uppercase tracking-wider">
-                            Pengumuman
-                        </p>
-                        <p class="mt-1 text-white font-medium">
-                            Acara ABCD akan dimulai pada tanggal ...
-                        </p>
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="mt-3 text-center md:text-start md:flex md:justify-end md:items-center">
-                        <a class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
-                            href="#">
-                            Daftar Sekarang
-                        </a>
-                    </div>
-                    <!-- End Col -->
-                </div>
-                <!-- End Grid -->
-            </div>
-        </div> --}}
-        <!-- End Announcement Banner -->
         <!-- Card Blog -->
         <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
             <!-- Grid -->
@@ -77,7 +50,7 @@
                         class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
                         <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
                             href="{{ route('user.poster.index', '') }}">
-                            Lihat Acara
+                            Partisipasi Acara
                         </a>
                     </div>
                 </div>

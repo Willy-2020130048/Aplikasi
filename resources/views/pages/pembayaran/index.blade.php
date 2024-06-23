@@ -135,10 +135,16 @@
                                             Status
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
+                                            Send Email
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
                                             Verifikasi By
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
                                             Unverifikasi By
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            Delete Pendaftaran
                                         </th>
                                     </tr>
                                 </thead>
@@ -253,7 +259,7 @@
                                             </td>
                                             <td class="size-px whitespace-nowrap align-top">
                                                 @if ($pembayaran->status == 'Telah Dikonfirmasi')
-                                                    <a class="block p-6"
+                                                    <a class="block py-6 pr-6"
                                                         href="{{ route(auth()->user()->role . '.pembayaran.unverify', $pembayaran->id) }}">
                                                         <span
                                                             class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
@@ -267,7 +273,7 @@
                                                         </span>
                                                     </a>
                                                 @else
-                                                    <a class="block p-6"
+                                                    <a class="block py-6 pr-6"
                                                         href="{{ route(auth()->user()->role . '.pembayaran.verify', $pembayaran->id) }}">
                                                         <span
                                                             class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-red-100 text-red-800 rounded-full dark:bg-red-500/10 dark:text-red-500">
@@ -281,6 +287,16 @@
                                                         </span>
                                                     </a>
                                                 @endif
+                                            </td>
+                                            <td class="size-px whitespace-nowrap align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <a href="">
+                                                        <button
+                                                            class="text-sm font-semibold bg-blue-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
+                                                            Send Email
+                                                        </button>
+                                                    </a>
+                                                </div>
                                             </td>
                                             <td class="h-px w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
@@ -296,6 +312,16 @@
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $pembayaran->unverifikasi }}
                                                     </span>
+                                                </div>
+                                            </td>
+                                            <td class="size-px whitespace-nowrap align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <a href="">
+                                                        <button
+                                                            class="text-sm font-semibold bg-red-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
+                                                            Remove
+                                                        </button>
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>

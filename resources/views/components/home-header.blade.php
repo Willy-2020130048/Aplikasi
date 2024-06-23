@@ -22,7 +22,7 @@
             <div></div>
 
             <div class="flex flex-row items-center justify-end gap-2 mr-12">
-                <button type="button"
+                {{-- <button type="button"
                     class="hs-dark-mode-active:hidden block hs-dark-mode group flex items-center text-gray-600 hover:text-blue-600 font-medium dark:text-neutral-400 dark:hover:text-neutral-500"
                     data-hs-theme-click-value="dark" onclick="darkMode()">
                     <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -67,7 +67,7 @@
                         stroke-linejoin="round">
                         <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
                     </svg>
-                </button>
+                </button> --}}
 
                 <div class="hs-dropdown relative inline-flex" data-hs-dropdown-placement="bottom-right">
                     <button id="hs-dropdown-with-header" type="button"

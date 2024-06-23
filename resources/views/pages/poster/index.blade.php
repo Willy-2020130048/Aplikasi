@@ -4,21 +4,21 @@
 
 @section('main')
     <main class = "w-full flex flex-col items-center">
-        <div class="w-full bg-red-700 dark:bg-gray-700">
+        <div class="w-full bg-red-700">
             <div class="max-w-[85rem] px-4 py-4 sm:px-6 lg:px-8 mx-auto">
-                <div class="grid justify-center md:grid-cols-2 md:justify-between md:items-center gap-2">
-                    <div class="text-center md:text-start">
-                        <p class="text-xs text-white/80 uppercase tracking-wider">
-                            Pengumuman
-                        </p>
-                        <p class="mt-1 text-white font-medium">
-                            Pastikan profile dan email telah diubah menjadi yang terbaru untuk pengumuman.
-                        </p>
-                    </div>
+                <div class="text-center md:text-center">
+                    <p class="text-xl font-bold text-white/80 uppercase tracking-wider">
+                        Perhatian !!!
+                    </p>
+                    <p class="mt-1 text-white font-medium">
+                        Pastikan profile dan email telah diubah menjadi yang terbaru untuk pengumuman lebih lanjut.
+                    </p>
+                    <p class="mt-1 text-white font-medium">
+                        Profile dan email dapat diubah disebelah kanan atas.
+                    </p>
                 </div>
             </div>
         </div>
-
         <div class="w-full px-20 py-4 mx-auto">
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($acaras as $acara)

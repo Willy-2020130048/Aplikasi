@@ -6,7 +6,7 @@
 </head>
 
 <body style="color: black">
-    <h3>FORM PITNAS IPDI</h3>
+    <h3>{{ $data['detail']->nama_acara }}</h3>
     <h4>Nomor Pendaftaran PITNAS</h4>
     <p>{{ $data['detail']->id }}</p>
     <h4>Nama Lengkap</h4>
