@@ -144,8 +144,10 @@ class DetailAcaraController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DetailAcara $detailAcara)
+    public function destroy($id)
     {
-        //
+        $pembayaran = DetailAcara::find($id);
+        $pembayaran->delete();
+        return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'Pembayaran berhasil terhapus.');
     }
 }

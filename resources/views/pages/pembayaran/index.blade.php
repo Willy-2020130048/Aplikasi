@@ -350,12 +350,14 @@
                                             </td>
                                             <td class="size-px whitespace-nowrap align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
-                                                    <a href="">
-                                                        <button
-                                                            class="text-sm font-semibold bg-red-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
-                                                            Remove
-                                                        </button>
-                                                    </a>
+                                                    <form
+                                                        action="{{ route(auth()->user()->role . '_pembayaran.destroy', $pembayaran->id) }}"
+                                                        method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button class="text-red-600">Delete</button>
+                                                    </form>
+
                                                 </div>
                                             </td>
                                         </tr>
