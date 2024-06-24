@@ -84,6 +84,8 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('admin_pembayaran', DetailAcaraController::class);
             Route::get('/pembayaran/verify/{id}', [DetailAcaraController::class, 'verify'])->name('admin.pembayaran.verify');
             Route::get('/pembayaran/unverify/{id}', [DetailAcaraController::class, 'unverify'])->name('admin.pembayaran.unverify');
+            Route::get('/pembayaran/verify/{id}', [DetailAcaraController::class, 'verifyKehadiran'])->name('admin.kehadiran.verify');
+            Route::get('/pembayaran/unverify/{id}', [DetailAcaraController::class, 'unverifyKehadiran'])->name('admin.kehadiran.unverify');
 
             Route::get('/detailacara', [\App\Http\Controllers\PosterController::class, 'index'])->name('admin.poster.index');
             Route::get('/detailacara/{id}', [PosterController::class, 'detail'])->name('admin.poster.detail');
@@ -159,6 +161,8 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('acaraverifikator_pembayaran', DetailAcaraController::class);
             Route::get('/pembayaran/verify/{id}', [DetailAcaraController::class, 'verify'])->name('acaraverifikator.pembayaran.verify');
             Route::get('/pembayaran/unverify/{id}', [DetailAcaraController::class, 'unverify'])->name('acaraverifikator.pembayaran.unverify');
+            Route::get('/pembayaran/verify/{id}', [DetailAcaraController::class, 'verifyKehadiran'])->name('acaraverifikator.kehadiran.verify');
+            Route::get('/pembayaran/unverify/{id}', [DetailAcaraController::class, 'unverifyKehadiran'])->name('acaraverifikator.kehadiran.unverify');
 
             Route::get('/profile', function (Request $request) {
                 $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();

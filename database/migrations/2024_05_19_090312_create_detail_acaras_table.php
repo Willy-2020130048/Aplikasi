@@ -27,9 +27,11 @@ return new class extends Migration
             $table->string('kota')->nullable();
             $table->string('sponsor')->nullable();
             $table->string('status')->default('Belum Dikonfirmasi');
+            $table->string('status_kehadiran')->default('Belum Dikonfirmasi');
             $table->string('workshop')->default('Tidak ada');
             $table->string('verifikasi')->default('-')->nullable();
             $table->string('unverifikasi')->default('-')->nullable();
+            $table->string('verifikasi_kehadiran')->default('-')->nullable();
             $table->timestamps();
         });
     }

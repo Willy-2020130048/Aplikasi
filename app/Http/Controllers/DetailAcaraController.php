@@ -64,6 +64,22 @@ class DetailAcaraController extends Controller
         return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'pembayaran batal diverifikasi.');
     }
 
+    public function verifyKehadiran($id)
+    {
+        $pembayaran = DetailAcara::find($id);
+        $pembayaran->status_kehadiran = 'Telah Dikonfirmasi';
+        $pembayaran->verfiikasi_kehadiran = auth()->user()->nama_lengkap;
+        $pembayaran->save();
+        return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'pembayaran berhasil diverifikasi dan email terkirim.');
+    }
+
+    public function unverifyKehadiran($id)
+    {
+        $pembayaran = DetailAcara::find($id);
+        $pembayaran->status_kehadiran = 'Belum Dikonfirmasi';
+        $pembayaran->save();
+        return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'pembayaran batal diverifikasi.');
+    }
 
     /**
      * Show the form for creating a new resource.

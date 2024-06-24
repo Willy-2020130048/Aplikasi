@@ -53,6 +53,7 @@ class PosterController
             $detail->kota = $request->kota;
             $detail->sponsor = $request->sponsor;
             $detail->workshop = $request->workshop == null ? "Tidak Ada" : $request->workshop;
+            $detail->id = "Testing"+$detail->id;
             $detail->save();
             return redirect()->route(auth()->user()->role . '.partisipasi')->with('success', 'Berhasil partisipasi acara.');
         } else {

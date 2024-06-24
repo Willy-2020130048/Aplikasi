@@ -15,6 +15,7 @@ class DetailAcara extends Model
         'nama_akun',
         'bukti_pembayaran',
         'status',
+        'status_kehadiran',
         'no_ktp',
         "tipe_pegawai",
         "nip",
@@ -27,5 +28,6 @@ class DetailAcara extends Model
         'workshop',
         'verifikasi',
         'unverifikasi',
+        'verfiikasi_kehadiran'
     ];
 }

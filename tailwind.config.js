@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkmode: 'false',
   content: [
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
@@ -13,6 +12,6 @@ module.exports = {
   plugins: [
     require('preline/plugin'),
   ],
-  darkMode: false,
+  darkMode: 'false',
 }
 
