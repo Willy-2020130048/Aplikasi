@@ -68,9 +68,9 @@ class DetailAcaraController extends Controller
     {
         $pembayaran = DetailAcara::find($id);
         $pembayaran->status_kehadiran = 'Telah Dikonfirmasi';
-        $pembayaran->verfiikasi_kehadiran = auth()->user()->nama_lengkap;
+        $pembayaran->verifikasi_kehadiran = auth()->user()->nama_lengkap;
         $pembayaran->save();
-        return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'pembayaran berhasil diverifikasi dan email terkirim.');
+        return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'kehadiran berhasil diverifikasi.');
     }
 
     public function unverifyKehadiran($id)
@@ -78,9 +78,29 @@ class DetailAcaraController extends Controller
         $pembayaran = DetailAcara::find($id);
         $pembayaran->status_kehadiran = 'Belum Dikonfirmasi';
         $pembayaran->save();
-        return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'pembayaran batal diverifikasi.');
+        return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'kehadiran batal diverifikasi.');
     }
 
+    public function sendEmail($id)
+    {
+        $pembayaran = DetailAcara::find($id);
+        $partisipan = User::find($pembayaran->id_peserta);
+        $acara = Acara::find($pembayaran->id_acara);
+        $instansi = DB::table('ipdi_unit')->where('id', $partisipan->instansi)->get();
+        $data = [
+            'body' => 'Anda telah berhasil mendaftarkan diri dalam acara ' . $acara->nama_acara,
+            'acara' => $acara,
+            'partisipan' => $partisipan,
+            'detail' => $pembayaran,
+            'instansi' => $instansi,
+        ];
+        try {
+            Mail::to($partisipan->email)->send(new MailNotify($data));
+        } catch (Exception $th) {
+            return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'Gagal Mengirim Email.');
+        }
+        return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'Email berhasil terkirim.');
+    }
     /**
      * Show the form for creating a new resource.
      */

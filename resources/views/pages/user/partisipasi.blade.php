@@ -32,13 +32,21 @@
                     {{ $acara->no_ktp }}
                 </div>
                 <div class="mt-4 text-md text-gray-800 dark:text-neutral-200">Nama Lengkap:
-                    {{ $users[0]->nama_lengkap }}
+                    @if ($users == null)
+                        <span class="text-red-600">Data Instansi Pengguna Tidak Lengkap</span>
+                        @else
+                        {{ $users[0]->nama_lengkap }}
+                    @endif
                 </div>
                 <div class="mt-4 text-md text-gray-800 dark:text-neutral-200">Akun Plataran:
                     {{ $acara->nama_akun }}
                 </div>
                 <div class="mt-4 text-md text-gray-800 dark:text-neutral-200">Nama Instansi:
-                    {{ $users[0]->nama_unit }}
+                    @if ($users == null)
+                        <span class="text-red-600">Data Instansi Pengguna Tidak Lengkap</span>
+                        @else
+                        {{ $users[0]->nama_unit }}
+                    @endif
                 </div>
                 <div class="mt-4 text-md text-gray-800 dark:text-neutral-200">Asal Kota:
                     {{ $acara->kota }}
