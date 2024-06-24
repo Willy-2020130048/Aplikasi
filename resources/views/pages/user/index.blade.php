@@ -30,32 +30,39 @@
                             class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-gray-900 dark:border-neutral-700">
                             <!-- Header -->
                             <div
-                                class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-neutral-700">
+                                class="px-6 py-4 w-full flex flex-row md:justify-between md:items-center border-b border-gray-200 dark:border-neutral-700">
                                 <!-- Input -->
-                                <form method="GET" action="{{ route(auth()->user()->role . '_user.index') }}">
-                                    <label for="name"
-                                        class="mb-2 text-sm font-medium text-primary-900 sr-only dark:text-white">Search</label>
-                                    <div class="relative">
-                                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                    stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                            </svg>
-                                        </div>
-                                        <input type="search" name="name" id="name"
+                                <form method="GET" action="{{ route(auth()->user()->role . '_user.index')}}" class="flex flex-row p-4">
+                                    <div class="px-2">
+                                        <label for="nama_lengkap" class="block text-sm mb-2 dark:text-white">Nama Lengkap</label>
+                                        <input type="search" name="nama_lengkap" id="nama_lengkap" value=" "
                                             class="bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Search Profile" required />
+                                            placeholder="Search Nama" required />
                                     </div>
+                                    <div class="px-2">
+                                        <label for="name" class="block text-sm mb-2 dark:text-white">Provinsi</label>
+                                        <input type="search" name="name" id="name" value=" "
+                                            class="bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Search Provinsi" required />
+                                    </div>
+                                    <div class="px-2">
+                                        <label for="nama_unit" class="block text-sm mb-2 dark:text-white">Nama Unit</label>
+                                        <input type="search" name="nama_unit" id="nama_unit" value=" "
+                                            class="bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Search Instansi" required />
+                                    </div>
+                                    <button type="submit" class="px-8 w-20 border border-2 rounded-xl">
+                                        Search
+                                    </button>
                                 </form>
 
                                 <!-- End Input -->
 
-                                <div class="sm:col-span-2 md:grow">
+                                {{-- <div class="sm:col-span-2 md:grow">
                                     <div class="flex justify-end gap-x-2">
 
-                                        {{-- Export Data Belum Ada --}}
-                                        {{-- <div class="hs-dropdown [--placement:bottom-right] relative inline-block">
+                                        Export Data Belum Ada
+                                        <div class="hs-dropdown [--placement:bottom-right] relative inline-block">
                                         <button id="hs-as-table-table-export-dropdown" type="button"
                                             class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
                                             <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +150,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
 
                                         <div class="hs-dropdown [--placement:bottom-right] relative inline-block"
                                             data-hs-dropdown-auto-close="inside">
@@ -191,7 +198,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <!-- End Header -->
 

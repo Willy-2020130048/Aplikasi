@@ -15,13 +15,12 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = DB::table('users')->select('users.*', 'ipdi_unit.nama_unit', 'reg_provinces.name')->join('reg_provinces', 'reg_provinces.id', '=', 'users.provinsi')->join('ipdi_unit', 'ipdi_unit.id', '=', 'users.instansi')->where('role', '=', 'user')->when($request->input('name'), function ($query, $name) {
-            return $query->whereAny([
-                'nama_lengkap',
-                'name',
-                'nama_unit',
-            ], 'LIKE', '%' . $name . '%');
-        })->orderBy('users.id', 'desc')->paginate(10);
+        $users = DB::table('users')->select('users.*', 'ipdi_unit.nama_unit', 'reg_provinces.name')->join('reg_provinces', 'reg_provinces.id', '=', 'users.provinsi')->join('ipdi_unit', 'ipdi_unit.id', '=', 'users.instansi')->
+        where('role', '=', 'user')->
+        where('nama_lengkap', 'LIKE', '%' . $request->nama_lengkap . '%')->
+        where('name', 'LIKE', '%' . $request->name . '%')->
+        where('nama_unit', 'LIKE', '%' . $request->nama_unit . '%')->
+        orderBy('users.id', 'desc')->paginate(10);
         $users->appends($request->all());
         return view('pages.user.index', compact('users'));
     }
