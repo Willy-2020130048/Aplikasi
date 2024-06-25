@@ -114,6 +114,7 @@ class UserController extends Controller
         $instansi = DB::table('ipdi_unit')->where('id', $user->instansi)->get();
         $user->status = 'terverifikasi';
         $user->nira = $user->provinsi . "." . $instansi[0]->kode_unit . "." . ($user->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($currentID, 6, "0", STR_PAD_LEFT);;
+        $user->username = $user->nira;
         $user->save();
         return redirect()->route(auth()->user()->role . '_user.index')->with('success', 'Pengguna berhasil diverifikasi.');
     }
@@ -148,7 +149,6 @@ class UserController extends Controller
             [
                 'no_str' => 'required',
                 'nama_lengkap' => 'required',
-                'username' => 'required',
                 'jenis_kelamin' => 'required',
                 'email' => 'required',
                 'provinsi' => 'required',
@@ -180,7 +180,6 @@ class UserController extends Controller
         $user->hd = $request->hd == null ? '' : $request->hd;
         $user->dialisis = $request->dialisis == null ? '' : $request->dialisis;
         $user->capd = $request->capd == null ? '' : $request->capd;
-        $user->username = $request->username;
         $user->provinsi = $request->provinsi == null ? '' : $request->provinsi;
         $user->save();
 
