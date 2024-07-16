@@ -71,21 +71,21 @@
                             <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Workshop Acara
                             </span>
                             <div class="flex items-center p-1">
-                                <input checked name="Audit" type="checkbox" value="Audit Klinis Dialisis"
+                                <input name="Audit" type="checkbox" value="Audit Klinis Dialisis"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="checked-checkbox"
                                     class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Audit Klinis
                                     Dialisis</label>
                             </div>
                             <div class="flex items-center p-1">
-                                <input checked name="Health" type="checkbox" value="Health Technology Dialisis"
+                                <input name="Health" type="checkbox" value="Health Technology Dialisis"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="checked-checkbox"
                                     class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Health Technology
                                     Dialisis</label>
                             </div>
                             <div class="flex items-center p-1">
-                                <input checked name="CAPD" type="checkbox" value="CAPD"
+                                <input name="CAPD" type="checkbox" value="CAPD"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="checked-checkbox"
                                     class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">CAPD</label>

@@ -24,9 +24,10 @@ class DetailAcaraController extends Controller
             ->join('acaras', 'acaras.id', "=", "detail_acaras.id_acara")
             ->join('ipdi_unit', 'ipdi_unit.id', "=", "users.instansi")
             ->join('reg_provinces', 'reg_provinces.id', "=", "users.provinsi")
-            ->when($request->input('nama_akun'), function ($query, $name) {
-                return $query->where('nama_akun', 'like', '%' . $name . '%');
-            })->orderBy('id', 'desc')->paginate(10);
+            ->where('nama_lengkap', 'LIKE', '%' . $request->nama_lengkap . '%')
+            ->where('nira', 'LIKE', '%' . $request->nira . '%')
+            ->orderBy('id', 'desc')->paginate(30);
+        $pembayarans->appends($request->all());
         return view('pages.pembayaran.index', compact('pembayarans'));
     }
 

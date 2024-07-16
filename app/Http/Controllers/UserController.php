@@ -17,11 +17,10 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = DB::table('users')->select('users.*', 'ipdi_unit.nama_unit', 'reg_provinces.name')->join('reg_provinces', 'reg_provinces.id', '=', 'users.provinsi')->join('ipdi_unit', 'ipdi_unit.id', '=', 'users.instansi')->
-        where('role', '=', 'user')->
         where('nama_lengkap', 'LIKE', '%' . $request->nama_lengkap . '%')->
         where('name', 'LIKE', '%' . $request->name . '%')->
         where('nama_unit', 'LIKE', '%' . $request->nama_unit . '%')->
-        orderBy('users.id', 'desc')->paginate(10);
+        orderBy('users.id', 'desc')->paginate(30);
         $users->appends($request->all());
         return view('pages.user.index', compact('users'));
     }
@@ -32,9 +31,9 @@ class UserController extends Controller
     public function create(Request $request)
     {
         $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
-        $dataInstansi = DB::table('ipdi_unit')->select('id', 'nama_unit')->when($request->input('currentProv') == null ? 11 : $request->input('currentProv'), function ($query, $provinsi) {
+        $dataInstansi = DB::table('ipdi_unit')->select('id','kode_unit','nama_unit')->when($request->input('currentProv') == null ? 11 : $request->input('currentProv'), function ($query, $provinsi) {
             return $query->where('id_propinsi', $provinsi);
-        })->get();
+        })->orderBy('nama_unit','asc')->get();
         return view('pages.user.create', compact('dataProv', 'dataInstansi'));
     }
 
@@ -101,9 +100,9 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $text = fake()->text(8);
-        $user->password = Hash::make('password');
+        $user->password = Hash::make('p@ssw0rd');
         $user->save();
-        return redirect()->route(auth()->user()->role . '_user.index')->with('success', "Password berhasil direset menjadi (password)");
+        return redirect()->route(auth()->user()->role . '_user.index')->with('success', "Password berhasil direset menjadi (p@ssw0rd)");
     }
 
     public function verify($id)
@@ -131,7 +130,7 @@ class UserController extends Controller
     public function showProfile(AuthUser $user)
     {
         $dataProv = DB::table('reg_provinces')->select('id', 'name')->where('id', auth()->user()->provinsi)->get();
-        $dataInstansi = DB::table('ipdi_unit')->select('id', 'nama_unit')->where('id', auth()->user()->instansi)->get();
+        $dataInstansi = DB::table('ipdi_unit')->select('id','kode_unit','nama_unit')->where('id', auth()->user()->instansi)->get();
         return view('pages.user.profile', compact('dataProv', 'dataInstansi'));
     }
 
@@ -144,7 +143,6 @@ class UserController extends Controller
         if ($user->username != $request->username) {
             $request->validate(['username' => 'required|unique:users,username',]);
         }
-
         $request->validate(
             [
                 'no_str' => 'required',
@@ -160,7 +158,6 @@ class UserController extends Controller
             $photo->storeAs('public', 'foto' . $user->username . '.' . $photo->getClientOriginalExtension());
             $user->foto = 'foto' . $user->username . '.' . $photo->getClientOriginalExtension();
         }
-
         $user->no_str = $request->no_str == null ? '' : $request->no_str;
         $user->nama_lengkap = $request->nama_lengkap == null ? '' : $request->nama_lengkap;
         $user->jenis_kelamin = $request->jenis_kelamin == null ? '' : $request->jenis_kelamin;
@@ -180,14 +177,17 @@ class UserController extends Controller
         $user->hd = $request->hd == null ? '' : $request->hd;
         $user->dialisis = $request->dialisis == null ? '' : $request->dialisis;
         $user->capd = $request->capd == null ? '' : $request->capd;
+        $user->username = $request->username;
         $user->provinsi = $request->provinsi == null ? '' : $request->provinsi;
         $user->save();
-
         return redirect()->route(auth()->user()->role)->with('success', 'User updated succesfully.');
     }
 
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route(auth()->user()->role . '_user.index')->with('success', 'User berhasil terhapus.');
     }
+
 }

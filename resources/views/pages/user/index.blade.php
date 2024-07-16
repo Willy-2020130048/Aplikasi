@@ -51,8 +51,8 @@
                                             class="bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="Search Instansi" required />
                                     </div>
-                                    <button type="submit" class="px-8 w-20 border border-2 rounded-xl">
-                                        Search
+                                    <button type="submit" class="text-sm font-semibold border-2 text-black rounded-lg mx-6 px-6 py-3 hover:text-white hover:bg-black">
+                                            Search
                                     </button>
                                 </form>
 
@@ -358,6 +358,14 @@
                                                 </span>
                                             </div>
                                         </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
+                                                    Delete Account
+                                                </span>
+                                            </div>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
@@ -538,6 +546,21 @@
                                                             Reset Password
                                                         </button>
                                                     </a>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-40 min-w-40 align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <form
+                                                        action="{{ route(auth()->user()->role . '_user.destroy', $user->id) }}"
+                                                        method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button
+                                                            class="text-sm font-semibold bg-red-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
+                                                            Delete Account
+                                                        </button>
+                                                    </form>
+
                                                 </div>
                                             </td>
                                         </tr>

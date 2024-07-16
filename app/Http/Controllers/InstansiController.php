@@ -13,10 +13,13 @@ class InstansiController extends Controller
      */
     public function index(Request $request)
     {
-        $dataInstansi = DB::table('ipdi_unit')->select('id', 'nama_unit')->when($request->input('currentProv') == null ? 11 : $request->input('currentProv'), function ($query, $provinsi) {
-            return $query->where('id_propinsi', $provinsi);
-        })->get();
-        return $dataInstansi;
+        $dataInstansi = DB::table('ipdi_unit')
+        ->select('ipdi_unit.*','reg_provinces.name')
+        ->join('reg_provinces', 'reg_provinces.id', "=", "ipdi_unit.id_propinsi")
+        ->where('nama_unit', 'LIKE', '%' . $request->nama_unit . '%')
+        ->where('name', 'LIKE', '%' . $request->name . '%')
+        ->orderBy('kode_unit','asc')->paginate(30);
+        return view('pages.instansi.index', compact('dataInstansi'));
     }
 
     /**
@@ -24,7 +27,8 @@ class InstansiController extends Controller
      */
     public function create()
     {
-        //
+        $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
+        return view('pages.instansi.create', compact('dataProv'));
     }
 
     /**
@@ -46,9 +50,11 @@ class InstansiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Instansi $instansi)
+    public function edit($id)
     {
-        //
+        $instansi = Instansi::find($id);
+        $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
+        return view('pages.instansi.edit', compact('instansi','dataProv'));
     }
 
     /**

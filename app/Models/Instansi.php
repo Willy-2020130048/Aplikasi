@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class Instansi extends Model
 {
-    use HasFactory;
+    public $table = "ipdi_unit";
+
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
         'kode_unit',

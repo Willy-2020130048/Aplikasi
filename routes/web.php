@@ -4,6 +4,7 @@ use App\Http\Controllers\AcaraController;
 use App\Http\Controllers\PosterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DetailAcaraController;
+use App\Http\Controllers\InstansiController;
 use App\Http\Controllers\MailController;
 use App\Http\Middleware\AcaraVerifikatorAuth;
 use App\Http\Middleware\AdminAuth;
@@ -25,9 +26,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/dataInstansi', function (Request $request) {
-    $dataInstansi = DB::table('ipdi_unit')->select('id', 'nama_unit')->when($request->input('currentProv') == null ? 11 : $request->input('currentProv'), function ($query, $provinsi) {
+    $dataInstansi = DB::table('ipdi_unit')->select('id','kode_unit','nama_unit')->when($request->input('currentProv') == null ? 11 : $request->input('currentProv'), function ($query, $provinsi) {
         return $query->where('id_propinsi', $provinsi);
-    })->get();
+    })->orderBy('nama_unit','asc')->get();
     return $dataInstansi;
 });
 
@@ -47,9 +48,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/profile', function (Request $request) {
             $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
-            $dataInstansi = DB::table('ipdi_unit')->select('id', 'nama_unit')->when($request->input('currentProv') == null ? auth()->user()->provinsi : $request->input('currentProv'), function ($query, $provinsi) {
+            $dataInstansi = DB::table('ipdi_unit')->select('id','kode_unit','nama_unit')->when($request->input('currentProv') == null ? auth()->user()->provinsi : $request->input('currentProv'), function ($query, $provinsi) {
                 return $query->where('id_propinsi', $provinsi);
-            })->get();
+            })->orderBy('nama_unit','asc')->get();
             return view('pages.user.edit', compact('dataProv', 'dataInstansi'));
         })->name('user.editprofile');
 
@@ -82,6 +83,7 @@ Route::middleware(['auth'])->group(function () {
 
             Route::resource('admin_acara', AcaraController::class);
             Route::resource('admin_pembayaran', DetailAcaraController::class);
+            Route::resource('admin_instansi', InstansiController::class);
             Route::get('/pembayaran/verify/{id}', [DetailAcaraController::class, 'verify'])->name('admin.pembayaran.verify');
             Route::get('/pembayaran/unverify/{id}', [DetailAcaraController::class, 'unverify'])->name('admin.pembayaran.unverify');
             Route::get('/pembayaran/verifyKehadiran/{id}', [DetailAcaraController::class, 'verifyKehadiran'])->name('admin.kehadiran.verify');
@@ -94,9 +96,9 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/profile', function (Request $request) {
                 $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
-                $dataInstansi = DB::table('ipdi_unit')->select('id', 'nama_unit')->when($request->input('currentProv') == null ? auth()->user()->provinsi : $request->input('currentProv'), function ($query, $provinsi) {
+                $dataInstansi = DB::table('ipdi_unit')->select('id','kode_unit','nama_unit')->when($request->input('currentProv') == null ? auth()->user()->provinsi : $request->input('currentProv'), function ($query, $provinsi) {
                     return $query->where('id_propinsi', $provinsi);
-                })->get();
+                })->orderBy('nama_unit','asc')->get();
                 return view('pages.user.edit', compact('dataProv', 'dataInstansi'));
             })->name('admin.editprofile');
 
@@ -128,9 +130,9 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/profile', function (Request $request) {
                 $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
-                $dataInstansi = DB::table('ipdi_unit')->select('id', 'nama_unit')->when($request->input('currentProv') == null ? auth()->user()->provinsi : $request->input('currentProv'), function ($query, $provinsi) {
+                $dataInstansi = DB::table('ipdi_unit')->select('id','kode_unit','nama_unit')->when($request->input('currentProv') == null ? auth()->user()->provinsi : $request->input('currentProv'), function ($query, $provinsi) {
                     return $query->where('id_propinsi', $provinsi);
-                })->get();
+                })->orderBy('nama_unit','asc')->get();
                 return view('pages.user.edit', compact('dataProv', 'dataInstansi'));
             })->name('userverifikator.editprofile');
 
@@ -155,7 +157,7 @@ Route::middleware(['auth'])->group(function () {
                 return view('pages.user.password');
             })->name('acaraverifikator.changepassword');
 
-            Route::resource('acaraverifikator', UserController::class)->only('update');
+            Route::resource('acaraverifikator_user', UserController::class)->only('update');
             Route::put('/updatepassword', [UserController::class, 'changepassword'])->name('acaraverifikator.updatepassword');
             Route::get('/user/profile', [UserController::class, 'showProfile'])->name('acaraverifikator.profile');
 
@@ -167,9 +169,9 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/profile', function (Request $request) {
                 $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
-                $dataInstansi = DB::table('ipdi_unit')->select('id', 'nama_unit')->when($request->input('currentProv') == null ? auth()->user()->provinsi : $request->input('currentProv'), function ($query, $provinsi) {
+                $dataInstansi = DB::table('ipdi_unit')->select('id','kode_unit','nama_unit')->when($request->input('currentProv') == null ? auth()->user()->provinsi : $request->input('currentProv'), function ($query, $provinsi) {
                     return $query->where('id_propinsi', $provinsi);
-                })->get();
+                })->orderBy('nama_unit','asc')->get();
                 return view('pages.user.edit', compact('dataProv', 'dataInstansi'));
             })->name('acaraverifikator.editprofile');
 

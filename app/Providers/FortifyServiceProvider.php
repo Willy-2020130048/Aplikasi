@@ -33,9 +33,9 @@ class FortifyServiceProvider extends ServiceProvider
     {
         Fortify::registerView(function (Request $request) {
             $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
-            $dataInstansi = DB::table('ipdi_unit')->select('id', 'nama_unit')->when($request->input('currentProv') == null ? 11 : $request->input('currentProv'), function ($query, $provinsi) {
+            $dataInstansi = DB::table('ipdi_unit')->select('id','kode_unit','nama_unit')->when($request->input('currentProv') == null ? 11 : $request->input('currentProv'), function ($query, $provinsi) {
                 return $query->where('id_propinsi', $provinsi);
-            })->get();
+            })->orderBy('nama_unit','asc')->get();
             return response()->view('auth.register', compact('dataProv', 'dataInstansi'));
         });
 
