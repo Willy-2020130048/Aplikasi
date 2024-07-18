@@ -16,7 +16,8 @@ class Instansi extends Model
     protected $fillable = [
         'kode_unit',
         'nama_unit',
-        'id_provinsi',
+        'id_propinsi',
+        'id_pw',
         'alamat',
         'no_telp',
         'email',

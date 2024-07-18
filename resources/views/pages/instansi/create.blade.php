@@ -11,22 +11,10 @@
             </div>
             <div class="mt-5">
                 <!-- Form -->
-                <form id="goRegister" method="POST" action="{{ route(auth()->user()->role . '_instansi.store') }}"
+                <form method="POST" action="{{ route(auth()->user()->role . '_instansi.store') }}"
                     class="mt-8">
                     @csrf
                     <div class="mx-auto max-w-lg ">
-                        <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Kode Unit
-                            </span>
-                            <input placeholder="" type="text" name="kode_unit"
-                                class="text-md block px-3 py-2 rounded-lg w-full
-        bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
-                        </div>
-                        @error('kode_unit')
-                            <div class="text-red-600">
-                                {{ $message }}
-                            </div>
-                        @enderror
                         <div class="py-1">
                             <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Nama Unit
                             </span>

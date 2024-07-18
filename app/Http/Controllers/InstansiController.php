@@ -36,8 +36,25 @@ class InstansiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'nama_unit',
+                'id_propinsi',
+                'id_pw',
+            ]
+        );
+            $newObject = new Instansi();
+            $newObject->kode_unit = "001";
+            $newObject->nama_unit = $request->nama_unit;
+            $newObject->id_propinsi = $request->id_propinsi;
+            $newObject->id_pw = $request->id_pw;
+            $newObject->alamat = $request->alamat == null ? '' : $request->alamat;
+            $newObject->no_telp = $request->no_telp == null ? '' : $request->no_telp;
+            $newObject->email = $request->email == null ? '' : $request->email;
+            $newObject->save();
+            return redirect()->route(auth()->user()->role . '_instansi.index')->with('success', 'Berhasil menambahkan data instansi.');
     }
+    
 
     /**
      * Display the specified resource.
@@ -60,16 +77,34 @@ class InstansiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Instansi $instansi)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate(
+            [
+                'nama_unit',
+                'id_propinsi',
+                'id_pw',
+            ]
+        );
+        $instansi = Instansi::find($id);
+            $instansi->kode_unit = $request->kode_unit;
+            $instansi->nama_unit = $request->nama_unit;
+            $instansi->id_propinsi = $request->id_propinsi;
+            $instansi->id_pw = $request->id_pw;
+            $instansi->alamat = $request->alamat;
+            $instansi->no_telp = $request->no_telp;
+            $instansi->email = $request->email;
+            $instansi->save();
+        return redirect()->route(auth()->user()->role . '_instansi.index')->with('success', 'Berhasil mengubah data instansi.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Instansi $instansi)
+    public function destroy($id)
     {
-        //
+        $instansi = Instansi::find($id);
+        $instansi->delete();
+        return redirect()->route(auth()->user()->role . '_instansi.index')->with('success', 'Berhasil menghapus instansi.');
     }
 }

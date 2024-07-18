@@ -11,8 +11,8 @@
             </div>
             <div class="mt-5">
                 <!-- Form -->
-                <form id="goRegister" method="POST" action="{{ route(auth()->user()->role . '_instansi.store') }}"
-                    class="mt-8">
+                <form method="POST" action="{{ route(auth()->user()->role . '_instansi.update', $instansi->id) }}" class="mt-8">
+                    @method('PUT')
                     @csrf
                     <div class="mx-auto max-w-lg ">
                         <div class="py-1">
