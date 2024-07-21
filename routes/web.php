@@ -25,10 +25,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/dataInstansi', function (Request $request) {
+//     $dataInstansi = DB::table('ipdi_unit')->select('id','kode_unit','nama_unit')->when($request->input('currentProv') == null ? 11 : $request->input('currentProv'), function ($query, $provinsi) {
+//         return $query->where('id_propinsi', $provinsi)->when($request->input('currentSearch'), function ($query2, $currentSearch){
+//             return $query2->where('nama_unit', "like", $currentSearch);
+//         });
+//     })->orderBy('nama_unit','asc')->get();
+//     return $dataInstansi;
+// });
+
 Route::get('/dataInstansi', function (Request $request) {
-    $dataInstansi = DB::table('ipdi_unit')->select('id','kode_unit','nama_unit')->when($request->input('currentProv') == null ? 11 : $request->input('currentProv'), function ($query, $provinsi) {
-        return $query->where('id_propinsi', $provinsi);
-    })->orderBy('nama_unit','asc')->get();
+    $dataInstansi = DB::table('ipdi_unit')
+        ->select('id', 'kode_unit', 'nama_unit')
+        ->when($request->input('currentProv') == null ? 11 : $request->input('currentProv'), function ($query, $provinsi) use ($request) {
+            return $query->where('id_propinsi', $provinsi)
+                         ->when($request->input('currentSearch'), function ($query2, $currentSearch) {
+                             return $query2->where('nama_unit', 'like', '%' . $currentSearch . '%');
+                         });
+        })
+        ->orderBy('nama_unit', 'asc')
+        ->get();
+
     return $dataInstansi;
 });
 

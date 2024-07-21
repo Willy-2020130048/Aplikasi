@@ -252,8 +252,12 @@
                                             </td>
                                             <td class="h-px w-40 min-w-80 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
-                                                    @if ($pembayaran->bukti_pembayaran)
-                                                        <img src="../storage{{ asset($pembayaran->bukti_pembayaran) }}"
+                                                    @if (Str::endsWith($pembayaran->bukti_pembayaran, '.pdf'))
+                                                        <a href="../storage/{{$pembayaran->bukti_pembayaran}}" target="_blank"
+                                                            class="text-sm font-semibold bg-blue-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
+                                                            View PDF</a>
+                                                    @elseif ($pembayaran->bukti_pembayaran)
+                                                    <img src="../storage{{ asset($pembayaran->bukti_pembayaran) }}"
                                                             class="object-cover"
                                                             onclick="openModal('../storage{{ asset($pembayaran->bukti_pembayaran) }}')">
                                                     @else

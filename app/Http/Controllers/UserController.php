@@ -64,7 +64,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route(auth()->user()->role . '_user.index');
+        return redirect()->route(auth()->user()->role . '_user.index')->with('success', "berhasil menambahkan akun");
     }
 
     /**

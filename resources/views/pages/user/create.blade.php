@@ -13,6 +13,7 @@
             <div>
                 <form id="getInstansi" class="mt-8" hidden>
                     <input id="currentProv" name="currentProv">
+                    <input id="currentSearch" name="currentSearch">
                 </form>
             </div>
             <div class="mt-5">
@@ -102,6 +103,12 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                        <div class="py-1">
+                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Filter Nama Instansi</span>
+                            <input placeholder="" type="text" name="searchInstansi" id="searchInstansi" oninput="formSubmit()"
+                                class="text-md block px-3 py-2 rounded-lg w-full
+            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+                        </div>
                         <div class="py-1">
                             <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Instansi</span>
                             <select
@@ -247,6 +254,7 @@
             $('#getInstansi').on('submit', function(event) {
                 event.preventDefault();
                 jQuery('#currentProv')[0].value = document.getElementById('provinsi').value;
+                jQuery('#currentSearch')[0].value = document.getElementById('searchInstansi').value;
 
                 jQuery.ajax({
                     url: '/dataInstansi',
@@ -254,7 +262,6 @@
                     type: "GET",
                     success: function(result) {
                         var select = jQuery('#instansi');
-                        console.log(jQuery('#instansi'));
                         select.empty();
                         result.forEach(function(item) {
                             var option = jQuery('<option>', {
