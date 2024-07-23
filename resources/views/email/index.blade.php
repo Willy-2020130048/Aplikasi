@@ -6,9 +6,11 @@
 </head>
 
 <body style="color: black">
-    <h3>{{ $data['detail']->nama_acara }}</h3>
-    <h4>Nomor Pendaftaran PITNAS</h4>
-    <p>{{ $data['detail']->id }}</p>
+    <h3>Bukti Pendaftaran Acara</h3>
+    <h3>{{ $data['acara']->nama_acara }}</h3>
+    <h3>Nomor Pendaftaran PITNAS</h3>
+    <h3>
+    {{$data['acara']->jenis_acara}}{{$data['acara']->workshop == "Audit Klinis Dialisis" ? "Audit" : ""}}{{$data['acara']->workshop == "Health Technology Dialisis" ? "Health" : ""}}{{$data['acara']->workshop == "CAPD" ? "CAPD" : ""}}-{{ $data['detail']->id}}</h3>
     <h4>Nama Lengkap</h4>
     <p>{{ $data['partisipan']->nama_lengkap }}</p>
     <h4>Jenis Kelamin</h4>
