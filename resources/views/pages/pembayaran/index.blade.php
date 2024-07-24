@@ -100,6 +100,9 @@
                                             NIRA IPDI
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
+                                            Nama Lengkap
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
                                             Nama Akun Plataran
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
@@ -167,6 +170,14 @@
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $pembayaran->nira }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-40 min-w-40 align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{ $pembayaran->nama_lengkap }}
                                                     </span>
                                                 </div>
                                             </td>
