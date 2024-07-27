@@ -102,7 +102,7 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('admin_acara', AcaraController::class);
             Route::resource('admin_pembayaran', DetailAcaraController::class);
             Route::resource('admin_instansi', InstansiController::class);
-            Route::get('/pembayaran/verify/{id}', [DetailAcaraController::class, 'verify'])->name('admin.pembayaran.verify');
+            Route::put('/pembayaran/verify/{id}', [DetailAcaraController::class, 'verify'])->name('admin.pembayaran.verify');
             Route::get('/pembayaran/unverify/{id}', [DetailAcaraController::class, 'unverify'])->name('admin.pembayaran.unverify');
             Route::get('/pembayaran/verifyKehadiran/{id}', [DetailAcaraController::class, 'verifyKehadiran'])->name('admin.kehadiran.verify');
             Route::get('/pembayaran/unverifyKehadiran/{id}', [DetailAcaraController::class, 'unverifyKehadiran'])->name('admin.kehadiran.unverify');
@@ -180,7 +180,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/user/profile', [UserController::class, 'showProfile'])->name('acaraverifikator.profile');
 
             Route::resource('acaraverifikator_pembayaran', DetailAcaraController::class);
-            Route::get('/pembayaran/verify/{id}', [DetailAcaraController::class, 'verify'])->name('acaraverifikator.pembayaran.verify');
+            Route::put('/pembayaran/verify/{id}', [DetailAcaraController::class, 'verify'])->name('acaraverifikator.pembayaran.verify');
             Route::get('/pembayaran/unverify/{id}', [DetailAcaraController::class, 'unverify'])->name('acaraverifikator.pembayaran.unverify');
             Route::get('/pembayaran/verifyKehadiran/{id}', [DetailAcaraController::class, 'verifyKehadiran'])->name('acaraverifikator.kehadiran.verify');
             Route::get('/pembayaran/unverifyKehadiran/{id}', [DetailAcaraController::class, 'unverifyKehadiran'])->name('acaraverifikator.kehadiran.unverify');

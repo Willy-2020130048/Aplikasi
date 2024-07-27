@@ -20,6 +20,7 @@ class DetailAcara extends Model
         'status_kehadiran',
         'no_ktp',
         'no_hp',
+        'catatan',
         "tipe_pegawai",
         "nip",
         "gelar",

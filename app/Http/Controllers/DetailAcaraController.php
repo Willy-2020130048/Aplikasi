@@ -31,11 +31,12 @@ class DetailAcaraController extends Controller
         return view('pages.pembayaran.index', compact('pembayarans'));
     }
 
-    public function verify($id)
+    public function verify(Request $request, $id)
     {
         $pembayaran = DetailAcara::find($id);
         $pembayaran->status = 'Telah Dikonfirmasi';
         $pembayaran->verifikasi = auth()->user()->nama_lengkap;
+        $pembayaran->catatan = $request->catatan;
         $pembayaran->save();
 
         $partisipan = User::find($pembayaran->id_peserta);
@@ -132,17 +133,22 @@ class DetailAcaraController extends Controller
     public function edit($id)
     {
         $pembayaran = DetailAcara::find($id);
-
-        return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'Pembayaran berhasil diedit.');
-
+        return view('pages.pembayaran.edit', compact('pembayaran'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DetailAcara $detailAcara)
+    public function update(Request $request, $id)
     {
-        //
+        $pembayaran = DetailAcara::find($id);
+        $pembayaran->no_ktp = $request->no_ktp;
+        $pembayaran->nama_akun = $request->nama_akun;
+        $pembayaran->kota = $request->kota;
+        $pembayaran->sponsor = $request->sponsor;
+        $pembayaran->no_hp = $request->no_hp;
+        $pembayaran->save();
+        return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'Pembayaran berhasil diedit.');
     }
 
     /**

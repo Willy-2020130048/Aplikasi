@@ -5,14 +5,14 @@
 @section('main')
 
     <!-- Form -->
-    <form method="POST" action="{{ route(auth()->user()->role . '.poster.update', $pembayaran->id) }}"
+    <form method="POST" action="{{ route(auth()->user()->role . '_pembayaran.update', $pembayaran->id) }}"
         class="mt-8 w-full max-w-4xl" enctype="multipart/form-data">
         @csrf
-        @method('POST')
+        @method('PUT')
         <div class="mx-auto max-w-lg ">
             <div class="py-1">
                 <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Nomor KTP</span>
-                <input placeholder="Nomor KTP" type="text" name="no_ktp"
+                <input placeholder="Nomor KTP" type="text" name="no_ktp" value="{{$pembayaran->no_ktp}}"
                     class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -38,12 +38,10 @@
 
             <div class="py-1">
                 <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Nama Akun Plataran</span>
-                <input placeholder="Akun Plataran" type="text" name="nama_akun"
+                <input placeholder="Akun Plataran" type="text" name="nama_akun" value="{{$pembayaran->nama_akun}}"
                     class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
-                <label>*Daftar akun plataran <a href="https://lms.kemkes.go.id/" class="text-red-600">di
-                        sini</a></label>
             </div>
             @error('nama_akun')
                 <div class="text-red-600">
@@ -53,7 +51,7 @@
 
             <div class="py-1">
                 <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Kabupaten / Kota</span>
-                <input placeholder="Kabupaten / Kota " type="text" name="kota"
+                <input placeholder="Kabupaten / Kota " type="text" name="kota" value="{{$pembayaran->kota}}"
                     class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -66,7 +64,7 @@
 
             <div class="py-1">
                 <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Nomor HP</span>
-                <input placeholder="0812-xxxx-xxxx" type="text" name="no_hp" value="{{auth()->user()->no_hp}}"
+                <input placeholder="0812-xxxx-xxxx" type="text" name="no_hp" value="{{$pembayaran->no_hp}}"
                     class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -121,7 +119,7 @@
                 @enderror
 
                 <div class="mx-auto max-w-lg ">
-                    <div class="py-1" hidden>
+                    {{-- <div class="py-1" hidden>
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Workshop</span>
                         <select @if ($acara->workshop == null) disabled @endif
                             class="text-md block px-2 py-2 rounded-lg w-full
@@ -148,10 +146,10 @@
                         <div class="text-red-600">
                             {{ $message }}
                         </div>
-                    @enderror
+                    @enderror --}}
 
 
-                    <div class="py-1">
+                    {{-- <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Bukti Pembayaran</span>
                         <input type="file" name="bukti_pembayaran" id="bukti_pembayaran"
                             value="{{ auth()->user()->foto }}"
@@ -163,12 +161,12 @@ dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
                         <div class="text-red-600">
                             {{ $message }}
                         </div>
-                    @enderror
+                    @enderror --}}
                     <button type="submit"
                         class="mt-3 text-lg font-semibold bg-green-800 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
                         Edit Data Pembayaran
                     </button>
-                    <a href="/acara"
+                    <a href="{{ route(auth()->user()->role . '_pembayaran.index') }}"
                         class="mt-3 text-lg text-center font-semibold bg-red-600 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
                         Batal
                     </a>
