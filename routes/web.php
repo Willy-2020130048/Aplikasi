@@ -92,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
             })->name('admin.changepassword');
 
             Route::resource('admin_user', UserController::class);
+            Route::put('/updatedata/{id}', [UserController::class, 'updatedata'])->name('admin.updatedata');
             Route::get('/user/verify/{id}', [UserController::class, 'verify'])->name('admin.user.verify');
             Route::get('/user/unverify/{id}', [UserController::class, 'unverify'])->name('admin.user.unverify');
             Route::get('/user/changepassword/{id}', [UserController::class, 'resetpassword'])->name('admin.resetpassword');

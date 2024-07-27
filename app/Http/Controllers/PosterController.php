@@ -27,6 +27,7 @@ class PosterController
         $request->validate(
             [
                 'no_ktp' => 'required',
+                'no_hp' => 'required',
                 'nama_akun' => 'required',
                 'bukti_pembayaran' => 'required',
                 'kota' => 'required',
@@ -39,6 +40,7 @@ class PosterController
             $detail->no_ktp = $request->no_ktp;
             $detail->id_peserta = auth()->user()->id;
             $detail->nama_akun = $request->nama_akun;
+            $detail->no_hp = $request->no_hp;
             if ($request->hasfile('bukti_pembayaran')) {
                 $photo = $request->file('bukti_pembayaran');
                 $photo->storeAs('public', $detail->id_peserta . '.' . $detail->id_acara . '.' . $photo->getClientOriginalExtension());

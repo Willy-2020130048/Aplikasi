@@ -46,6 +46,15 @@
                                 {{ number_format($acara->harga_acara) }}</span>
                         </div>
 
+                        @if (auth()->user()->nira == 'Belum Terverifikasi')
+                        <div class="mt-5 grid grid-cols-1 gap-x-4 py-4 first:pt-0 last:pb-0">
+                            <div class="flex justify-end">
+                                <div class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-red text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-neutral-800 dark:text-white dark:hover:bg-neutral-800">
+                                    Silahkan menghubungi infokom untuk verifikasi Nomor Nira agar dapat mengikuti acara
+                                </div>
+                            </div>
+                        </div>
+                        @else
                         <div class="mt-5 grid grid-cols-1 gap-x-4 py-4 first:pt-0 last:pb-0">
                             <div class="flex justify-end">
                                 <a href="{{ route(auth()->user()->role . '.poster.detail', $acara->id) }}">
@@ -55,6 +64,7 @@
                                 </a>
                             </div>
                         </div>
+                        @endif
                     </div>
                 @endforeach
             </div>

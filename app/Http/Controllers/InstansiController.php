@@ -43,8 +43,11 @@ class InstansiController extends Controller
                 'id_pw',
             ]
         );
+        $dataInstansi = DB::select("SELECT Max(RIGHT(kode_unit,3)) as maxID FROM ipdi_unit WHERE id_propinsi = :id_propinsi", ['id_propinsi' => $request->id_propinsi]);
+        $currentID = (int)$dataInstansi[0]->maxID + 1;
+
             $newObject = new Instansi();
-            $newObject->kode_unit = "001";
+            $newObject->kode_unit = str_pad($currentID, 3, "0", STR_PAD_LEFT);
             $newObject->nama_unit = $request->nama_unit;
             $newObject->id_propinsi = $request->id_propinsi;
             $newObject->id_pw = $request->id_pw;
@@ -54,7 +57,7 @@ class InstansiController extends Controller
             $newObject->save();
             return redirect()->route(auth()->user()->role . '_instansi.index')->with('success', 'Berhasil menambahkan data instansi.');
     }
-    
+
 
     /**
      * Display the specified resource.

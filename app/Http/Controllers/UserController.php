@@ -75,9 +75,14 @@ class UserController extends Controller
         //
     }
 
-    public function edit(AuthUser $user)
+    public function edit(Request $request, $id)
     {
-        return view('pages.user.edit', compact('user'));
+        $user = User::find($id);
+        $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
+        $dataInstansi = DB::table('ipdi_unit')->select('id','kode_unit','nama_unit')->when($request->input('currentProv') == null ? 11 : $request->input('currentProv'), function ($query, $provinsi) {
+            return $query->where('id_propinsi', $provinsi);
+        })->orderBy('nama_unit','asc')->get();
+        return view('pages.user.update', compact('user', 'dataProv', 'dataInstansi'));
     }
 
     /**
@@ -112,7 +117,7 @@ class UserController extends Controller
         $user = User::find($id);
         $instansi = DB::table('ipdi_unit')->where('id', $user->instansi)->get();
         $user->status = 'terverifikasi';
-        $user->nira = $user->provinsi . "." . $instansi[0]->kode_unit . "." . ($user->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($currentID, 6, "0", STR_PAD_LEFT);;
+        $user->nira = $user->provinsi . "." . $instansi[0]->kode_unit . "." . ($user->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($currentID, 6, "0", STR_PAD_LEFT);
         $user->username = $user->nira;
         $user->save();
         return redirect()->route(auth()->user()->role . '_user.index')->with('success', 'Pengguna berhasil diverifikasi.');
@@ -132,6 +137,55 @@ class UserController extends Controller
         $dataProv = DB::table('reg_provinces')->select('id', 'name')->where('id', auth()->user()->provinsi)->get();
         $dataInstansi = DB::table('ipdi_unit')->select('id','kode_unit','nama_unit')->where('id', auth()->user()->instansi)->get();
         return view('pages.user.profile', compact('dataProv', 'dataInstansi'));
+    }
+
+    public function updatedata(Request $request, $id)
+    {
+        $user = User::find($id);
+        if ($user->email != $request->email) {
+            $request->validate(['email' => 'required|email|unique:users,email',]);
+        }
+        if ($user->username != $request->username) {
+            $request->validate(['username' => 'required|unique:users,username',]);
+        }
+        $request->validate(
+            [
+                'no_str' => 'required',
+                'nama_lengkap' => 'required',
+                'jenis_kelamin' => 'required',
+                'email' => 'required',
+                'provinsi' => 'required',
+                'instansi' => 'required',
+            ]
+        );
+        if ($request->hasfile('foto')) {
+            $photo = $request->file('foto');
+            $photo->storeAs('public', 'foto' . $user->username . '.' . $photo->getClientOriginalExtension());
+            $user->foto = 'foto' . $user->username . '.' . $photo->getClientOriginalExtension();
+        }
+        $user->no_str = $request->no_str == null ? '' : $request->no_str;
+        $user->nama_lengkap = $request->nama_lengkap == null ? '' : $request->nama_lengkap;
+        $user->jenis_kelamin = $request->jenis_kelamin == null ? '' : $request->jenis_kelamin;
+        $user->tempat_lahir = $request->tempat_lahir == null ? '' : $request->tempat_lahir;;
+        if ($request->tanggal_lahir) {
+            $user->tanggal_lahir = $request->tanggal_lahir == null ? '' : $request->tanggal_lahir;
+        }
+
+        $user->agama = $request->agama == null ? '' : $request->agama;
+        $user->alamat = $request->alamat == null ? '' : $request->alamat;
+        $user->kode_pos = $request->kode_pos == null ? '' : $request->kode_pos;
+        $user->email = $request->email == null ? '' : $request->email;
+        $user->no_hp = $request->no_hp == null ? '' : $request->no_hp;
+        $user->pendidikan = $request->pendidikan == null ? '' : $request->pendidikan;
+        $user->provinsi = $request->provinsi == null ? '' : $request->provinsi;
+        $user->instansi = $request->instansi == null ? '' : $request->instansi;
+        $user->hd = $request->hd == null ? '' : $request->hd;
+        $user->dialisis = $request->dialisis == null ? '' : $request->dialisis;
+        $user->capd = $request->capd == null ? '' : $request->capd;
+        $user->username = $request->username;
+        $user->provinsi = $request->provinsi == null ? '' : $request->provinsi;
+        $user->save();
+        return redirect()->route(auth()->user()->role.'_user.index')->with('success', 'User updated succesfully.');
     }
 
     public function update(Request $request)

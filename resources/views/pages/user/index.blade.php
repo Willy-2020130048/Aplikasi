@@ -354,6 +354,14 @@
                                             <div class="flex items-center gap-x-2">
                                                 <span
                                                     class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
+                                                    Edit Account
+                                                </span>
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
                                                     Reset Password
                                                 </span>
                                             </div>
@@ -537,6 +545,16 @@
                                                     </a>
                                                 @endif
                                             </td>
+                                            <td class="h-px w-40 min-w-40 align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <a href="{{ route(auth()->user()->role. '_user.edit', $user->id) }}">
+                                                        <button
+                                                        class="text-sm font-semibold bg-blue-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
+                                                        Edit Account
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </td>
                                             <td class="align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <a
@@ -560,7 +578,6 @@
                                                             Delete Account
                                                         </button>
                                                     </form>
-
                                                 </div>
                                             </td>
                                         </tr>

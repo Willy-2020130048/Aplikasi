@@ -19,14 +19,14 @@
             </div>
 
             <!-- Form -->
-            <form method="POST" action="{{ route(auth()->user()->role . '_user.update', auth()->user()) }}" class="mt-8"
+            <form method="POST" action="{{ route(auth()->user()->role . '.updatedata', $user->id) }}" class="mt-8"
                 enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mx-auto max-w-lg ">
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Nomor STR</span>
-                        <input placeholder="" type="text" name="no_str" value="{{ auth()->user()->no_str }}"
+                        <input placeholder="" type="text" name="no_str" value="{{ $user->no_str }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -38,7 +38,7 @@
                     @enderror
                     <div class="py-1" hidden>
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Username</span>
-                        <input placeholder="" type="text" name="username" value="{{ auth()->user()->username }}"
+                        <input placeholder="" type="text" name="username" value="{{ $user->username }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -50,7 +50,7 @@
                     @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Nama Lengkap</span>
-                        <input placeholder="" type="text" name="nama_lengkap" value="{{ auth()->user()->nama_lengkap }}"
+                        <input placeholder="" type="text" name="nama_lengkap" value="{{ $user->nama_lengkap }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -67,9 +67,9 @@
                             class="text-md block px-2 py-2 rounded-lg w-full
                             bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
                             name="jenis_kelamin" id="jenis_kelamin">
-                            <option value="Laki-Laki" {{ auth()->user()->jenis_kelamin == 'Laki-Laki' ? 'selected' : '' }}>
+                            <option value="Laki-Laki" {{ $user->jenis_kelamin == 'Laki-Laki' ? 'selected' : '' }}>
                                 Laki-laki</option>
-                            <option value="Perempuan" {{ auth()->user()->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>
+                            <option value="Perempuan" {{ $user->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>
                                 Perempuan</option>
                         </select>
                     </div>
@@ -80,7 +80,7 @@
                     @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Tempat Lahir</span>
-                        <input placeholder="" type="text" name="tempat_lahir" value="{{ auth()->user()->tempat_lahir }}"
+                        <input placeholder="" type="text" name="tempat_lahir" value="{{ $user->tempat_lahir }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -93,7 +93,7 @@
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Tanggal Lahir</span>
                         <input placeholder="" type="date" name="tanggal_lahir"
-                            value="{{ auth()->user()->tanggal_lahir }}"
+                            value="{{ $user->tanggal_lahir }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -105,7 +105,7 @@
                     @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Agama</span>
-                        <input placeholder="" type="text" name="agama" value="{{ auth()->user()->agama }}"
+                        <input placeholder="" type="text" name="agama" value="{{ $user->agama }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -117,7 +117,7 @@
                     @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Alamat</span>
-                        <input placeholder="" type="text" name="alamat" value="{{ auth()->user()->alamat }}"
+                        <input placeholder="" type="text" name="alamat" value="{{ $user->alamat }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -129,7 +129,7 @@
                     @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Kode Pos</span>
-                        <input placeholder="" type="text" name="kode_pos" value="{{ auth()->user()->kode_pos }}"
+                        <input placeholder="" type="text" name="kode_pos" value="{{ $user->kode_pos }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -141,7 +141,7 @@
                     @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Email</span>
-                        <input placeholder="" type="email" name="email" value="{{ auth()->user()->email }}"
+                        <input placeholder="" type="email" name="email" value="{{ $user->email }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -153,7 +153,7 @@
                     @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Nomor Handphone</span>
-                        <input placeholder="" type="text" name="no_hp" value="{{ auth()->user()->no_hp }}"
+                        <input placeholder="" type="text" name="no_hp" value="{{ $user->no_hp }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -165,7 +165,7 @@
                     @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Pendidikan</span>
-                        <input placeholder="" type="text" name="pendidikan" value="{{ auth()->user()->pendidikan }}"
+                        <input placeholder="" type="text" name="pendidikan" value="{{ $user->pendidikan }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -183,7 +183,7 @@
                             name="provinsi" id="provinsi" onchange="formSubmit()">
                             @foreach ($dataProv as $prov)
                                 <option value="{{ $prov->id }}"
-                                    {{ $prov->id == auth()->user()->provinsi ? 'selected' : '' }}>
+                                    {{ $prov->id == $user->provinsi ? 'selected' : '' }}>
                                     {{ $prov->name }}
                                 </option>
                             @endforeach
@@ -208,7 +208,7 @@
                             name="instansi" id ="instansi">
                             @foreach ($dataInstansi as $instansi)
                                 <option value="{{ $instansi->id }}"
-                                    {{ $instansi->id == auth()->user()->instansi ? 'selected' : '' }}>
+                                    {{ $instansi->id == $user->instansi ? 'selected' : '' }}>
                                     {{ $instansi->nama_unit }}
                                 </option>
                             @endforeach
@@ -221,7 +221,7 @@
                     @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Mulai Kerja di HD</span>
-                        <input placeholder="" type="text" name="hd" value="{{ auth()->user()->hd }}"
+                        <input placeholder="" type="text" name="hd" value="{{ $user->hd }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -233,7 +233,7 @@
                     @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Pelatihan Dialisis</span>
-                        <input placeholder="" type="text" name="dialisis" value="{{ auth()->user()->dialisis }}"
+                        <input placeholder="" type="text" name="dialisis" value="{{ $user->dialisis }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -245,7 +245,7 @@
                     @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Pelatihan CAPD</span>
-                        <input placeholder="" type="text" name="capd" value="{{ auth()->user()->capd }}"
+                        <input placeholder="" type="text" name="capd" value="{{ $user->capd }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
@@ -257,7 +257,7 @@
                     @enderror
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Foto</span>
-                        <input type="file" name="foto" id="foto" value="{{ auth()->user()->foto }}"
+                        <input type="file" name="foto" id="foto" value="{{ $user->foto }}"
                             class="text-md block px-3 py-2 rounded-lg w-full
         bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
         dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700">
