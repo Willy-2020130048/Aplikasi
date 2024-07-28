@@ -69,7 +69,7 @@
                 <div
                     class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
                     <div class="h-80 flex flex-col justify-center items-center rounded-t-xl">
-                        <img src="../storage/Logo.png" class="object-cover h-60 rounded-t-xl">
+                        <img src="../storage/Logo2.png" class="object-cover h-60 rounded-t-xl">
                     </div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-200 dark:hover:text-white">
@@ -93,7 +93,7 @@
                 <div
                     class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
                     <div class="h-full flex flex-col justify-center items-center rounded-t-xl">
-                        <img src="../storage/Logo2.png" class="object-cover w-full rounded-t-xl">
+                        <img src="../storage/Logo2.png" class="object-cover h-60 rounded-t-xl">
                     </div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-200 dark:hover:text-white">
@@ -117,7 +117,7 @@
                 <div
                     class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
                     <div class="h-80 flex flex-col justify-center items-center rounded-t-xl">
-                        <img src="../storage/Logo.png" class="object-cover h-60 p-4 rounded-full">
+                        <img src="../storage/Logo2.png" class="object-cover h-60 rounded-t-xl">
                     </div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-200 dark:hover:text-white">
