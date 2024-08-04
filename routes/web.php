@@ -140,6 +140,7 @@ Route::middleware(['auth'])->group(function () {
             })->name('userverifikator.changepassword');
 
             Route::resource('userverifikator_user', UserController::class);
+            Route::put('/updatedata/{id}', [UserController::class, 'updatedata'])->name('userverifikator.updatedata');
             Route::get('/users/profile', [UserController::class, 'showProfile'])->name('userverifikator.profile');
             Route::get('/user/verify/{id}', [UserController::class, 'verify'])->name('userverifikator.user.verify');
             Route::get('/user/unverify/{id}', [UserController::class, 'unverify'])->name('userverifikator.user.unverify');

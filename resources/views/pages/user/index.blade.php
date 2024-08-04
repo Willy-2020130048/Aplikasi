@@ -34,6 +34,12 @@
                                 <!-- Input -->
                                 <form method="GET" action="{{ route(auth()->user()->role . '_user.index')}}" class="flex flex-row p-4">
                                     <div class="px-2">
+                                        <label for="nira" class="block text-sm mb-2 dark:text-white">Nira</label>
+                                        <input type="search" name="nira" id="nira" value=" "
+                                            class="bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Search Nira" required />
+                                    </div>
+                                    <div class="px-2">
                                         <label for="nama_lengkap" class="block text-sm mb-2 dark:text-white">Nama Lengkap</label>
                                         <input type="search" name="nama_lengkap" id="nama_lengkap" value=" "
                                             class="bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -219,15 +225,6 @@
                                         <th scope="col" class="px-4 py-3 text-start">
                                             <div class="flex items-center gap-x-2">
                                                 <span
-                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
-                                                    Nomor STR
-                                                </span>
-                                            </div>
-                                        </th>
-
-                                        <th scope="col" class="px-4 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
                                                     class="text-xs font-semibold tracking-wide text-gray-800 dark:text-neutral-200">
                                                     Nama Lengkap
                                                 </span>
@@ -238,7 +235,75 @@
                                             <div class="flex items-center gap-x-2">
                                                 <span
                                                     class="text-xs font-semibold tracking-wide text-gray-800 dark:text-neutral-200">
+                                                    Email
+                                                </span>
+                                            </div>
+                                        </th>
+
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold tracking-wide text-gray-800 dark:text-neutral-200">
                                                     Jenis Kelamin
+                                                </span>
+                                            </div>
+                                        </th>
+
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
+                                                    Provinsi
+                                                </span>
+                                            </div>
+                                        </th>
+
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
+                                                    Instansi
+                                                </span>
+                                            </div>
+                                        </th>
+
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
+                                                    Status
+                                                </span>
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
+                                                    Edit Account
+                                                </span>
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
+                                                    Reset Password
+                                                </span>
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
+                                                    Delete Account
+                                                </span>
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
+                                                    Nomor STR
                                                 </span>
                                             </div>
                                         </th>
@@ -289,32 +354,8 @@
                                         <th scope="col" class="px-4 py-3 text-start">
                                             <div class="flex items-center gap-x-2">
                                                 <span
-                                                    class="text-xs font-semibold tracking-wide text-gray-800 dark:text-neutral-200">
-                                                    Email
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <th scope="col" class="px-4 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
                                                     class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
                                                     Pendidikan
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <th scope="col" class="px-4 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
-                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
-                                                    Provinsi
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <th scope="col" class="px-4 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
-                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
-                                                    Instansi
                                                 </span>
                                             </div>
                                         </th>
@@ -342,38 +383,6 @@
                                                 </span>
                                             </div>
                                         </th>
-                                        <th scope="col" class="px-4 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
-                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
-                                                    Status
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <th scope="col" class="px-4 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
-                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
-                                                    Edit Account
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <th scope="col" class="px-4 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
-                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
-                                                    Reset Password
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <th scope="col" class="px-4 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
-                                                    class="text-xs font-semibold  tracking-wide text-gray-800 dark:text-neutral-200">
-                                                    Delete Account
-                                                </span>
-                                            </div>
-                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
@@ -398,63 +407,7 @@
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $user->no_str }}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td class="w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $user->nama_lengkap }}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td class="w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $user->jenis_kelamin }}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td class="w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $user->tempat_lahir }}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td class="w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $user->tanggal_lahir }}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td class="w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $user->agama }}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td class="w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $user->alamat }}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td class="w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $user->kode_pos }}
                                                     </span>
                                                 </div>
                                             </td>
@@ -470,7 +423,7 @@
                                                 <div class="flex items-center gap-x-4 p-4">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $user->pendidikan }}
+                                                        {{ $user->jenis_kelamin }}
                                                     </span>
                                                 </div>
                                             </td>
@@ -487,30 +440,6 @@
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $user->nama_unit }}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td class="w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $user->hd }}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td class="w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $user->dialisis }}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td class="w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $user->capd }}
                                                     </span>
                                                 </div>
                                             </td>
@@ -580,6 +509,86 @@
                                                     </form>
                                                 </div>
                                             </td>
+                                            <td class="w-40 min-w-40 align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{ $user->no_str }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="w-40 min-w-40 align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{ $user->tempat_lahir }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="w-40 min-w-40 align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{ $user->tanggal_lahir }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="w-40 min-w-40 align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{ $user->agama }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="w-40 min-w-40 align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{ $user->alamat }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="w-40 min-w-40 align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{ $user->kode_pos }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="w-40 min-w-40 align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{ $user->pendidikan }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="w-40 min-w-40 align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{ $user->hd }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="w-40 min-w-40 align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{ $user->dialisis }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="w-40 min-w-40 align-top">
+                                                <div class="flex items-center gap-x-4 p-4">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{ $user->capd }}
+                                                    </span>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -589,7 +598,6 @@
                             <!-- Footer -->
                             <div
                                 class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200 dark:border-neutral-700">
-
                                 <div>
                                     <div class="inline-flex gap-x-2">
                                         <a href="{{ $users->previousPageUrl() }}">
@@ -617,6 +625,15 @@
                                                 </svg>
                                             </button>
                                         </a>
+                                    </div>
+                                    <div class="p-8">
+                                        Jumlah user terverifikasi: {{$data['verified']}}
+                                        <br>
+                                        Jumlah user perempuan terverifikasi: {{$data['verifiedP']}}
+                                        <br>
+                                        Jumlah user laki-laki terverifikasi: {{$data['verifiedL']}}
+                                        <br>
+                                        Jumlah user belum memiliki nira: {{$data['unverified']}}
                                     </div>
                                 </div>
                             </div>

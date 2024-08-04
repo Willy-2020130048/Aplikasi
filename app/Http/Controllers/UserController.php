@@ -16,13 +16,45 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = DB::table('users')->select('users.*', 'ipdi_unit.nama_unit', 'reg_provinces.name')->join('reg_provinces', 'reg_provinces.id', '=', 'users.provinsi')->join('ipdi_unit', 'ipdi_unit.id', '=', 'users.instansi')->
-        where('nama_lengkap', 'LIKE', '%' . $request->nama_lengkap . '%')->
-        where('name', 'LIKE', '%' . $request->name . '%')->
-        where('nama_unit', 'LIKE', '%' . $request->nama_unit . '%')->
-        orderBy('users.id', 'desc')->paginate(30);
+        $query = DB::table('users')
+        ->select('users.*', 'ipdi_unit.nama_unit', 'reg_provinces.name')
+        ->join('reg_provinces', 'reg_provinces.id', '=', 'users.provinsi')
+        ->join('ipdi_unit', 'ipdi_unit.id', '=', 'users.instansi')
+        ->where('nira', 'LIKE', '%' . $request->nira . '%')
+        ->where('nama_lengkap', 'LIKE', '%' . $request->nama_lengkap . '%')
+        ->where('name', 'LIKE', '%' . $request->name . '%')
+        ->where('nama_unit', 'LIKE', '%' . $request->nama_unit . '%')
+        ->orderBy('users.id', 'desc');
+
+        if (auth()->user()->role != "admin") {
+        $id_lists = explode(',',auth()->user()->id_admin);
+        $query = $query->whereIn('id_propinsi', $id_lists);
+        }
+
+        $verified = clone $query;
+        $verified->where('nira', '!=', 'Belum Terverifikasi');
+
+        $verifiedL = clone $verified;
+        $verifiedL->where('jenis_kelamin', '=', 'Laki-Laki');
+
+        $verifiedP = clone $verified;
+        $verifiedP->where('jenis_kelamin', '=', 'Perempuan');
+
+        $unverified = clone $query;
+        $unverified->where('nira', '=', 'Belum Terverifikasi');
+
+        $data = [
+            'verified' => $verified->count(),
+            'verifiedL' => $verifiedL->count(),
+            'verifiedP' => $verifiedP->count(),
+            'unverified' => $unverified->count()
+        ];
+
+        $users = $query->paginate(30);
         $users->appends($request->all());
-        return view('pages.user.index', compact('users'));
+
+
+        return view('pages.user.index', compact('users', 'data'));
     }
 
     /**
@@ -79,7 +111,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
-        $dataInstansi = DB::table('ipdi_unit')->select('id','kode_unit','nama_unit')->when($request->input('currentProv') == null ? 11 : $request->input('currentProv'), function ($query, $provinsi) {
+        $dataInstansi = DB::table('ipdi_unit')->select('id','kode_unit','nama_unit')->when($request->input('currentProv') == null ? $user->provinsi : $request->input('currentProv'), function ($query, $provinsi) {
             return $query->where('id_propinsi', $provinsi);
         })->orderBy('nama_unit','asc')->get();
         return view('pages.user.update', compact('user', 'dataProv', 'dataInstansi'));
@@ -106,6 +138,14 @@ class UserController extends Controller
         $user = User::find($id);
         $text = fake()->text(8);
         $user->password = Hash::make('p@ssw0rd');
+
+        if (auth()->user()->role != "admin") {
+            $id_lists = explode(',',auth()->user()->id_admin);
+            if(!in_array($user->provinsi,$id_lists)){
+            return redirect()->route(auth()->user()->role . '_user.index')->with('success', "tidak ada permission");
+            }
+        }
+
         $user->save();
         return redirect()->route(auth()->user()->role . '_user.index')->with('success', "Password berhasil direset menjadi (p@ssw0rd)");
     }
@@ -119,6 +159,14 @@ class UserController extends Controller
         $user->status = 'terverifikasi';
         $user->nira = $user->provinsi . "." . $instansi[0]->kode_unit . "." . ($user->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($currentID, 6, "0", STR_PAD_LEFT);
         $user->username = $user->nira;
+
+        if (auth()->user()->role != "admin") {
+            $id_lists = explode(',',auth()->user()->id_admin);
+            if(!in_array($user->provinsi,$id_lists)){
+            return redirect()->route(auth()->user()->role . '_user.index')->with('success', "tidak ada permission");
+            }
+        }
+
         $user->save();
         return redirect()->route(auth()->user()->role . '_user.index')->with('success', 'Pengguna berhasil diverifikasi.');
     }
@@ -128,6 +176,14 @@ class UserController extends Controller
         $user = User::find($id);
         $user->status = 'menunggu';
         $user->nira = 'Belum Terverifikasi';
+
+        if (auth()->user()->role != "admin") {
+            $id_lists = explode(',',auth()->user()->id_admin);
+            if(!in_array($user->provinsi,$id_lists)){
+            return redirect()->route(auth()->user()->role . '_user.index')->with('success', "tidak ada permission");
+            }
+        }
+
         $user->save();
         return redirect()->route(auth()->user()->role . '_user.index')->with('success', 'Pengguna batal diverifikasi.');
     }
@@ -171,6 +227,12 @@ class UserController extends Controller
             $user->tanggal_lahir = $request->tanggal_lahir == null ? '' : $request->tanggal_lahir;
         }
 
+        if ($user->nira != "Belum Terverifikasi" && $user->instansi != $request->instansi){
+            $userID = substr($user->nira, -6);
+            $instansi = DB::table('ipdi_unit')->where('id', $request->instansi)->get();
+            $user->nira = $user->provinsi . "." . $instansi[0]->kode_unit . "." . ($user->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($userID, 6, "0", STR_PAD_LEFT);
+        }
+
         $user->agama = $request->agama == null ? '' : $request->agama;
         $user->alamat = $request->alamat == null ? '' : $request->alamat;
         $user->kode_pos = $request->kode_pos == null ? '' : $request->kode_pos;
@@ -184,6 +246,14 @@ class UserController extends Controller
         $user->capd = $request->capd == null ? '' : $request->capd;
         $user->username = $request->username;
         $user->provinsi = $request->provinsi == null ? '' : $request->provinsi;
+
+        if (auth()->user()->role != "admin") {
+            $id_lists = explode(',',auth()->user()->id_admin);
+            if(!in_array($user->provinsi,$id_lists)){
+            return redirect()->route(auth()->user()->role . '_user.index')->with('success', "tidak ada permission");
+            }
+        }
+
         $user->save();
         return redirect()->route(auth()->user()->role.'_user.index')->with('success', 'User updated succesfully.');
     }
@@ -220,6 +290,12 @@ class UserController extends Controller
             $user->tanggal_lahir = $request->tanggal_lahir == null ? '' : $request->tanggal_lahir;
         }
 
+        if ($user->nira != "Belum Terverifikasi" && $user->instansi != $request->instansi){
+            $userID = substr($user->nira, -6);
+            $instansi = DB::table('ipdi_unit')->where('id', $request->instansi)->get();
+            $user->nira = $user->provinsi . "." . $instansi[0]->kode_unit . "." . ($user->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($userID, 6, "0", STR_PAD_LEFT);
+        }
+
         $user->agama = $request->agama == null ? '' : $request->agama;
         $user->alamat = $request->alamat == null ? '' : $request->alamat;
         $user->kode_pos = $request->kode_pos == null ? '' : $request->kode_pos;
@@ -240,6 +316,14 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+
+        if (auth()->user()->role != "admin") {
+            $id_lists = explode(',',auth()->user()->id_admin);
+            if(!in_array($user->provinsi,$id_lists)){
+            return redirect()->route(auth()->user()->role . '_user.index')->with('success', "tidak ada permission");
+            }
+        }
+
         $user->delete();
         return redirect()->route(auth()->user()->role . '_user.index')->with('success', 'User berhasil terhapus.');
     }

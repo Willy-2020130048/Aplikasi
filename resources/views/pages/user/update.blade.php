@@ -195,10 +195,9 @@
                         </div>
                     @enderror
                     <div class="py-1">
-                            <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Filter Nama Instansi</span>
-                            <input placeholder="" type="text" name="searchInstansi" id="searchInstansi" oninput="formSubmit()"
-                                class="text-md block px-3 py-2 rounded-lg w-full
-            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+                        <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Filter Nama Instansi (Tidak Wajib)</span>
+                        <input placeholder="" type="text" name="searchInstansi" id="searchInstansi" oninput="formSubmit()"
+                            class="text-md block px-3 py-2 rounded-lg w-full bg-gray-200 border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
                     </div>
                     <div class="py-1">
                         <span class="px-1 text-sm text-gray-600 dark:text-gray-200">Instansi</span>
@@ -266,7 +265,7 @@
                         class="mt-3 text-lg font-semibold bg-green-800 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
                         Update
                     </button>
-                    <a href="/"
+                    <a href="{{route(auth()->user()->role . '_user.index')}}"
                         class="mt-3 text-lg text-center font-semibold bg-red-600 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
                         Batal
                     </a>

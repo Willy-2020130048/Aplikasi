@@ -18,7 +18,10 @@ class InstansiController extends Controller
         ->join('reg_provinces', 'reg_provinces.id', "=", "ipdi_unit.id_propinsi")
         ->where('nama_unit', 'LIKE', '%' . $request->nama_unit . '%')
         ->where('name', 'LIKE', '%' . $request->name . '%')
-        ->orderBy('kode_unit','asc')->paginate(30);
+        ->orderBy('name','asc')
+        ->orderBy('kode_unit','asc')
+        ->paginate(30);
+        $dataInstansi->appends($request->all());
         return view('pages.instansi.index', compact('dataInstansi'));
     }
 
