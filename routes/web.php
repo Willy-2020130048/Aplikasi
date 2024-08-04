@@ -185,6 +185,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/pembayaran/unverify/{id}', [DetailAcaraController::class, 'unverify'])->name('acaraverifikator.pembayaran.unverify');
             Route::get('/pembayaran/verifyKehadiran/{id}', [DetailAcaraController::class, 'verifyKehadiran'])->name('acaraverifikator.kehadiran.verify');
             Route::get('/pembayaran/unverifyKehadiran/{id}', [DetailAcaraController::class, 'unverifyKehadiran'])->name('acaraverifikator.kehadiran.unverify');
+            Route::get('/pembayaran/sendEmail/{id}', [DetailAcaraController::class, 'sendEmail'])->name('acaraverifikator.kehadiran.sendEmail');
 
             Route::get('/profile', function (Request $request) {
                 $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
