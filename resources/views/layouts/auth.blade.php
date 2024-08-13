@@ -12,9 +12,13 @@
 
 <body class="dark:bg-gray-800 dark:border-gray-700">
     {{-- Content --}}
-    <div class="items-center justify-center flex flex-row">
+    <div class="items-center justify-center flex flex-col">
+        @include('layouts.alert')
         @yield('main')
     </div>
+        {{-- Footer --}}
+        @include('components.home-footer')
+        @stack('scripts')
 </body>
 
 </html>

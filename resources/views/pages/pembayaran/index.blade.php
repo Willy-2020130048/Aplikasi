@@ -446,53 +446,50 @@
             </div>
             <!-- End Card -->
         </div>
-    </main>
-    <div id="modelConfirm" class="fixed hidden z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4 ">
-        <div class="relative top-40 mx-auto shadow-xl rounded-md bg-white max-w-md">
+        <div id="modelConfirm" class="fixed hidden z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4 ">
+            <div class="relative top-40 mx-auto shadow-xl rounded-md bg-white max-w-md">
+                <div class="flex justify-end p-2">
+                    <button onclick="closeModalVerify('modelConfirm')" type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
 
-            <div class="flex justify-end p-2">
-                <button onclick="closeModalVerify('modelConfirm')" type="button"
-                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-            </div>
-
-            <div class="p-6 pt-0 text-center">
-               <form method="POST" id="verifyForm" name="verifyForm" action="#" class="mt-8">
-                   @method('PUT')
-                   @csrf
-                <h3 class="text-xl font-normal text-black-500 mt-5 mb-6">Verifikasi Partisipasi Acara</h3>
-                <div class="text-left">
-                   <span class="px-1 text-md text-gray-600 dark:text-gray-200">Catatan</span>
-                   <textarea placeholder="Catatan" name="catatan"
-                       class="min-h-40 text-md block px-3 rounded-lg w-full
-           bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
-           dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700"></textarea>
-               </div>
-               @error('no_hp')
-                   <div class="text-red-600">
-                       {{ $message }}
+                <div class="p-6 pt-0 text-center">
+                   <form method="POST" id="verifyForm" name="verifyForm" action="#" class="mt-8">
+                       @method('PUT')
+                       @csrf
+                    <h3 class="text-xl font-normal text-black-500 mt-5 mb-6">Verifikasi Partisipasi Acara</h3>
+                    <div class="text-left">
+                       <span class="px-1 text-md text-gray-600 dark:text-gray-200">Catatan</span>
+                       <textarea placeholder="Catatan" name="catatan"
+                           class="min-h-40 text-md block px-3 rounded-lg w-full
+               bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none
+               dark:bg-gray-800 dark:text-white dark:border-gray-800 focus:dark:bg-gray-700"></textarea>
                    </div>
-               @enderror
-                <a href="" onclick="closeModalVerify('modelConfirm')"
-                    class="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-cyan-200 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base m-8 px-4 py-2.5 text-center"
-                    data-modal-toggle="delete-user-modal">
-                    Batal
-                </a>
-                <button type="submit" onclick="closeModalVerify('modelConfirm')"
-                   class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-base inline-flex items-center m-8 px-4 py-2.5 text-center mr-2">
-                   Verifikasi
-                </button>
-               </form>
+                   @error('no_hp')
+                       <div class="text-red-600">
+                           {{ $message }}
+                       </div>
+                   @enderror
+                    <a href="" onclick="closeModalVerify('modelConfirm')"
+                        class="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-cyan-200 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base m-8 px-4 py-2.5 text-center"
+                        data-modal-toggle="delete-user-modal">
+                        Batal
+                    </a>
+                    <button type="submit" onclick="closeModalVerify('modelConfirm')"
+                       class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-base inline-flex items-center m-8 px-4 py-2.5 text-center mr-2">
+                       Verifikasi
+                    </button>
+                   </form>
+                </div>
             </div>
-
         </div>
-    </div>
-
+    </main>
      <script type="text/javascript">
          window.openModalVerify = function(modalId,idPembayaran) {
             document.getElementById(modalId).style.display = 'block'

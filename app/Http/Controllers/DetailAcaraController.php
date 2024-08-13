@@ -36,7 +36,7 @@ class DetailAcaraController extends Controller
         $pembayaran = DetailAcara::find($id);
         $pembayaran->status = 'Telah Dikonfirmasi';
         $pembayaran->verifikasi = auth()->user()->nama_lengkap;
-        $pembayaran->catatan = $request->catatan;
+        $pembayaran->catatan = $request->catatan == null ? "-" : $request->catatan;
         $pembayaran->save();
 
         $partisipan = User::find($pembayaran->id_peserta);

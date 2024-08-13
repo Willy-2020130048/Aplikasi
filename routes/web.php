@@ -49,6 +49,12 @@ Route::get('/dataInstansi', function (Request $request) {
     return $dataInstansi;
 });
 
+Route::get('/recovery', function () {
+    return view('auth.recovery');
+})->name('recovery');
+
+Route::post('user/sendpassword', [UserController::class, 'sendpassword'])->name('user.sendpassword');
+
 Route::middleware(['auth'])->group(function () {
     Route::middleware([UserAuth::class])->group(function () {
 

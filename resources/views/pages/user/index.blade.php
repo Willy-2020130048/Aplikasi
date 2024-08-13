@@ -445,8 +445,7 @@
                                             </td>
                                             <td class="size-px whitespace-nowrap align-top">
                                                 @if ($user->status == 'terverifikasi')
-                                                    <a class="block p-6"
-                                                        href="{{ route(auth()->user()->role . '.user.unverify', $user->id) }}">
+                                                    <button class="block p-6" onclick="openModalVerify('modelConfirm','{{$user->id}}','unverify')">
                                                         <span
                                                             class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
                                                             <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg"
@@ -457,10 +456,9 @@
                                                             </svg>
                                                             {{ $user->status }}
                                                         </span>
-                                                    </a>
+                                                    </button>
                                                 @else
-                                                    <a class="block p-6"
-                                                        href="{{ route(auth()->user()->role . '.user.verify', $user->id) }}">
+                                                    <button class="block p-6" onclick="openModalVerify('modelConfirm','{{$user->id}}','verify')">
                                                         <span
                                                             class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-red-100 text-red-800 rounded-full dark:bg-red-500/10 dark:text-red-500">
                                                             <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg"
@@ -471,7 +469,7 @@
                                                             </svg>
                                                             {{ $user->status }}
                                                         </span>
-                                                    </a>
+                                                    </button>
                                                 @endif
                                             </td>
                                             <td class="h-px w-40 min-w-40 align-top">
@@ -486,26 +484,23 @@
                                             </td>
                                             <td class="align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
-                                                    <a
-                                                        href="{{ route(auth()->user()->role . '.resetpassword', $user->id) }}">
-                                                        <button
-                                                            class="text-sm font-semibold bg-red-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
-                                                            Reset Password
-                                                        </button>
-                                                    </a>
+                                                    <button onclick="openModalVerify('modelConfirm','{{$user->id}}','reset')"
+                                                        class="text-sm font-semibold bg-red-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
+                                                        Reset Password
+                                                    </button>
                                                 </div>
                                             </td>
                                             <td class="h-px w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
-                                                    <form
+                                                    <button onclick="openModalVerify('modelConfirm','{{$user->id}}','delete')"
+                                                        class="text-sm font-semibold bg-red-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
+                                                        Delete Account
+                                                    </button>
+                                                    <form id="delete"
                                                         action="{{ route(auth()->user()->role . '_user.destroy', $user->id) }}"
                                                         method="POST">
                                                         @method('DELETE')
                                                         @csrf
-                                                        <button
-                                                            class="text-sm font-semibold bg-red-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
-                                                            Delete Account
-                                                        </button>
                                                     </form>
                                                 </div>
                                             </td>
@@ -645,5 +640,63 @@
             <!-- End Card -->
         </div>
         <!-- End Table Section -->
+        <div id="modelConfirm" class="fixed hidden z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4 ">
+            <div class="relative top-40 mx-auto shadow-xl rounded-md bg-white max-w-md">
+                <div class="flex justify-end p-2">
+                    <button onclick="closeModalVerify('modelConfirm')" type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="p-6 pt-0 text-center">
+                    <h3 id='info' class="text-xl font-normal text-black-500 mt-5 mb-6">Apakah anda yakin ingin ?</h3>
+                    <a onclick="closeModalVerify('modelConfirm')"
+                        class="text-white bg-red-500 hover:bg-gray-100 focus:ring-4 focus:ring-cyan-200 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base m-8 px-4 py-2.5 text-center"
+                        data-modal-toggle="delete-user-modal">
+                        Tidak
+                   </a>
+                    <a id='verifyButton' onclick="closeModalVerify('modelConfirm')"
+                       class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-base inline-flex items-center m-8 px-4 py-2.5 text-center mr-2">
+                       Yakin
+                    </a>
+                </div>
+            </div>
+        </div>
     </main>
+
+    <script type="text/javascript">
+        window.openModalVerify = function(modalId,id,action) {
+           document.getElementById(modalId).style.display = 'block'
+           document.getElementsByTagName('body')[0].classList.add('overflow-y-hidden')
+           const button = document.getElementById('verifyButton');
+           const info = document.getElementById('info');
+           info.innerText = "Apakah anda yakin ingin " + action + "?";
+           if(action == "unverify"){
+            button.href = "{{ route(auth()->user()->role . '.user.unverify',':id') }}".replace(':id', id);
+           }
+           if(action == "verify"){
+            button.href = "{{ route(auth()->user()->role . '.user.verify',':id') }}".replace(':id', id);
+           }
+           if(action == "reset"){
+            button.href = "{{ route(auth()->user()->role . '.resetpassword',':id') }}".replace(':id', id);
+           }
+           if(action == "delete"){
+            button.addEventListener('click', function(event) {
+                button.href = "#";
+                event.preventDefault();
+                document.getElementById('delete').submit();
+            });
+           }
+        }
+
+        window.closeModalVerify = function(modalId) {
+            document.getElementById(modalId).style.display = 'none'
+            document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
+        }
+    </script>
 @endsection

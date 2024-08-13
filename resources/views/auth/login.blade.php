@@ -3,7 +3,7 @@
 @section('title', 'login')
 
 @section('main')
-<main class="w-full flex flex-col content-center items-center pt-48">
+<main class="w-full flex flex-col items-center pt-16">
     <div
         class="w-full max-w-2xl mt-2 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700 p-8 flex flex-col items-center">
         <div>

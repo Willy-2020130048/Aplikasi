@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Instansi;
+use App\Mail\PasswordNotify;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Exception;
+use Illuminate\Support\Str;
+use Mail;
 
 class UserController extends Controller
 {
@@ -133,6 +137,22 @@ class UserController extends Controller
         return redirect()->route(auth()->user()->role)->with('success', "berhasil mengganti password");
     }
 
+
+    public function sendpassword(Request $request){
+        $user = DB::table('users')->where('email', $request->email)->get();
+        $password = Hash::make(Str::random(8));
+        $data = [
+            'password' => $password,
+            'user' => $user,
+        ];
+        try {
+            Mail::to($request->email)->send(new PasswordNotify($data));
+        } catch (Exception $th) {
+            return redirect('/login')->with('success', 'Gagal Mengirim Email.');
+        }
+        return redirect('/login')->with('success', 'Silahkan cek email anda');
+    }
+
     public function resetpassword($id)
     {
         $user = User::find($id);
@@ -230,9 +250,11 @@ class UserController extends Controller
         if ($user->nira != "Belum Terverifikasi" && $user->instansi != $request->instansi){
             $userID = substr($user->nira, -6);
             $instansi = DB::table('ipdi_unit')->where('id', $request->instansi)->get();
-            $user->nira = $user->provinsi . "." . $instansi[0]->kode_unit . "." . ($user->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($userID, 6, "0", STR_PAD_LEFT);
+            $user->nira = $request->provinsi . "." . $instansi[0]->kode_unit . "." . ($request->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($userID, 6, "0", STR_PAD_LEFT);
+            $user->username = $user->nira;
+        } else {
+            $user->username = $request->username;
         }
-
         $user->agama = $request->agama == null ? '' : $request->agama;
         $user->alamat = $request->alamat == null ? '' : $request->alamat;
         $user->kode_pos = $request->kode_pos == null ? '' : $request->kode_pos;
@@ -244,7 +266,6 @@ class UserController extends Controller
         $user->hd = $request->hd == null ? '' : $request->hd;
         $user->dialisis = $request->dialisis == null ? '' : $request->dialisis;
         $user->capd = $request->capd == null ? '' : $request->capd;
-        $user->username = $request->username;
         $user->provinsi = $request->provinsi == null ? '' : $request->provinsi;
 
         if (auth()->user()->role != "admin") {
@@ -273,8 +294,6 @@ class UserController extends Controller
                 'nama_lengkap' => 'required',
                 'jenis_kelamin' => 'required',
                 'email' => 'required',
-                'provinsi' => 'required',
-                'instansi' => 'required',
             ]
         );
         if ($request->hasfile('foto')) {
@@ -289,21 +308,13 @@ class UserController extends Controller
         if ($request->tanggal_lahir) {
             $user->tanggal_lahir = $request->tanggal_lahir == null ? '' : $request->tanggal_lahir;
         }
-
-        if ($user->nira != "Belum Terverifikasi" && $user->instansi != $request->instansi){
-            $userID = substr($user->nira, -6);
-            $instansi = DB::table('ipdi_unit')->where('id', $request->instansi)->get();
-            $user->nira = $user->provinsi . "." . $instansi[0]->kode_unit . "." . ($user->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($userID, 6, "0", STR_PAD_LEFT);
-        }
-
+        $user->username = $request->username;
         $user->agama = $request->agama == null ? '' : $request->agama;
         $user->alamat = $request->alamat == null ? '' : $request->alamat;
         $user->kode_pos = $request->kode_pos == null ? '' : $request->kode_pos;
         $user->email = $request->email == null ? '' : $request->email;
         $user->no_hp = $request->no_hp == null ? '' : $request->no_hp;
         $user->pendidikan = $request->pendidikan == null ? '' : $request->pendidikan;
-        $user->provinsi = $request->provinsi == null ? '' : $request->provinsi;
-        $user->instansi = $request->instansi == null ? '' : $request->instansi;
         $user->hd = $request->hd == null ? '' : $request->hd;
         $user->dialisis = $request->dialisis == null ? '' : $request->dialisis;
         $user->capd = $request->capd == null ? '' : $request->capd;
