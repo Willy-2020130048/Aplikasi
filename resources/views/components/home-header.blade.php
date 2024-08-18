@@ -3,7 +3,7 @@
     class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white border-b text-sm py-2.5 sm:py-4 dark:bg-slate-900 dark:border-gray-700">
     <nav class="max-w-full flex basis-full items-center w-full mx-auto px-4 sm:px-6 lg:px-8" aria-label="Global">
         <div class="ml-12 me-5 md:me-8 w-full flex align-center">
-            <img src="../storage/Logo.png" class="object-cover h-12 w-12">
+            <img src="https://azerty.my.id/storage/Logo.png" class="object-cover h-12 w-12">
             <a class="flex-none text-4xl text-red-500 font-semibold p-1" href="/" aria-label="Brand">IPDI</a>
         </div>
 
