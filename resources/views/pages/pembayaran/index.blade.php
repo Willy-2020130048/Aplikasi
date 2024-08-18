@@ -18,9 +18,25 @@
                             class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-gray-900 dark:border-neutral-700">
                             <!-- Header -->
                             <div
+                                class="px-6 pt-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200 dark:border-neutral-700">
+                                <div>
+                                    <div class="p-4">
+                                        Jumlah pembayaran yang telah diverifikasi: {{$data['verified']}}
+                                        <br>
+                                        Jumlah pembayaran yang belum diverifikasi: {{$data['unverified']}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div
                                 class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-neutral-700">
                                 <!-- Input -->
                                 <form method="GET" action="{{ route(auth()->user()->role . '_pembayaran.index') }}" class="flex flex-row p-4">
+                                    <div class="px-2">
+                                        <label for="nama_acara" class="block text-sm mb-2 dark:text-white">Nama Acara</label>
+                                        <input type="search" name="nama_acara" id="nama_acara" value=" "
+                                            class="bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Search Nama Acara" required />
+                                    </div>
                                     <div class="px-2">
                                         <label for="nama_lengkap" class="block text-sm mb-2 dark:text-white">Nama Lengkap</label>
                                         <input type="search" name="nama_lengkap" id="nama_lengkap" value=" "
@@ -32,7 +48,7 @@
                                         <input type="search" name="nira" id="nira" value=" "
                                             class="bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="Search Nira" required />
-                                        </div>
+                                    </div>
                                     <button type="submit" class="text-sm font-semibold border-2 text-black rounded-lg mx-6 px-6 py-3 hover:text-white hover:bg-black">
                                             Search
                                     </button>
@@ -103,12 +119,6 @@
                                             Nama Lengkap
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
-                                            Nama Akun Plataran
-                                        </th>
-                                        <th scope="col" class="px-4 py-3 text-start">
-                                            NIK
-                                        </th>
-                                        <th scope="col" class="px-4 py-3 text-start">
                                             Nomor HP
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
@@ -124,15 +134,6 @@
                                             Nama Acara
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
-                                            Workshop
-                                        </th>
-                                        <th scope="col" class="px-4 py-3 text-start">
-                                            Nama Sponsor Acara
-                                        </th>
-                                        <th scope="col" class="px-4 py-3 text-start">
-                                            Nama Sponsor User
-                                        </th>
-                                        <th scope="col" class="px-4 py-3 text-start">
                                             Bukti Pembayaran
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
@@ -145,6 +146,21 @@
                                             Send Email
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
+                                            Edit Data
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            Delete
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            Nama Akun Plataran
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            NIK
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            Nama Sponsor User
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
                                             Verifikasi By
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
@@ -152,12 +168,6 @@
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
                                             Unverifikasi By
-                                        </th>
-                                        <th scope="col" class="px-4 py-3 text-start">
-                                            Edit Data
-                                        </th>
-                                        <th scope="col" class="px-4 py-3 text-start">
-                                            Delete
                                         </th>
                                     </tr>
                                 </thead>
@@ -171,112 +181,74 @@
                                         @endphp
                                         <tr
                                             class="hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-neutral-800 {{ $row % 2 == 0 ? 'bg-white' : 'bg-gray-100' }}">
-                                            <td class="h-px w-60 min-w-20 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
+                                            <td class="h-px w-30 min-w-30 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $pembayaran->nira }}
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
+                                            <td class="h-px w-30 min-w-30 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $pembayaran->nama_lengkap }}
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $pembayaran->nama_akun }}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $pembayaran->no_ktp }}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
+                                            <td class="h-px w-30 min-w-30 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $pembayaran->no_hp }}
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
+                                            <td class="h-px w-30 min-w-30 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $pembayaran->nama_unit }}
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
+                                            <td class="h-px w-30 min-w-30 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $pembayaran->name }}
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
+                                            <td class="h-px w-30 min-w-30 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $pembayaran->kota }}
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
+                                            <td class="h-px w-60 min-w-60 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $pembayaran->nama_acara }}
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $pembayaran->workshop }}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $pembayaran->id_detail }}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
-                                                        {{ $pembayaran->sponsor }}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td class="h-px w-40 min-w-80 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    @if (Str::endsWith($pembayaran->bukti_pembayaran, '.pdf'))
-                                                        <a href="../storage/{{$pembayaran->bukti_pembayaran}}" target="_blank"
-                                                            class="text-sm font-semibold bg-blue-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
-                                                            View PDF</a>
-                                                    @elseif ($pembayaran->bukti_pembayaran)
-                                                        <a href="../storage/{{$pembayaran->bukti_pembayaran}}" target="_blank"
-                                                            class="text-sm font-semibold bg-blue-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
-                                                            View Images</a>
+                                            <td class="whitespace-nowrap h-px w-30 min-w-30 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
+                                                    @if ($pembayaran->bukti_pembayaran)
+                                                        <a href="../storage/{{$pembayaran->bukti_pembayaran}}" target="_blank">
+                                                            <button class="text-sm font-semibold bg-blue-600 text-white rounded-lg px-4 py-3 block shadow-xl hover:text-white hover:bg-black">
+                                                            @if (Str::endsWith($pembayaran->bukti_pembayaran, '.pdf'))
+                                                                View Pdf
+                                                                @else
+                                                                View Images
+                                                                @endif
+                                                            </button>
+                                                        </a>
                                                     {{-- <img src="../storage{{ asset($pembayaran->bukti_pembayaran) }}"
                                                             class="object-cover"
                                                             onclick="openModal('../storage{{ asset($pembayaran->bukti_pembayaran) }}')"> --}}
@@ -346,58 +318,84 @@
                                                     </a>
                                                 @endif
                                             </td>
-                                            <td class="size-px whitespace-nowrap align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
+                                            <td class="whitespace-nowrap align-top w-30 min-w-30">
+                                                <div class="flex items-center gap-x-4 p-2">
                                                     <a href="{{ route(auth()->user()->role . '.kehadiran.sendEmail', $pembayaran->id) }}">
                                                         <button
-                                                            class="text-sm font-semibold bg-blue-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
+                                                            class="text-sm font-semibold bg-blue-600 text-white rounded-lg px-4 py-3 block shadow-xl hover:text-white hover:bg-black">
                                                             Send Email
                                                         </button>
                                                     </a>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
+                                            <td class="whitespace-nowrap h-px w-30 min-w-30 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
+                                                    <a href="{{ route(auth()->user()->role . '_pembayaran.edit', $pembayaran->id) }}">
+                                                        <button
+                                                            class="text-sm font-semibold bg-blue-600 text-white rounded-lg px-4 py-3 block shadow-xl hover:text-white hover:bg-black">
+                                                            Edit Data
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td class="size-px whitespace-nowrap align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
+                                                    <form
+                                                        action="{{ route(auth()->user()->role . '_pembayaran.destroy', $pembayaran->id) }}"
+                                                        method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button class="text-sm font-semibold bg-red-600 text-white rounded-lg px-4 py-3 block shadow-xl hover:text-white hover:bg-black">
+                                                            Delete</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-30 min-w-30 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{ $pembayaran->nama_akun }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-30 min-w-30 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{ $pembayaran->no_ktp }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-30 min-w-30 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{ $pembayaran->sponsor }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-30 min-w-30 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $pembayaran->verifikasi }}
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
+                                            <td class="h-px w-30 min-w-30 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $pembayaran->catatan }}
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
+                                            <td class="h-px w-30 min-w-30 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $pembayaran->unverifikasi }}
                                                     </span>
-                                                </div>
-                                            </td>
-                                            <td class="h-px w-40 min-w-40 align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <a href="{{ route(auth()->user()->role . '_pembayaran.edit', $pembayaran->id) }}"
-                                                        class="text-sm font-semibold bg-blue-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
-                                                        Edit Data</a>
-                                                </div>
-                                            </td>
-                                            <td class="size-px whitespace-nowrap align-top">
-                                                <div class="flex items-center gap-x-4 p-4">
-                                                    <form
-                                                        action="{{ route(auth()->user()->role . '_pembayaran.destroy', $pembayaran->id) }}"
-                                                        method="POST">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                        <button class="text-sm font-semibold bg-red-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
-                                                            Delete</button>
-                                                    </form>
-
                                                 </div>
                                             </td>
                                         </tr>
@@ -405,46 +403,39 @@
                                 </tbody>
                             </table>
                             <!-- End Table -->
-                            <!-- Footer -->
-                            <div
-                                class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200 dark:border-neutral-700">
-
-                                <div>
-                                    <div class="inline-flex gap-x-2">
-                                        <a href="{{ $pembayarans->previousPageUrl() }}">
-                                            <button type="button"
-                                                class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
-                                                <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
-                                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path d="m15 18-6-6 6-6" />
-                                                </svg>
-                                                Prev
-                                            </button>
-                                        </a>
-
-                                        <a href="{{ $pembayarans->nextPageUrl() }}">
-                                            <button type="button"
-                                                class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
-                                                Next
-                                                <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
-                                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path d="m9 18 6-6-6-6" />
-                                                </svg>
-                                            </button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
                             <!-- End Footer -->
                         </div>
                     </div>
                 </div>
             </div>
             <!-- End Card -->
+            <div class="inline-flex gap-x-2 fixed left-8 bottom-8 z-50 bg-red-500 p-4 rounded-xl">
+                <a href="{{ $pembayarans->previousPageUrl() }}">
+                    <button type="button"
+                        class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="m15 18-6-6 6-6" />
+                        </svg>
+                        Prev
+                    </button>
+                </a>
+
+                <a href="{{ $pembayarans->nextPageUrl() }}">
+                    <button type="button"
+                        class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+                        Next
+                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="m9 18 6-6-6-6" />
+                        </svg>
+                    </button>
+                </a>
+            </div>
         </div>
         <div id="modelConfirm" class="fixed hidden z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4 ">
             <div class="relative top-40 mx-auto shadow-xl rounded-md bg-white max-w-md">
@@ -489,8 +480,8 @@
                 </div>
             </div>
         </div>
-    </main>
-     <script type="text/javascript">
+
+        <script type="text/javascript">
          window.openModalVerify = function(modalId,idPembayaran) {
             document.getElementById(modalId).style.display = 'block'
             document.getElementsByTagName('body')[0].classList.add('overflow-y-hidden')

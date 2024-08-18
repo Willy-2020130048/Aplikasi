@@ -335,6 +335,33 @@ class UserController extends Controller
             }
         }
 
+        DB::table('users_copy')->insert([
+        'nira' => $user->nira,
+        'email' => $user->email,
+        'nama_lengkap' => $user->nama_lengkap,
+        'password' => $user->password,
+        'username' => $user->username,
+        'jenis_kelamin' => $user->jenis_kelamin,
+        'tempat_lahir' => $user->tempat_lahir,
+        'tanggal_lahir' => $user->tanggal_lahir,
+        'agama' => $user->agama,
+        'alamat' => $user->alamat,
+        'kode_pos' => $user->kode_pos,
+        'no_hp' => $user->no_hp,
+        'no_str' => $user->no_str,
+        'pendidikan' => $user->pendidikan,
+        'provinsi' => $user->provinsi,
+        'instansi' => $user->instansi,
+        'hd' => $user->hd,
+        'dialisis' => $user->dialisis,
+        'capd' => $user->capd,
+        'foto' => $user->foto,
+        'role' => $user->role,
+        'status' => $user->status,
+        'id_admin' => $user->id_admin,
+        'created_at' => now(),
+        ]);
+
         $user->delete();
         return redirect()->route(auth()->user()->role . '_user.index')->with('success', 'User berhasil terhapus.');
     }

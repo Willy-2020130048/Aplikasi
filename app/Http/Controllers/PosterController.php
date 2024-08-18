@@ -54,7 +54,7 @@ class PosterController
             $detail->jenis_nakes = $request->jenis_nakes == null ? "-" : $request->jenis_nakes;
             $detail->kota = $request->kota;
             $detail->sponsor = $request->sponsor;
-            $detail->workshop = $request->workshop == null ? "Tidak Ada" : $request->workshop;
+            $detail->catatan = " ";
             $detail->save();
             return redirect()->route(auth()->user()->role . '.partisipasi')->with('success', 'Berhasil partisipasi acara.');
         } else {

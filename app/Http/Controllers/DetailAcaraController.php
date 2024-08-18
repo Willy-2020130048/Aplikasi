@@ -19,16 +19,30 @@ class DetailAcaraController extends Controller
      */
     public function index(Request $request)
     {
-        $pembayarans = DB::table('detail_acaras')->select('detail_acaras.*', 'users.nama_lengkap', 'users.nira', 'reg_provinces.name', 'ipdi_unit.nama_unit', 'acaras.id_detail', 'acaras.nama_acara')
+        $query = DB::table('detail_acaras')->select('detail_acaras.*', 'users.nama_lengkap', 'users.nira', 'reg_provinces.name', 'ipdi_unit.nama_unit', 'acaras.id_detail', 'acaras.nama_acara')
             ->join('users', 'users.id', "=", "detail_acaras.id_peserta")
             ->join('acaras', 'acaras.id', "=", "detail_acaras.id_acara")
             ->join('ipdi_unit', 'ipdi_unit.id', "=", "users.instansi")
             ->join('reg_provinces', 'reg_provinces.id', "=", "users.provinsi")
             ->where('nama_lengkap', 'LIKE', '%' . $request->nama_lengkap . '%')
             ->where('nira', 'LIKE', '%' . $request->nira . '%')
-            ->orderBy('id', 'desc')->paginate(30);
+            ->where('nama_acara', 'LIKE', '%' . $request->nama_acara . '%')
+            ->orderBy('id', 'desc');
+
+            $verified = clone $query;
+            $verified->where('detail_acaras.status', '=', 'Telah Dikonfirmasi');
+
+            $unverified = clone $query;
+            $unverified->where('detail_acaras.status', '!=', 'Telah Dikonfirmasi');
+
+            $data = [
+                'verified' => $verified->count(),
+                'unverified' => $unverified->count(),
+            ];
+
+        $pembayarans = $query->paginate(30);
         $pembayarans->appends($request->all());
-        return view('pages.pembayaran.index', compact('pembayarans'));
+        return view('pages.pembayaran.index', compact('pembayarans','data'));
     }
 
     public function verify(Request $request, $id)
@@ -157,6 +171,31 @@ class DetailAcaraController extends Controller
     public function destroy($id)
     {
         $pembayaran = DetailAcara::find($id);
+
+        DB::table('detail_acaras')->insert([
+            'id_acara' => $pembayaran->id_acara,
+            'id_peserta' => $pembayaran->id,
+            'nama_akun' => $pembayaran->nama_akun,
+            'bukti_pembayaran' => $pembayaran->bukti_pembayaran,
+            'no_ktp' => $pembayaran->no_ktp,
+            'no_hp' => $pembayaran->no_hp,
+            'catatan' => $pembayaran->catatan,
+            'tipe_pegawai' => $pembayaran->tipe_pegawai,
+            'nip' => $pembayaran->nip,
+            'gelar' => $pembayaran->gelar,
+            'golongan' => $pembayaran->golongan,
+            'jenis_nakes' => $pembayaran->jenis_nakes,
+            'jabatan' => $pembayaran->jabatan,
+            'kota' => $pembayaran->kota,
+            'sponsor' => $pembayaran->sponsor,
+            'status' => $pembayaran->status,
+            'status_kehadiran' => $pembayaran->status_kehadiran,
+            'verifikasi' => $pembayaran->verifikasi,
+            'unverifikasi' => $pembayaran->unverifikasi,
+            'verifikasi_kehadiran' => $pembayaran->verifikasi_kehadiran,
+            'created_at' => now(),
+        ]);
+
         $pembayaran->delete();
         return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'Pembayaran berhasil terhapus.');
     }
