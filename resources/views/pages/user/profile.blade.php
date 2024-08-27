@@ -12,11 +12,11 @@
             </div>
             <div class="w-[428px] h-[270px] bg-red-600 rounded-lg shadow-lg text-white p-3 relative overflow-hidden">
                 <!-- Background Image -->
-                <img src="http://localhost:8000/storage/Kartu.jpg" alt="Background" class="absolute inset-0 w-full h-full rounded-lg object-cover z-0 opacity-100" />
+                <img src="https://azerty.my.id/storage/Kartu.jpg" alt="Background" class="absolute inset-0 w-full h-full rounded-lg object-cover z-0 opacity-100" />
 
                 <div class="flex p-8 mt-16 mx-auto w-full max-w-3xl relative z-10">
                     <div class="w-1/3 pr-4">
-                        <img src="http://localhost:8000/storage/fotoYeyen Nurhaeni.jpg" alt="User Photo" class="w-full object-cover rounded-md">
+                        <img src="https://azerty.my.id/storage/{{auth()->user()->foto}}" alt="User Photo" class="w-full object-cover rounded-md">
                     </div>
                     <div class="w-2/3 text-xs mt-2">
                         <div class="flex">
@@ -28,12 +28,12 @@
                             <span class="w-full">: {{auth()->user()->nama_lengkap}}</span>
                         </div>
                         <div class="flex">
-                            <span class="font-semibold w-full">Instansi</span>
-                            <span class="w-full">: {{auth()->user()->instansi}}</span>
+                            <span class="font-semibold w-full">Propinsi</span>
+                            <span class="w-full">: {{isset($dataProv[0]->name) ? $dataProv[0]->name : ''}}</span>
                         </div>
                         <div class="flex">
-                            <span class="font-semibold w-full">Propinsi</span>
-                            <span class="w-full">: {{auth()->user()->propinsi}}</span>
+                            <span class="font-semibold w-full">Instansi</span>
+                            <span class="w-full">: {{isset($dataInstansi[0]->nama_unit) ? $dataInstansi[0]->nama_unit : ''}}</span>
                         </div>
                         <div class="flex">
                             <span class="font-semibold w-full">Masa Berlaku</span>

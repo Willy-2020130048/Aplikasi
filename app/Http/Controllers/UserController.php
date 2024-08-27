@@ -140,13 +140,16 @@ class UserController extends Controller
 
     public function sendpassword(Request $request){
         $user = DB::table('users')->where('email', $request->email)->get();
-        $password = Hash::make(Str::random(8));
+        $account = User::find($user[0]->id);
+        $password = Str::random(8);
         $data = [
             'password' => $password,
             'user' => $user,
         ];
         try {
             Mail::to($request->email)->send(new PasswordNotify($data));
+            $account->password = Hash::make($password);
+            $account->save();
         } catch (Exception $th) {
             return redirect('/login')->with('success', 'Gagal Mengirim Email.');
         }
@@ -319,7 +322,8 @@ class UserController extends Controller
         $user->dialisis = $request->dialisis == null ? '' : $request->dialisis;
         $user->capd = $request->capd == null ? '' : $request->capd;
         $user->username = $request->username;
-        $user->provinsi = $request->provinsi == null ? '' : $request->provinsi;
+        $user->instansi = $user->instansi;
+        $user->provinsi = $user->provinsi;
         $user->save();
         return redirect()->route(auth()->user()->role)->with('success', 'User updated succesfully.');
     }
@@ -335,6 +339,7 @@ class UserController extends Controller
             }
         }
 
+        if($user){
         DB::table('users_copy')->insert([
         'nira' => $user->nira,
         'email' => $user->email,
@@ -364,6 +369,10 @@ class UserController extends Controller
 
         $user->delete();
         return redirect()->route(auth()->user()->role . '_user.index')->with('success', 'User berhasil terhapus.');
+        } else {
+            return redirect()->route(auth()->user()->role . '_user.index')->with('success', 'User sudah terhapus.');
+        }
+
     }
 
 }

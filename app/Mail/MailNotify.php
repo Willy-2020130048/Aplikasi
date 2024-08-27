@@ -22,7 +22,7 @@ class MailNotify extends Mailable
 
     public function build()
     {
-        return $this->from('Ipdi@Ipdi.com', 'IPDI')
+        return $this->from('ipdi@azerty.my.id', 'IPDI')
             ->view('email.index', ['data' => $this->data]);
     }
 }

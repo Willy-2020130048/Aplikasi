@@ -116,6 +116,9 @@
                                             NIRA IPDI
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
+                                            Kode Pendaftaran
+                                        </th>
+                                        <th scope="col" class="px-4 py-3 text-start">
                                             Nama Lengkap
                                         </th>
                                         <th scope="col" class="px-4 py-3 text-start">
@@ -186,6 +189,14 @@
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                                         {{ $pembayaran->nira }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-30 min-w-30 align-top">
+                                                <div class="flex items-center gap-x-4 p-2">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                                                        {{$pembayaran->jenis_acara == "Workshop" ? "WS" : "Sim"}}{{$pembayaran->workshop == "Audit Klinis Dialisis" ? "1AKD" : ""}}{{$pembayaran->workshop == "Health Technology Dialisis" ? "2HTD" : ""}}{{$pembayaran->workshop == "CAPD" ? "3CAPD" : ""}}{{ $pembayaran->id}}
                                                     </span>
                                                 </div>
                                             </td>
@@ -382,7 +393,7 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-30 min-w-30 align-top">
+                                            <td class="h-px w-80 min-w-80 align-top">
                                                 <div class="flex items-center gap-x-4 p-2">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
