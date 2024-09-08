@@ -104,6 +104,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/user/changepassword/{id}', [UserController::class, 'resetpassword'])->name('admin.resetpassword');
             Route::put('/updatepassword', [UserController::class, 'changepassword'])->name('admin.updatepassword');
             Route::get('/users/profile', [UserController::class, 'showProfile'])->name('admin.profile');
+            Route::get('/user/export', [UserController::class, 'exportUser'])->name('admin.user.export');
 
             Route::resource('admin_acara', AcaraController::class);
             Route::resource('admin_pembayaran', DetailAcaraController::class);
@@ -113,11 +114,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/pembayaran/verifyKehadiran/{id}', [DetailAcaraController::class, 'verifyKehadiran'])->name('admin.kehadiran.verify');
             Route::get('/pembayaran/unverifyKehadiran/{id}', [DetailAcaraController::class, 'unverifyKehadiran'])->name('admin.kehadiran.unverify');
             Route::get('/pembayaran/sendEmail/{id}', [DetailAcaraController::class, 'sendEmail'])->name('admin.kehadiran.sendEmail');
+            Route::get('/pembayaran/export', [DetailAcaraController::class, 'exportPembayaran'])->name('admin.pembayaran.export');
 
             Route::get('/detailacara', [\App\Http\Controllers\PosterController::class, 'index'])->name('admin.poster.index');
             Route::get('/detailacara/{id}', [PosterController::class, 'detail'])->name('admin.poster.detail');
             Route::post('/detailacara/{id}', [PosterController::class, 'store'])->name('admin.poster.store');
-
             Route::get('/profile', function (Request $request) {
                 $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
                 $dataInstansi = DB::table('ipdi_unit')->select('id','kode_unit','nama_unit')->when($request->input('currentProv') == null ? auth()->user()->provinsi : $request->input('currentProv'), function ($query, $provinsi) {
@@ -152,6 +153,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/user/unverify/{id}', [UserController::class, 'unverify'])->name('userverifikator.user.unverify');
             Route::get('/user/changepassword/{id}', [UserController::class, 'resetpassword'])->name('userverifikator.resetpassword');
             Route::put('/updatepassword', [UserController::class, 'changepassword'])->name('userverifikator.updatepassword');
+            Route::get('/user/export', [UserController::class, 'exportUser'])->name('userverifikator.user.export');
 
             Route::get('/profile', function (Request $request) {
                 $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
@@ -192,6 +194,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/pembayaran/verifyKehadiran/{id}', [DetailAcaraController::class, 'verifyKehadiran'])->name('acaraverifikator.kehadiran.verify');
             Route::get('/pembayaran/unverifyKehadiran/{id}', [DetailAcaraController::class, 'unverifyKehadiran'])->name('acaraverifikator.kehadiran.unverify');
             Route::get('/pembayaran/sendEmail/{id}', [DetailAcaraController::class, 'sendEmail'])->name('acaraverifikator.kehadiran.sendEmail');
+            Route::get('/pembayaran/export', [DetailAcaraController::class, 'exportPembayaran'])->name('acaraverifikator.pembayaran.export');
 
             Route::get('/profile', function (Request $request) {
                 $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();

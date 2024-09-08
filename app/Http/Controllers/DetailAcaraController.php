@@ -11,6 +11,8 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Mail;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DetailAcaraController extends Controller
 {
@@ -27,7 +29,9 @@ class DetailAcaraController extends Controller
             ->where('nama_lengkap', 'LIKE', '%' . $request->nama_lengkap . '%')
             ->where('nira', 'LIKE', '%' . $request->nira . '%')
             ->where('nama_acara', 'LIKE', '%' . $request->nama_acara . '%')
-            ->orderBy('id', 'desc');
+            ->where('kota', 'LIKE', '%' . $request->kota . '%')
+            ->where('ipdi_unit.nama_unit', 'LIKE', '%' . $request->instansi . '%')
+            ->orderBy('status', 'desc');
 
             $verified = clone $query;
             $verified->where('detail_acaras.status', '=', 'Telah Dikonfirmasi');
@@ -150,6 +154,18 @@ class DetailAcaraController extends Controller
         return view('pages.pembayaran.edit', compact('pembayaran'));
     }
 
+    public function exportPembayaran(){
+        $sheetsData = [
+            [
+                'type' => 'Pembayaran',
+                'name' => 'Pembayaran Active', // Nama sheet pertama
+                'filter' => ['provinsi' => '32'], // Filter untuk sheet pertama
+            ]
+        ];
+
+        return Excel::download(new UsersExport($sheetsData), 'Pembayaran.xlsx');
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -172,7 +188,7 @@ class DetailAcaraController extends Controller
     {
         $pembayaran = DetailAcara::find($id);
 
-        DB::table('detail_acaras')->insert([
+        DB::table('detail_acaras_copy')->insert([
             'id_acara' => $pembayaran->id_acara,
             'id_peserta' => $pembayaran->id,
             'nama_akun' => $pembayaran->nama_akun,

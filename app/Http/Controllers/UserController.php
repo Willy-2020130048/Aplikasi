@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Exception;
 use Illuminate\Support\Str;
 use Mail;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -27,6 +29,7 @@ class UserController extends Controller
         ->where('nira', 'LIKE', '%' . $request->nira . '%')
         ->where('nama_lengkap', 'LIKE', '%' . $request->nama_lengkap . '%')
         ->where('name', 'LIKE', '%' . $request->name . '%')
+        ->where('users.email', 'LIKE', '%' . $request->email . '%')
         ->where('nama_unit', 'LIKE', '%' . $request->nama_unit . '%')
         ->orderBy('users.id', 'desc');
 
@@ -326,6 +329,30 @@ class UserController extends Controller
         $user->provinsi = $user->provinsi;
         $user->save();
         return redirect()->route(auth()->user()->role)->with('success', 'User updated succesfully.');
+    }
+
+    public function exportUser(){
+        $sheetsData = [];
+        if(auth()->user()->role == 'admin'){
+            $provinsi = DB::select('select id, name from reg_provinces order by name');
+            foreach($provinsi as $prov){
+                $sheetsData[] = [
+                    'type' => 'Users',
+                    'name' => $prov->name, // Akses properti sebagai object, bukan array
+                    'filter' => ['status' => 'terverifikasi', 'provinsi' => $prov->id],
+                ];
+            }
+        } else {
+            $idList = explode(',', auth()->user()->id_admin);
+            foreach ($idList as $id) {
+                $sheetsData[] = [
+                    'type' => 'Users',
+                    'name' => 'Admin ID ' . $id, // Nama sheet sesuai dengan ID admin
+                    'filter' => ['status' => 'terverifikasi', 'provinsi' => $id],
+                ];
+            }
+        }
+        return Excel::download(new UsersExport($sheetsData), 'Data User.xlsx');
     }
 
     public function destroy($id)

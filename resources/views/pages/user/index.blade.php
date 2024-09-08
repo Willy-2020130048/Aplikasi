@@ -42,6 +42,14 @@
                                         <br>
                                         Jumlah user belum memiliki nira: {{$data['unverified']}}
                                     </div>
+                                    <div class="p-4 items-center gap-x-4">
+                                        <a href="{{ route(auth()->user()->role . '.user.export') }}">
+                                            <button
+                                                class="text-sm font-semibold bg-blue-600 text-white rounded-lg px-4 py-3 block shadow-xl hover:text-white hover:bg-black">
+                                                Export Data Excel
+                                            </button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <div
@@ -51,25 +59,31 @@
                                     <div class="px-2">
                                         <label for="nira" class="block text-sm mb-2 dark:text-white">Nira</label>
                                         <input type="search" name="nira" id="nira" value=" "
-                                            class="bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="border-2 border-blue-900 bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="Search Nira" required />
+                                    </div>
+                                    <div class="px-2">
+                                        <label for="email" class="block text-sm mb-2 dark:text-white">Email</label>
+                                        <input type="search" name="email" id="email" value=" "
+                                            class="border-2 border-blue-900 bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Search Nama" required />
                                     </div>
                                     <div class="px-2">
                                         <label for="nama_lengkap" class="block text-sm mb-2 dark:text-white">Nama Lengkap</label>
                                         <input type="search" name="nama_lengkap" id="nama_lengkap" value=" "
-                                            class="bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="border-2 border-blue-900 bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="Search Nama" required />
                                     </div>
                                     <div class="px-2">
                                         <label for="name" class="block text-sm mb-2 dark:text-white">Provinsi</label>
                                         <input type="search" name="name" id="name" value=" "
-                                            class="bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="border-2 border-blue-900 bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="Search Provinsi" required />
                                     </div>
                                     <div class="px-2">
                                         <label for="nama_unit" class="block text-sm mb-2 dark:text-white">Nama Unit</label>
                                         <input type="search" name="nama_unit" id="nama_unit" value=" "
-                                            class="bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="border-2 border-blue-900 bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="Search Instansi" required />
                                     </div>
                                     <button type="submit" class="text-sm font-semibold border-2 text-black rounded-lg mx-6 px-6 py-3 hover:text-white hover:bg-black">
@@ -511,7 +525,7 @@
                                                         class="text-sm font-semibold bg-red-600 text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
                                                         Delete Account
                                                     </button>
-                                                    <form id="delete"
+                                                    <form id="delete{{$user->id}}"
                                                         action="{{ route(auth()->user()->role . '_user.destroy', $user->id) }}"
                                                         method="POST">
                                                         @method('DELETE')
@@ -687,7 +701,7 @@
             button.addEventListener('click', function(event) {
                 button.href = "#";
                 event.preventDefault();
-                document.getElementById('delete').submit();
+                document.getElementById('delete'+id).submit();
             });
            }
         }

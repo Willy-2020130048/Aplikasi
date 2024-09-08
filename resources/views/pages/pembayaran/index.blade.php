@@ -19,11 +19,18 @@
                             <!-- Header -->
                             <div
                                 class="px-6 pt-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200 dark:border-neutral-700">
-                                <div>
-                                    <div class="p-4">
-                                        Jumlah pembayaran yang telah diverifikasi: {{$data['verified']}}
-                                        <br>
-                                        Jumlah pembayaran yang belum diverifikasi: {{$data['unverified']}}
+                                <div class="flex flex-col md:flex-row gap-4">
+                                    <div class="p-4 flex-1">
+                                        <p>Jumlah pembayaran yang telah diverifikasi: {{$data['verified']}}</p>
+                                        <p>Jumlah pembayaran yang belum diverifikasi: {{$data['unverified']}}</p>
+                                    </div>
+                                    <div class="p-4 flex items-center gap-x-4">
+                                        <a href="{{ route(auth()->user()->role . '.pembayaran.export') }}">
+                                            <button
+                                                class="text-sm font-semibold bg-blue-600 text-white rounded-lg px-4 py-3 block shadow-xl hover:text-white hover:bg-black">
+                                                Export Data Excel
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -34,19 +41,31 @@
                                     <div class="px-2">
                                         <label for="nama_acara" class="block text-sm mb-2 dark:text-white">Nama Acara</label>
                                         <input type="search" name="nama_acara" id="nama_acara" value=" "
-                                            class="bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="border-2 border-blue-900 bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="Search Nama Acara" required />
+                                    </div>
+                                    <div class="px-2">
+                                        <label for="instansi" class="block text-sm mb-2 dark:text-white">Instansi</label>
+                                        <input type="search" name="instansi" id="instansi" value=" "
+                                            class="border-2 border-blue-900 bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Search Nama Instansi" required />
+                                    </div>
+                                    <div class="px-2">
+                                        <label for="kota" class="block text-sm mb-2 dark:text-white">Kabupaten/Kota</label>
+                                        <input type="search" name="kota" id="kota" value=" "
+                                            class="border-2 border-blue-900 bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Search Nama Kota" required />
                                     </div>
                                     <div class="px-2">
                                         <label for="nama_lengkap" class="block text-sm mb-2 dark:text-white">Nama Lengkap</label>
                                         <input type="search" name="nama_lengkap" id="nama_lengkap" value=" "
-                                            class="bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="border-2 border-blue-900 bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="Search Nama" required />
                                     </div>
                                     <div class="px-2">
                                         <label for="nira" class="block text-sm mb-2 dark:text-white">Nira</label>
                                         <input type="search" name="nira" id="nira" value=" "
-                                            class="bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="border-2 border-blue-900 bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="Search Nira" required />
                                     </div>
                                     <button type="submit" class="text-sm font-semibold border-2 text-black rounded-lg mx-6 px-6 py-3 hover:text-white hover:bg-black">
