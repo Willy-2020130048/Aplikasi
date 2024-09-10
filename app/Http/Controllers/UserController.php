@@ -247,20 +247,22 @@ class UserController extends Controller
         }
         $user->no_str = $request->no_str == null ? '' : $request->no_str;
         $user->nama_lengkap = $request->nama_lengkap == null ? '' : $request->nama_lengkap;
-        $user->jenis_kelamin = $request->jenis_kelamin == null ? '' : $request->jenis_kelamin;
         $user->tempat_lahir = $request->tempat_lahir == null ? '' : $request->tempat_lahir;;
         if ($request->tanggal_lahir) {
             $user->tanggal_lahir = $request->tanggal_lahir == null ? '' : $request->tanggal_lahir;
         }
 
-        if ($user->nira != "Belum Terverifikasi" && $user->instansi != $request->instansi){
-            $userID = substr($user->nira, -6);
-            $instansi = DB::table('ipdi_unit')->where('id', $request->instansi)->get();
-            $user->nira = $request->provinsi . "." . $instansi[0]->kode_unit . "." . ($request->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($userID, 6, "0", STR_PAD_LEFT);
-            $user->username = $user->nira;
+        if ($user->nira != "Belum Terverifikasi"){
+            if ($user->instansi != $request->instansi || $user->jenis_kelamin != $request->jenis_kelamin){
+                $userID = substr($user->nira, -6);
+                $instansi = DB::table('ipdi_unit')->where('id', $request->instansi)->get();
+                $user->nira = $request->provinsi . "." . $instansi[0]->kode_unit . "." . ($request->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($userID, 6, "0", STR_PAD_LEFT);
+                $user->username = $user->nira;
+            }
         } else {
             $user->username = $request->username;
         }
+        $user->jenis_kelamin = $request->jenis_kelamin == null ? '' : $request->jenis_kelamin;
         $user->agama = $request->agama == null ? '' : $request->agama;
         $user->alamat = $request->alamat == null ? '' : $request->alamat;
         $user->kode_pos = $request->kode_pos == null ? '' : $request->kode_pos;
@@ -309,12 +311,21 @@ class UserController extends Controller
         }
         $user->no_str = $request->no_str == null ? '' : $request->no_str;
         $user->nama_lengkap = $request->nama_lengkap == null ? '' : $request->nama_lengkap;
-        $user->jenis_kelamin = $request->jenis_kelamin == null ? '' : $request->jenis_kelamin;
         $user->tempat_lahir = $request->tempat_lahir == null ? '' : $request->tempat_lahir;;
         if ($request->tanggal_lahir) {
             $user->tanggal_lahir = $request->tanggal_lahir == null ? '' : $request->tanggal_lahir;
         }
-        $user->username = $request->username;
+        if ($user->nira != "Belum Terverifikasi"){
+            if ($user->jenis_kelamin != $request->jenis_kelamin){
+                $userID = substr($user->nira, -6);
+                $instansi = DB::table('ipdi_unit')->where('id', $user->instansi)->get();
+                $user->nira = $user->provinsi . "." . $instansi[0]->kode_unit . "." . ($request->jenis_kelamin == 'Perempuan' ? '2' : '1') . "." . str_pad($userID, 6, "0", STR_PAD_LEFT);
+                $user->username = $user->nira;
+            }
+        } else {
+            $user->username = $request->username;
+        }
+        $user->jenis_kelamin = $request->jenis_kelamin == null ? '' : $request->jenis_kelamin;
         $user->agama = $request->agama == null ? '' : $request->agama;
         $user->alamat = $request->alamat == null ? '' : $request->alamat;
         $user->kode_pos = $request->kode_pos == null ? '' : $request->kode_pos;

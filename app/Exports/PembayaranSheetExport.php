@@ -84,6 +84,7 @@ class PembayaranSheetExport implements FromCollection, WithHeadings, WithTitle
             'Asal PW',
             'Instansi',
             'Acara',
+            'Kode Acara',
             'Sponsor'
         ];
     }

@@ -155,15 +155,19 @@ class DetailAcaraController extends Controller
     }
 
     public function exportPembayaran(){
-        $sheetsData = [
-            [
-                'type' => 'Pembayaran',
-                'name' => 'Pembayaran Active', // Nama sheet pertama
-                'filter' => ['provinsi' => '32'], // Filter untuk sheet pertama
-            ]
-        ];
+        if(auth()->user()->role == 'admin' || (auth()->user()->role == 'acaraverifikator' && auth()->user()->id_admin == '200')){
+            $sheetsData = [
+                [
+                    'type' => 'Pembayaran',
+                    'name' => 'Pembayaran Active', // Nama sheet pertama
+                    'filter' => [], // Filter untuk sheet pertama
+                ]
+            ];
 
-        return Excel::download(new UsersExport($sheetsData), 'Pembayaran.xlsx');
+            return Excel::download(new UsersExport($sheetsData), 'Pembayaran.xlsx');
+        } else {
+            return redirect('/');
+        }
     }
 
     /**

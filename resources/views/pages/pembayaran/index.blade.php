@@ -24,6 +24,7 @@
                                         <p>Jumlah pembayaran yang telah diverifikasi: {{$data['verified']}}</p>
                                         <p>Jumlah pembayaran yang belum diverifikasi: {{$data['unverified']}}</p>
                                     </div>
+                                    @if(auth()->user()->role == 'admin' || (auth()->user()->role == 'acaraverifikator' && auth()->user()->id_admin == '200'))
                                     <div class="p-4 flex items-center gap-x-4">
                                         <a href="{{ route(auth()->user()->role . '.pembayaran.export') }}">
                                             <button
@@ -32,6 +33,7 @@
                                             </button>
                                         </a>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                             <div
