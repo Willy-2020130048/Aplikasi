@@ -5,9 +5,10 @@ namespace App\Exports;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Illuminate\Support\Facades\DB;
 
-class UsersSheetExport implements FromCollection, WithHeadings, WithTitle
+class UsersSheetExport implements FromCollection, WithHeadings, WithTitle, ShouldAutoSize
 {
     private $sheetName;
     private $filterData;
@@ -86,11 +87,3 @@ class UsersSheetExport implements FromCollection, WithHeadings, WithTitle
         return $this->sheetName;
     }
 }
-
-
-// use App\Exports\DataExport;
-// use Maatwebsite\Excel\Facades\Excel;
-
-// Route::get('/export', function () {
-//     return Excel::download(new DataExport, 'data.xlsx');
-// });

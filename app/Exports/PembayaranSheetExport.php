@@ -5,9 +5,11 @@ namespace App\Exports;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Illuminate\Support\Facades\DB;
 
-class PembayaranSheetExport implements FromCollection, WithHeadings, WithTitle
+class PembayaranSheetExport implements FromCollection, WithHeadings, WithTitle, WithMapping, ShouldAutoSize
 {
     private $sheetName;
     private $filterData;
@@ -27,9 +29,9 @@ class PembayaranSheetExport implements FromCollection, WithHeadings, WithTitle
             ->join('reg_provinces', 'reg_provinces.id', "=", "users.provinsi")
             ->select(
                 'users.nama_lengkap',
-                'users.nira',
+                DB::raw('CAST(users.nira AS CHAR) as nira'),
                 'detail_acaras.nama_akun',
-                'detail_acaras.no_ktp',
+                DB::raw('CAST(detail_acaras.no_ktp AS CHAR) as no_ktp'),
                 'users.email',
                 'detail_acaras.no_hp',
                 'reg_provinces.name as provinsi',
@@ -54,7 +56,6 @@ class PembayaranSheetExport implements FromCollection, WithHeadings, WithTitle
             )
             ->orderBy('detail_acaras.id', 'asc');
 
-
         if (!empty($this->filterData)) {
             if (isset($this->filterData['provinsi'])) {
                 $query->where('users.provinsi', $this->filterData['provinsi']);
@@ -67,9 +68,13 @@ class PembayaranSheetExport implements FromCollection, WithHeadings, WithTitle
             if (isset($this->filterData['sponsor'])) {
                 $query->where('detail_acaras.sponsor', $this->filterData['sponsor']);
             }
+
+            if (isset($this->filterData['status'])) {
+                $query->where('detail_acaras.status', $this->filterData['status']);
+            }
         }
 
-    return $query->get();
+        return $query->get();
     }
 
     public function headings(): array
@@ -92,5 +97,25 @@ class PembayaranSheetExport implements FromCollection, WithHeadings, WithTitle
     public function title(): string
     {
         return $this->sheetName;
+    }
+
+    /**
+     * Map each row for the export.
+     */
+    public function map($row): array
+    {
+        return [
+            $row->nama_lengkap,
+            $row->nira,
+            $row->nama_akun,
+            $row->no_ktp . " ",
+            $row->email,
+            $row->no_hp,
+            $row->provinsi,
+            $row->instansi,
+            $row->nama_acara,
+            $row->kode_singkat,
+            $row->sponsor
+        ];
     }
 }

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Mail;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Str;
 
 class DetailAcaraController extends Controller
 {
@@ -26,12 +27,34 @@ class DetailAcaraController extends Controller
             ->join('acaras', 'acaras.id', "=", "detail_acaras.id_acara")
             ->join('ipdi_unit', 'ipdi_unit.id', "=", "users.instansi")
             ->join('reg_provinces', 'reg_provinces.id', "=", "users.provinsi")
+            ->when($request->nomor, function($query, $kode_acara) {
+                if (Str::startsWith($kode_acara, 'Sim')) {
+                    $query->where('acaras.jenis_acara', 'Seminar')
+                          ->where('detail_acaras.id', 'LIKE', '%' . Str::substr($kode_acara, 3) . '%');
+                } elseif (Str::startsWith($kode_acara, 'WS')) {
+                    $workshop_code = Str::substr($kode_acara, 2, 4);
+                    $workshop_id = Str::substr($kode_acara, 6);
+                    $workshop_type = match($workshop_code) {
+                        '1AKD' => 'Audit Klinis Dialisis',
+                        '2HTD' => 'Health Technology Dialisis',
+                        '3CAPD' => 'CAPD',
+                        default => ' ',
+                    };
+                    if ($workshop_type) {
+                        $query->where('acaras.jenis_acara', 'Workshop')
+                            ->where('acaras.workshop', 'LIKE', '%' . $workshop_type . '%')
+                            ->where('detail_acaras.id', 'LIKE', '%' . Str::substr($kode_acara, 6) . '%');
+                    }
+                } else {
+                    $query->where('detail_acaras.id', 'LIKE', '%' . $kode_acara . '%');
+                }
+            })
             ->where('nama_lengkap', 'LIKE', '%' . $request->nama_lengkap . '%')
             ->where('nira', 'LIKE', '%' . $request->nira . '%')
             ->where('nama_acara', 'LIKE', '%' . $request->nama_acara . '%')
             ->where('kota', 'LIKE', '%' . $request->kota . '%')
             ->where('ipdi_unit.nama_unit', 'LIKE', '%' . $request->instansi . '%')
-            ->orderBy('status', 'desc');
+            ->orderBy('status', 'asc');
 
             $verified = clone $query;
             $verified->where('detail_acaras.status', '=', 'Telah Dikonfirmasi');
@@ -159,8 +182,14 @@ class DetailAcaraController extends Controller
             $sheetsData = [
                 [
                     'type' => 'Pembayaran',
-                    'name' => 'Pembayaran Active', // Nama sheet pertama
-                    'filter' => [], // Filter untuk sheet pertama
+                    'name' => 'Pembayaran Telah Dikonfirmasi', // Nama sheet pertama
+                    'filter' => ['status' => 'Telah Dikonfirmasi'], // Filter untuk sheet pertama
+                ],
+
+                [
+                    'type' => 'Pembayaran',
+                    'name' => 'Pembayaran Belum Dikonfirmasi',
+                    'filter' => ['status' => 'Belum Dikonfirmasi']
                 ]
             ];
 

@@ -41,6 +41,12 @@
                                 <!-- Input -->
                                 <form method="GET" action="{{ route(auth()->user()->role . '_pembayaran.index') }}" class="flex flex-row p-4">
                                     <div class="px-2">
+                                        <label for="nomor" class="block text-sm mb-2 dark:text-white">Nomor Pendaftaran</label>
+                                        <input type="search" name="nomor" id="nomor" value=" "
+                                            class="border-2 border-blue-900 bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Search Nama Acara" required />
+                                    </div>
+                                    <div class="px-2">
                                         <label for="nama_acara" class="block text-sm mb-2 dark:text-white">Nama Acara</label>
                                         <input type="search" name="nama_acara" id="nama_acara" value=" "
                                             class="border-2 border-blue-900 bg-white-600 block w-full p-4 ps-10 text-sm text-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
