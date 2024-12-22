@@ -4,6 +4,20 @@
 
 @section('main')
     <main class="w-full">
+        @if (auth()->user()->status == "tidak aktif")
+        <div class="w-full bg-red-700">
+            <div class="max-w-[85rem] px-4 py-4 sm:px-6 lg:px-8 mx-auto">
+                <div class="text-center md:text-center">
+                    <p class="text-xl font-bold text-white/80 uppercase tracking-wider">
+                        Perhatian !!!
+                    </p>
+                    <p class="mt-1 text-white font-medium">
+                        Akun anda sudah tidak aktif, silahkan hubungi infokom untuk mengaktifkan kembali.
+                    </p>
+                </div>
+            </div>
+        </div>
+        @endif
         <!-- Card Blog -->
         <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
             <!-- Grid -->

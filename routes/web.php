@@ -56,6 +56,25 @@ Route::get('/recovery', function () {
 Route::post('user/sendpassword', [UserController::class, 'sendpassword'])->name('user.sendpassword');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('fotoProfile', function () {
+        if(auth()->user()->foto){
+            $path = storage_path('app/public/' . auth()->user()->foto);
+        } else {
+            $path = storage_path('app/public/' . "profile.png");
+        }
+        if (!File::exists($path)) {
+            abort(404);
+        }
+
+        $file = File::get($path);
+        $type = File::mimeType($path);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+    });
+
     Route::middleware([UserAuth::class])->group(function () {
 
         Route::get('/', function () {
@@ -101,14 +120,17 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/updatedata/{id}', [UserController::class, 'updatedata'])->name('admin.updatedata');
             Route::get('/user/verify/{id}', [UserController::class, 'verify'])->name('admin.user.verify');
             Route::get('/user/unverify/{id}', [UserController::class, 'unverify'])->name('admin.user.unverify');
+            Route::get('/user/activation/{id}', [UserController::class, 'activation'])->name('admin.user.activation');
             Route::get('/user/changepassword/{id}', [UserController::class, 'resetpassword'])->name('admin.resetpassword');
             Route::put('/updatepassword', [UserController::class, 'changepassword'])->name('admin.updatepassword');
             Route::get('/users/profile', [UserController::class, 'showProfile'])->name('admin.profile');
             Route::get('/user/export', [UserController::class, 'exportUser'])->name('admin.user.export');
+            Route::get('/user/exportAll', [UserController::class, 'exportUserAll'])->name('admin.user.exportAll');
 
             Route::resource('admin_acara', AcaraController::class);
             Route::resource('admin_pembayaran', DetailAcaraController::class);
             Route::resource('admin_instansi', InstansiController::class);
+            Route::get('/kirimPengumuman', [DetailAcaraController::class, 'pengumuman'])->name('admin.pengumuman');
             Route::put('/pembayaran/verify/{id}', [DetailAcaraController::class, 'verify'])->name('admin.pembayaran.verify');
             Route::get('/pembayaran/unverify/{id}', [DetailAcaraController::class, 'unverify'])->name('admin.pembayaran.unverify');
             Route::get('/pembayaran/verifyKehadiran/{id}', [DetailAcaraController::class, 'verifyKehadiran'])->name('admin.kehadiran.verify');
@@ -132,6 +154,26 @@ Route::middleware(['auth'])->group(function () {
                 $users = DB::select("SELECT *, ipdi_unit.nama_unit FROM users JOIN ipdi_unit on (ipdi_unit.id = users.instansi) WHERE users.id = ?", [auth()->user()->id]);
                 return view('pages.user.partisipasi', compact('acaras', 'users'));
             })->name('admin.partisipasi');
+
+            Route::get('buktiPembayaran/{filename}', function ($filename) {
+                if($filename){
+                    $path = storage_path('app/public/' . $filename);
+                } else {
+                    $path = storage_path('app/public/' . "Logo.png");
+                }
+                if (!File::exists($path)) {
+                    abort(404);
+                }
+
+                $file = File::get($path);
+                $type = File::mimeType($path);
+
+                $response = Response::make($file, 200);
+                $response->header("Content-Type", $type);
+
+                return $response;
+            });
+
         });
     });
 
@@ -151,9 +193,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/users/profile', [UserController::class, 'showProfile'])->name('userverifikator.profile');
             Route::get('/user/verify/{id}', [UserController::class, 'verify'])->name('userverifikator.user.verify');
             Route::get('/user/unverify/{id}', [UserController::class, 'unverify'])->name('userverifikator.user.unverify');
+            Route::get('/user/activation/{id}', [UserController::class, 'activation'])->name('userverifikator.user.activation');
             Route::get('/user/changepassword/{id}', [UserController::class, 'resetpassword'])->name('userverifikator.resetpassword');
             Route::put('/updatepassword', [UserController::class, 'changepassword'])->name('userverifikator.updatepassword');
             Route::get('/user/export', [UserController::class, 'exportUser'])->name('userverifikator.user.export');
+            Route::get('/user/exportAll', [UserController::class, 'exportUserAll'])->name('userverifikator.user.exportAll');
 
             Route::get('/profile', function (Request $request) {
                 $dataProv = DB::table('reg_provinces')->select('id', 'name')->get();
@@ -212,6 +256,25 @@ Route::middleware(['auth'])->group(function () {
                 $users = DB::select("SELECT *, ipdi_unit.nama_unit FROM users JOIN ipdi_unit on (ipdi_unit.id = users.instansi) WHERE users.id = ?", [auth()->user()->id]);
                 return view('pages.user.partisipasi', compact('acaras', 'users'));
             })->name('acaraverifikator.partisipasi');
+
+            Route::get('buktiPembayaran/{filename}', function ($filename) {
+                if($filename){
+                    $path = storage_path('app/public/' . $filename);
+                } else {
+                    $path = storage_path('app/public/' . "Logo.png");
+                }
+                if (!File::exists($path)) {
+                    abort(404);
+                }
+
+                $file = File::get($path);
+                $type = File::mimeType($path);
+
+                $response = Response::make($file, 200);
+                $response->header("Content-Type", $type);
+
+                return $response;
+            });
         });
     });
 });

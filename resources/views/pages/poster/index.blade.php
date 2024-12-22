@@ -19,6 +19,17 @@
                 </div>
             </div>
         </div>
+        @if (empty($acaras))
+        <div class="flex items-center justify-center h-screen">
+            <div class="bg-blue-500 text-white rounded-lg shadow-lg p-8 max-w-lg">
+                <div class="text-center">
+                    <p class="text-md">
+                        Belum ada acara yang dapat Anda ikuti saat ini. Silakan periksa kembali nanti untuk informasi terbaru.
+                    </p>
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="w-full px-20 py-4 mx-auto">
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($acaras as $acara)

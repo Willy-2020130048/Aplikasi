@@ -16,6 +16,20 @@
                 <!-- End Grid -->
             </div>
         </div>
+        @if (auth()->user()->status == "tidak aktif")
+        <div class="w-full bg-red-700">
+            <div class="max-w-[85rem] px-4 py-4 sm:px-6 lg:px-8 mx-auto">
+                <div class="text-center md:text-center">
+                    <p class="text-xl font-bold text-white/80 uppercase tracking-wider">
+                        Perhatian !!!
+                    </p>
+                    <p class="mt-1 text-white font-medium">
+                        Akun anda sudah tidak aktif, silahkan hubungi infokom untuk mengaktifkan kembali.
+                    </p>
+                </div>
+            </div>
+        </div>
+        @endif
         <!-- End Announcement Banner -->
         <!-- Card Blog -->
         <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -188,7 +202,7 @@
                 <div
                     class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
                     <div class="h-80 flex flex-col justify-center items-center rounded-t-xl">
-                        <img src="../storage/Logo2.png" class="object-cover h-60 rounded-t-xl">
+                        <img src="{{ url('display') }}" class="object-cover h-60 rounded-t-xl">
                     </div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-200 dark:hover:text-white">

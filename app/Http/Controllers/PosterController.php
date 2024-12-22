@@ -11,19 +11,24 @@ class PosterController
 {
     public function index(Request $request)
     {
-
-        $acaras = DB::select("SELECT * FROM acaras WHERE id NOT IN (SELECT id_acara FROM detail_acaras WHERE id_peserta = ?)", [auth()->user()->id]);
+        $acaras = DB::select("SELECT * FROM acaras WHERE id NOT IN (SELECT id_acara FROM detail_acaras WHERE id_peserta = ?) AND status != 'closed'", [auth()->user()->id]);
         return view('pages.poster.index', compact('acaras'));
     }
 
     public function detail($id)
     {
+        if (auth()->user()->status == "tidak aktif") {
+            return redirect('/');
+        }
         $acara = Acara::find($id);
         return view('pages.poster.detail', compact('acara'));
     }
 
     public function store(Request $request, $id)
     {
+        if (auth()->user()->status == "tidak aktif") {
+            return redirect('/');
+        }
         $request->validate(
             [
                 'no_ktp' => 'required',
@@ -55,7 +60,7 @@ class PosterController
             $detail->kota = $request->kota;
             $detail->sponsor = $request->sponsor;
             $detail->catatan = " ";
-            $detail->save();
+            // $detail->save();
             return redirect()->route(auth()->user()->role . '.partisipasi')->with('success', 'Berhasil partisipasi acara.');
         } else {
             return redirect()->route(auth()->user()->role . '.partisipasi')->with('success', 'Anda sudah pernah mendaftar partisipasi acara.');

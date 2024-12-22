@@ -278,7 +278,7 @@
                                             <td class="whitespace-nowrap h-px w-30 min-w-30 align-top">
                                                 <div class="flex items-center gap-x-4 p-2">
                                                     @if ($pembayaran->bukti_pembayaran)
-                                                        <a href="../storage/{{$pembayaran->bukti_pembayaran}}" target="_blank">
+                                                        <a href="{{ url(auth()->user()->role.'/buktiPembayaran/'.$pembayaran->bukti_pembayaran) }}" target="_blank">
                                                             <button class="text-sm font-semibold bg-blue-600 text-white rounded-lg px-4 py-3 block shadow-xl hover:text-white hover:bg-black">
                                                             @if (Str::endsWith($pembayaran->bukti_pembayaran, '.pdf'))
                                                                 View Pdf

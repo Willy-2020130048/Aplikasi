@@ -46,7 +46,15 @@
                                         <a href="{{ route(auth()->user()->role . '.user.export') }}">
                                             <button
                                                 class="text-sm font-semibold bg-blue-600 text-white rounded-lg px-4 py-3 block shadow-xl hover:text-white hover:bg-black">
-                                                Export Data Excel
+                                                Export Data Excel User Terverifikasi
+                                            </button>
+                                        </a>
+                                    </div>
+                                    <div class="p-4 items-center gap-x-4">
+                                        <a href="{{ route(auth()->user()->role . '.user.exportAll') }}">
+                                            <button
+                                                class="text-sm font-semibold bg-blue-600 text-white rounded-lg px-4 py-3 block shadow-xl hover:text-white hover:bg-black">
+                                                Export Data Excel All User
                                             </button>
                                         </a>
                                     </div>
@@ -474,32 +482,39 @@
                                             </td>
                                             <td class="size-px whitespace-nowrap align-top">
                                                 @if ($user->status == 'terverifikasi')
-                                                    <button class="block p-6" onclick="openModalVerify('modelConfirm','{{$user->id}}','unverify')">
-                                                        <span
-                                                            class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
-                                                            <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg"
-                                                                width="16" height="16" fill="currentColor"
-                                                                viewBox="0 0 16 16">
-                                                                <path
-                                                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                                                            </svg>
-                                                            {{ $user->status }}
-                                                        </span>
-                                                    </button>
-                                                @else
-                                                    <button class="block p-6" onclick="openModalVerify('modelConfirm','{{$user->id}}','verify')">
-                                                        <span
-                                                            class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-red-100 text-red-800 rounded-full dark:bg-red-500/10 dark:text-red-500">
-                                                            <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg"
-                                                                width="16" height="16" fill="currentColor"
-                                                                viewBox="0 0 16 16">
-                                                                <path
-                                                                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                                                            </svg>
-                                                            {{ $user->status }}
-                                                        </span>
-                                                    </button>
-                                                @endif
+                                                <button class="block p-6" onclick="openModalVerify('modelConfirm','{{$user->id}}','menonaktifkan akun')">
+                                                    <span
+                                                        class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                                                        <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                                        </svg>
+                                                        {{ $user->status }}
+                                                    </span>
+                                                </button>
+                                            @elseif ($user->status == 'tidak aktif')
+                                                <button class="block p-6" onclick="openModalVerify('modelConfirm','{{$user->id}}','mengaktifkan akun')">
+                                                    <span
+                                                        class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full dark:bg-yellow-500/10 dark:text-yellow-500">
+                                                        <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                                        </svg>
+                                                        {{ $user->status }}
+                                                    </span>
+                                                </button>
+                                            @else
+                                                <button class="block p-6" onclick="openModalVerify('modelConfirm','{{$user->id}}','verify')">
+                                                    <span
+                                                        class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-red-100 text-red-800 rounded-full dark:bg-red-500/10 dark:text-red-500">
+                                                        <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                                        </svg>
+                                                        {{ $user->status }}
+                                                    </span>
+                                                </button>
+                                            @endif
                                             </td>
                                             <td class="h-px w-40 min-w-40 align-top">
                                                 <div class="flex items-center gap-x-4 p-4">
@@ -673,7 +688,7 @@
                         Tidak
                    </a>
                     <a id='verifyButton' onclick="closeModalVerify('modelConfirm')"
-                       class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-base inline-flex items-center m-8 px-4 py-2.5 text-center mr-2">
+                       class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-base inline-flex items-center m-8 px-4 py-2.5 text-center">
                        Yakin
                     </a>
                 </div>
@@ -688,16 +703,15 @@
            const button = document.getElementById('verifyButton');
            const info = document.getElementById('info');
            info.innerText = "Apakah anda yakin ingin " + action + "?";
-           if(action == "unverify"){
-            button.href = "{{ route(auth()->user()->role . '.user.unverify',':id') }}".replace(':id', id);
-           }
            if(action == "verify"){
             button.href = "{{ route(auth()->user()->role . '.user.verify',':id') }}".replace(':id', id);
-           }
-           if(action == "reset"){
+           } else if(action == "menonaktifkan akun"){
+            button.href = "{{ route(auth()->user()->role . '.user.unverify',':id') }}".replace(':id', id);
+           } else if(action == "mengaktifkan akun"){
+            button.href = "{{ route(auth()->user()->role . '.user.activation',':id') }}".replace(':id', id);
+           } else if(action == "reset"){
             button.href = "{{ route(auth()->user()->role . '.resetpassword',':id') }}".replace(':id', id);
-           }
-           if(action == "delete"){
+           }else if(action == "delete"){
             button.addEventListener('click', function(event) {
                 button.href = "#";
                 event.preventDefault();

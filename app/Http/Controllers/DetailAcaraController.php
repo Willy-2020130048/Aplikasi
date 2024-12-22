@@ -14,6 +14,8 @@ use Mail;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Str;
+use App\Jobs\SendPengumumanEmail;
+use Illuminate\Support\Facades\Log;
 
 class DetailAcaraController extends Controller
 {
@@ -70,6 +72,58 @@ class DetailAcaraController extends Controller
         $pembayarans = $query->paginate(30);
         $pembayarans->appends($request->all());
         return view('pages.pembayaran.index', compact('pembayarans','data'));
+    }
+
+    public function pengumuman(){
+        $details = DB::table('detail_acaras')
+        ->join('users', 'users.id', "=", "detail_acaras.id_peserta")
+        ->join('acaras', 'acaras.id', "=", "detail_acaras.id_acara")
+        ->join('ipdi_unit', 'ipdi_unit.id', "=", "users.instansi")
+        ->join('reg_provinces', 'reg_provinces.id', "=", "users.provinsi")
+        ->select(
+            'detail_acaras.*',
+            'users.email',
+            'users.nama_lengkap',
+            'users.nira',
+            'reg_provinces.name',
+            'ipdi_unit.nama_unit',
+            'acaras.workshop',
+            'acaras.jenis_acara',
+            'acaras.id_detail',
+            'acaras.nama_acara'
+            )
+            ->where('acaras.nama_acara', 'Simposium PITNAS IPDI 2024')
+            ->whereBetween('detail_acaras.id', [1801, 2200])
+            ->get();
+
+            $delay = 0;
+            foreach ($details as $partisipan) {
+                $catatan = '';
+                switch($partisipan->nama_acara) {
+                    case 'Workshop Health Technology Dialysis PITNAS IPDI 2024':
+                        $link = 'https://lms.kemkes.go.id/courses/1a7b9bc0-18c0-4257-928a-feeb7d19ba91';
+                        break;
+                    case 'Workshop CAPD PITNAS IPDI 2024':
+                        $link = 'https://lms.kemkes.go.id/courses/df896d51-c9d4-4af4-a1d6-9a8a6872ef5c';
+                        break;
+                    case 'Simposium PITNAS IPDI 2024':
+                        $link = 'https://lms.kemkes.go.id/courses/98830310-3d44-484a-915f-d3043285e518';
+                        break;
+                    case 'Workshop Audit Klinis Dialisis PITNAS IPDI 2024':
+                        $link = 'https://lms.kemkes.go.id/courses/4685885a-6427-4fb7-9cc5-65c0f05ccadf';
+                        $catatan = 'Bagi peserta Workshop Audit Dialisis, mohon membawa laptop saat workshop.';
+                        break;
+                }
+                $data = [
+                    'link' => $link,
+                    'acara' => $partisipan->nama_acara,
+                    'jenis_acara' => $partisipan->jenis_acara,
+                    'catatan' => $catatan,
+                ];
+                SendPengumumanEmail::dispatch($partisipan, $data)->delay(now()->addSeconds($delay));
+                $delay += 30;
+            }
+            return redirect()->route(auth()->user()->role . '_pembayaran.index')->with('success', 'pembayaran berhasil diverifikasi dan email terkirim.');
     }
 
     public function verify(Request $request, $id)

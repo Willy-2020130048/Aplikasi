@@ -31,7 +31,7 @@ class UserController extends Controller
         ->where('name', 'LIKE', '%' . $request->name . '%')
         ->where('users.email', 'LIKE', '%' . $request->email . '%')
         ->where('nama_unit', 'LIKE', '%' . $request->nama_unit . '%')
-        ->orderBy('users.id', 'desc');
+        ->orderBy('users.status', 'asc');
 
         if (auth()->user()->role != "admin") {
         $id_lists = explode(',',auth()->user()->id_admin);
@@ -200,8 +200,7 @@ class UserController extends Controller
     public function unverify($id)
     {
         $user = User::find($id);
-        $user->status = 'menunggu';
-        $user->nira = 'Belum Terverifikasi';
+        $user->status = 'tidak aktif';
 
         if (auth()->user()->role != "admin") {
             $id_lists = explode(',',auth()->user()->id_admin);
@@ -211,7 +210,23 @@ class UserController extends Controller
         }
 
         $user->save();
-        return redirect()->route(auth()->user()->role . '_user.index')->with('success', 'Pengguna batal diverifikasi.');
+        return redirect()->route(auth()->user()->role . '_user.index')->with('success', 'Status pengguna sudah dirubah menjadi tidak aktif.');
+    }
+
+    public function activation($id)
+    {
+        $user = User::find($id);
+        $user->status = 'terverifikasi';
+
+        if (auth()->user()->role != "admin") {
+            $id_lists = explode(',',auth()->user()->id_admin);
+            if(!in_array($user->provinsi,$id_lists)){
+            return redirect()->route(auth()->user()->role . '_user.index')->with('success', "tidak ada permission");
+            }
+        }
+
+        $user->save();
+        return redirect()->route(auth()->user()->role . '_user.index')->with('success', 'Status pengguna sudah dirubah menjadi aktif.');
     }
 
     public function showProfile(AuthUser $user)
@@ -360,6 +375,30 @@ class UserController extends Controller
                     'type' => 'Users',
                     'name' => 'Admin ID ' . $id, // Nama sheet sesuai dengan ID admin
                     'filter' => ['status' => 'terverifikasi', 'provinsi' => $id],
+                ];
+            }
+        }
+        return Excel::download(new UsersExport($sheetsData), 'Data User.xlsx');
+    }
+
+    public function exportUserAll(){
+        $sheetsData = [];
+        if(auth()->user()->role == 'admin'){
+            $provinsi = DB::select('select id, name from reg_provinces order by name');
+            foreach($provinsi as $prov){
+                $sheetsData[] = [
+                    'type' => 'Users',
+                    'name' => $prov->name, // Akses properti sebagai object, bukan array
+                    'filter' => ['provinsi' => $prov->id],
+                ];
+            }
+        } else {
+            $idList = explode(',', auth()->user()->id_admin);
+            foreach ($idList as $id) {
+                $sheetsData[] = [
+                    'type' => 'Users',
+                    'name' => 'Admin ID ' . $id, // Nama sheet sesuai dengan ID admin
+                    'filter' => ['provinsi' => $id],
                 ];
             }
         }
